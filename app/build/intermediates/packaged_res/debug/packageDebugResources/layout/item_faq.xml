@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp" app:cardCornerRadius="10dp"
+    app:cardElevation="3dp" app:cardBackgroundColor="@color/white"
+    android:clickable="true" android:focusable="true">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Question row -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:padding="14dp">
+            <TextView android:layout_width="24dp" android:layout_height="24dp"
+                android:text="Q" android:gravity="center"
+                android:background="@drawable/bg_circle_primary"
+                android:textColor="@color/white" android:textSize="12sp"
+                android:fontFamily="sans-serif-bold" android:layout_marginEnd="10dp"/>
+            <TextView android:id="@+id/tvQuestion" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:textColor="@color/text_primary" android:textSize="14sp"
+                android:fontFamily="sans-serif-medium" android:text="Question here"/>
+            <ImageView android:layout_width="18dp" android:layout_height="18dp"
+                android:src="@drawable/ic_arrow_down" app:tint="@color/primary"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Category tag -->
+        <TextView android:id="@+id/tvCategory" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="General"
+            android:background="@drawable/bg_badge_category"
+            android:textColor="@color/primary" android:textSize="10sp"
+            android:paddingStart="8dp" android:paddingEnd="8dp"
+            android:paddingTop="2dp" android:paddingBottom="2dp"
+            android:layout_marginStart="14dp" android:layout_marginBottom="6dp"/>
+
+        <!-- Answer (hidden by default, shown on click) -->
+        <LinearLayout android:id="@+id/layoutAnswer" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal"
+            android:background="#F5F5F5" android:padding="14dp"
+            android:visibility="gone">
+            <View android:layout_width="3dp" android:layout_height="match_parent"
+                android:background="@color/primary" android:layout_marginEnd="10dp"/>
+            <TextView android:id="@+id/tvAnswer" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:textColor="@color/text_secondary" android:textSize="13sp"
+                android:lineSpacingMultiplier="1.4" android:text="Answer here"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

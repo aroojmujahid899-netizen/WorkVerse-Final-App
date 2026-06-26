@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.WorkVerse">
+
+        <!-- ========== SPLASH & AUTH ========== -->
+        <activity android:name=".activities.SplashActivity" android:exported="true"
+            android:theme="@style/Theme.WorkVerse.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.LoginActivity" android:exported="false" />
+        <activity android:name=".activities.ForgotPasswordActivity" android:exported="false" />
+
+        <!-- ========== ADMIN ========== -->
+        <activity android:name=".activities.admin.AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".activities.admin.ManageRolesActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AddEmployeeActivity" android:exported="false" />
+        <activity android:name=".activities.admin.ViewEmployeesActivity" android:exported="false" />
+        <activity android:name=".activities.admin.EmployeeDetailActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AddManagerActivity" android:exported="false" />
+        <activity android:name=".activities.admin.ViewManagersActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AdminAttendanceActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AdminLeaveManagementActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AdminPerformanceActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AddPerformanceActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AdminFeedbackActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AdminSalesReportActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AdminNotificationsActivity" android:exported="false" />
+        <activity android:name=".activities.admin.AdminProfileActivity" android:exported="false" />
+
+        <!-- ========== CEO (NEW) ========== -->
+        <activity android:name=".activities.ceo.CEODashboardActivity" android:exported="false" />
+        <activity android:name=".activities.ceo.CEOPerformanceActivity" android:exported="false" />
+        <activity android:name=".activities.ceo.CEOAttendanceActivity" android:exported="false" />
+        <activity android:name=".activities.ceo.CEOFeedbackActivity" android:exported="false" />
+        <activity android:name=".activities.ceo.CEOSalesReportActivity" android:exported="false" />
+        <activity android:name=".activities.ceo.CEOProfileActivity" android:exported="false" />
+        <activity android:name=".activities.ceo.CEONotificationsActivity" android:exported="false" />
+
+        <!-- ========== MANAGER ========== -->
+        <activity android:name=".activities.manager.ManagerDashboardActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerTeamActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerAttendanceActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerLeaveApprovalActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerLeaveStatusActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerApplyLeaveActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerPerformanceActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerFeedbackActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerSalesReportActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerNotificationsActivity" android:exported="false" />
+        <activity android:name=".activities.manager.ManagerProfileActivity" android:exported="false" />
+
+        <!-- ========== EMPLOYEE ========== -->
+        <activity android:name=".activities.employee.EmployeeDashboardActivity" android:exported="false" />
+        <activity android:name=".activities.employee.MarkAttendanceActivity" android:exported="false" />
+        <activity android:name=".activities.employee.ViewAttendanceActivity" android:exported="false" />
+        <activity android:name=".activities.employee.ApplyLeaveActivity" android:exported="false" />
+        <activity android:name=".activities.employee.ViewLeaveStatusActivity" android:exported="false" />
+        <activity android:name=".activities.employee.EmployeePerformanceActivity" android:exported="false" />
+        <activity android:name=".activities.employee.SubmitFeedbackActivity" android:exported="false" />
+        <activity android:name=".activities.employee.ViewFAQActivity" android:exported="false" />
+        <activity android:name=".activities.employee.EmployeeSalesReportActivity" android:exported="false" />
+        <activity android:name=".activities.employee.AddSaleActivity" android:exported="false" />
+        <activity android:name=".activities.employee.EmployeeNotificationsActivity" android:exported="false" />
+        <activity android:name=".activities.employee.EmployeeProfileActivity" android:exported="false" />
+        <activity android:name=".activities.employee.EditProfileActivity" android:exported="false" />
+
+        <!-- ========== SERVICES ========== -->
+        <service android:name=".utils.WorkVerseMessagingService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>

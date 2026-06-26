@@ -1,0 +1,46 @@
+com.workverse.app-jetified-firebase-common-20.4.2-0 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\res
+com.workverse.app-jetified-core-viewtree-1.0.0-1 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2908dabf7d864ce01b65fe21a6b14419\transformed\jetified-core-viewtree-1.0.0\res
+com.workverse.app-browser-1.4.0-2 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\308733b1a900d6fcd8eab6e7066e6cf6\transformed\browser-1.4.0\res
+com.workverse.app-jetified-annotation-experimental-1.4.1-3 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\30f223dec4bc067b4a444e1394dd8a4d\transformed\jetified-annotation-experimental-1.4.1\res
+com.workverse.app-core-1.18.0-4 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\res
+com.workverse.app-lifecycle-livedata-core-2.6.2-5 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\38cfedef08d501ecf0ee204fe0cb8c43\transformed\lifecycle-livedata-core-2.6.2\res
+com.workverse.app-fragment-1.3.6-6 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\394d06ff4537ebee462d53b4a6727753\transformed\fragment-1.3.6\res
+com.workverse.app-jetified-customview-poolingcontainer-1.0.0-7 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\3ee976123eba2a3a87398790e301bd95\transformed\jetified-customview-poolingcontainer-1.0.0\res
+com.workverse.app-transition-1.2.0-8 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\4136bcffb73dccb1e18283c50eccc596\transformed\transition-1.2.0\res
+com.workverse.app-jetified-circleimageview-3.1.0-9 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\610cae0ffe9bc328570571e7b7f3ca33\transformed\jetified-circleimageview-3.1.0\res
+com.workverse.app-jetified-navigationevent-10 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\61511b026f8586d0aa9ddf476c044474\transformed\jetified-navigationevent\res
+com.workverse.app-jetified-emoji2-views-helper-1.2.0-11 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\6cc003a642ceeabf00e3d07abd455aa9\transformed\jetified-emoji2-views-helper-1.2.0\res
+com.workverse.app-jetified-tracing-1.2.0-12 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7064e2d0a3b9ac8048aa0e728c0aeff0\transformed\jetified-tracing-1.2.0\res
+com.workverse.app-drawerlayout-1.1.1-13 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\734920efa8437a3be3f57e4267894818\transformed\drawerlayout-1.1.1\res
+com.workverse.app-jetified-lifecycle-process-2.6.2-14 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7721ec16fb3288a4eaaf8da9319228c9\transformed\jetified-lifecycle-process-2.6.2\res
+com.workverse.app-cardview-1.0.0-15 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7ab0bb339f6eb784e7d72e534505b2db\transformed\cardview-1.0.0\res
+com.workverse.app-jetified-startup-runtime-1.1.1-16 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7f29e8e1376a69326d1b4194367d1b26\transformed\jetified-startup-runtime-1.1.1\res
+com.workverse.app-jetified-lifecycle-viewmodel-savedstate-2.6.2-17 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\86ea1f11cd1c5051e70fef937a41f658\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.2\res
+com.workverse.app-jetified-play-services-base-18.0.1-18 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\res
+com.workverse.app-constraintlayout-2.1.4-19 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\99038778bd454e6a807a2db4c66ea9b3\transformed\constraintlayout-2.1.4\res
+com.workverse.app-appcompat-1.6.1-20 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\9903b8187118293dd85a13e942af13c2\transformed\appcompat-1.6.1\res
+com.workverse.app-jetified-savedstate-1.2.1-21 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\9dbb2966bbefc5448097e5ac5ecf218e\transformed\jetified-savedstate-1.2.1\res
+com.workverse.app-jetified-appcompat-resources-1.6.1-22 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\a07a9506f8fd74d8246ae299a5950b2c\transformed\jetified-appcompat-resources-1.6.1\res
+com.workverse.app-coordinatorlayout-1.1.0-23 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\ad296f28cc1edff60aa23f02dfac4233\transformed\coordinatorlayout-1.1.0\res
+com.workverse.app-jetified-glide-4.16.0-24 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\afbe01b190a30a4175e930e5cd1c1014\transformed\jetified-glide-4.16.0\res
+com.workverse.app-recyclerview-1.3.2-25 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\bf2f18965ac2f735d929f9ac3f0eae4d\transformed\recyclerview-1.3.2\res
+com.workverse.app-core-runtime-2.2.0-26 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\c4ac7e35b2d98eb6ec30cbbed1ad7beb\transformed\core-runtime-2.2.0\res
+com.workverse.app-lifecycle-livedata-2.6.2-27 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cb8c3c11d2001adcb54963bcd998fabe\transformed\lifecycle-livedata-2.6.2\res
+com.workverse.app-jetified-activity-1.13.0-28 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cc261a800f73a3034c59c4c7f0120467\transformed\jetified-activity-1.13.0\res
+com.workverse.app-jetified-firebase-messaging-23.4.1-29 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\res
+com.workverse.app-jetified-play-services-basement-18.1.0-30 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d4a04539af10402a3598061bf7875f7b\transformed\jetified-play-services-basement-18.1.0\res
+com.workverse.app-lifecycle-runtime-2.6.2-31 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\daa6c2541c197111e9010f92f343f97f\transformed\lifecycle-runtime-2.6.2\res
+com.workverse.app-jetified-emoji2-1.2.0-32 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\res
+com.workverse.app-jetified-viewpager2-1.1.0-beta02-33 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\e457c9a46aaec02a638cd404777ef134\transformed\jetified-viewpager2-1.1.0-beta02\res
+com.workverse.app-jetified-profileinstaller-1.4.0-34 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\res
+com.workverse.app-jetified-core-ktx-1.18.0-35 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\f9d7d69f91f0b6887f5b96ae26d7f365\transformed\jetified-core-ktx-1.18.0\res
+com.workverse.app-lifecycle-viewmodel-2.6.2-36 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\fdff7d746f65a9fff62c35b5d9be9661\transformed\lifecycle-viewmodel-2.6.2\res
+com.workverse.app-material-1.11.0-37 C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\fefbe0d7aa466fce72292bc40dd58ec1\transformed\material-1.11.0\res
+com.workverse.app-pngs-38 D:\WorkVerse_Final\WorkVerse\app\build\generated\res\pngs\debug
+com.workverse.app-res-39 D:\WorkVerse_Final\WorkVerse\app\build\generated\res\processDebugGoogleServices
+com.workverse.app-resValues-40 D:\WorkVerse_Final\WorkVerse\app\build\generated\res\resValues\debug
+com.workverse.app-packageDebugResources-41 D:\WorkVerse_Final\WorkVerse\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.workverse.app-packageDebugResources-42 D:\WorkVerse_Final\WorkVerse\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.workverse.app-debug-43 D:\WorkVerse_Final\WorkVerse\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.workverse.app-debug-44 D:\WorkVerse_Final\WorkVerse\app\src\debug\res
+com.workverse.app-main-45 D:\WorkVerse_Final\WorkVerse\app\src\main\res

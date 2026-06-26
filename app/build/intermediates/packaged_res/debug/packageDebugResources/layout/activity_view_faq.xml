@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/background">
+
+    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary" app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_back"/>
+
+    <!-- Header card -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@color/primary" android:padding="16dp" android:paddingTop="4dp"
+        android:paddingBottom="20dp" android:orientation="horizontal" android:gravity="center_vertical">
+        <ImageView android:layout_width="40dp" android:layout_height="40dp"
+            android:src="@drawable/ic_faq" app:tint="@color/white" android:layout_marginEnd="12dp"/>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Frequently Asked Questions"
+                android:textColor="@color/white" android:textSize="15sp" android:fontFamily="sans-serif-bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Tap a question to see the answer"
+                android:textColor="#BBDEFB" android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_gravity="center"
+        android:visibility="gone" android:layout_marginTop="20dp"/>
+
+    <TextView android:id="@+id/tvEmpty" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="No FAQs available"
+        android:textColor="@color/text_secondary" android:layout_gravity="center"
+        android:layout_marginTop="40dp" android:visibility="gone"/>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:id="@+id/containerFAQ" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical"
+            android:padding="14dp"/>
+    </ScrollView>
+</LinearLayout>

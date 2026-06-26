@@ -1,0 +1,394 @@
+[
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_btn_primary.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_btn_primary.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_apply_leave.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_apply_leave.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_ceo_attendance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_ceo_attendance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_edit_profile.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_edit_profile.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_ceo_dashboard.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_ceo_dashboard.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_status_rejected.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_status_rejected.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_mark_attendance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_mark_attendance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_performance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_performance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_employee.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_employee.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_lock.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_lock.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_apply_leave.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_apply_leave.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_sales_report.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_sales_report.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_ceo_profile.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_ceo_profile.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_view_leave_status.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_view_leave_status.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_profile.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_profile.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_view_faq.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_view_faq.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_notifications.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_notifications.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_sales.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_sales.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_status_approved.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_status_approved.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_role.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_role.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_ceo_feedback.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_ceo_feedback.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_circle.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_circle.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_send_notification.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_send_notification.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_login.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_gradient_header.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/gradient_header.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manage_roles.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manage_roles.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_leave_request.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_leave_request.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.workverse.app-main-45:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_attendance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_attendance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_employee_detail.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_employee_detail.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_notification.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_notification.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_leave.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_leave.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_dashboard.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_dashboard.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_feedback.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_feedback.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_dashboard.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_dashboard.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_attendance.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_attendance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_employee_dashboard.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_employee_dashboard.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_circle_primary.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_circle_primary.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_employee_performance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_employee_performance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_forgot_password.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_forgot_password.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_bottom_nav.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_bottom_nav.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_view_managers.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_view_managers.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_edit.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_edit.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_faq.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_faq.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_search.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_search.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_employees.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_employees.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_login_header.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_login_header.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_sales_report.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_sales_report.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_ceo_sales_report.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_ceo_sales_report.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_employee_notifications.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_employee_notifications.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_feedback.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_feedback.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_add_performance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_add_performance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_logout.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_logout.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_profile.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_profile.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_attendance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_attendance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_add.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_feedback.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_feedback.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_ceo_performance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_ceo_performance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_performance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_performance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_profile.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_profile.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_faq.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_faq.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_notifications.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_notifications.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_view_attendance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_view_attendance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_submit_feedback.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_submit_feedback.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_email.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_email.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_splash.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_splash.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_employee_profile.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_employee_profile.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_add_employee.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_add_employee.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_role.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_role.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_sales_report.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_sales_report.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_delete.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_delete.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_employee_sales_report.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_employee_sales_report.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_leave_status.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_leave_status.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_calendar.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_calendar.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_splash.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_admin_leave_management.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_admin_leave_management.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_feedback.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_feedback.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_leave_approval.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_leave_approval.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_person.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_person.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_manager.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_manager.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_add_manager.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_add_manager.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_performance.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_performance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_badge_category.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_badge_category.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_performance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_performance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_status_pending.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_status_pending.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.workverse.app-main-45:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_attendance.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_attendance.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_view_employees.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_view_employees.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_card.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_card.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_item_notification.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/item_notification.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_dashboard.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_dashboard.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_manager_team.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_team.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_bg_badge_neutral.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/bg_badge_neutral.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_back.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_back.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_logo.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_logo.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/drawable_ic_arrow_down.xml.flat",
+        "source": "com.workverse.app-main-45:/drawable/ic_arrow_down.xml"
+    },
+    {
+        "merged": "com.workverse.app-debug-43:/layout_activity_add_sale.xml.flat",
+        "source": "com.workverse.app-main-45:/layout/activity_add_sale.xml"
+    }
+]

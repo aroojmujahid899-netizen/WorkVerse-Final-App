@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259608809511",
+    "project_id": "workverse-final-app",
+    "storage_bucket": "workverse-final-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259608809511:android:2d6077a745ba9f23be7e02",
+        "android_client_info": {
+          "package_name": "com.workverse.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbUsD-BjP5gZ5iNhxvZgKBxLAhiHPXKKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

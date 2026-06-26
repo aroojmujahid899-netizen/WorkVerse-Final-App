@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/background">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        style="@style/WorkVerse.Toolbar" app:title="Mark Attendance" app:navigationIcon="@drawable/ic_back"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+        <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp" app:cardElevation="6dp" android:layout_marginBottom="20dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="24dp" android:gravity="center">
+                <TextView android:id="@+id/tvDate" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Today"
+                    android:textColor="@color/text_secondary" android:textSize="14sp"/>
+                <TextView android:id="@+id/tvTime" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="00:00 AM"
+                    android:textColor="@color/primary" android:textSize="44sp" android:fontFamily="sans-serif-light"/>
+                <TextView android:id="@+id/tvStatus" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Not Marked Yet"
+                    android:textColor="@color/status_pending" android:textSize="15sp"
+                    android:layout_marginTop="8dp" android:fontFamily="sans-serif-medium"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <Button android:id="@+id/btnCheckIn" android:layout_width="match_parent" android:layout_height="52dp"
+            android:text="Check In" style="@style/WorkVerse.Button.Primary" android:layout_marginBottom="12dp"/>
+        <Button android:id="@+id/btnCheckOut" android:layout_width="match_parent" android:layout_height="52dp"
+            android:text="Check Out" style="@style/WorkVerse.Button.Outline" android:enabled="false"/>
+        <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_gravity="center"
+            android:layout_marginTop="16dp" android:visibility="gone"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,83 @@
+package com.workverse.app.activities.admin;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.workverse.app.R;
+import com.workverse.app.adapters.ManagerAdapter;
+import com.workverse.app.models.Manager;
+import com.workverse.app.utils.FirebaseHelper;
+import java.util.ArrayList;
+import java.util.List;
+public class ViewManagersActivity extends AppCompatActivity {
+    RecyclerView rv; ProgressBar pb; TextView tvEmpty;
+    TextInputEditText etSearch; FloatingActionButton fab;
+    ManagerAdapter adapter; List<Manager> allList = new ArrayList<>();
+
+    @Override protected void onCreate(Bundle s) {
+        super.onCreate(s);
+        setContentView(R.layout.activity_view_managers);
+        Toolbar tb = findViewById(R.id.toolbar); setSupportActionBar(tb);
+        tb.setNavigationOnClickListener(v -> finish());
+        rv = findViewById(R.id.recyclerView); pb = findViewById(R.id.progressBar);
+        tvEmpty = findViewById(R.id.tvEmpty); etSearch = findViewById(R.id.etSearch);
+        fab = findViewById(R.id.fabAdd);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ManagerAdapter(new ArrayList<>(), new ManagerAdapter.Listener() {
+            public void onEdit(Manager m) { }
+            public void onDelete(Manager m) {
+                FirebaseHelper.getDb().collection(FirebaseHelper.COL_MANAGERS)
+                        .document(m.getId()).delete()
+                        .addOnSuccessListener(r -> loadManagers())
+                        .addOnFailureListener(e -> Toast.makeText(ViewManagersActivity.this, "Delete failed", Toast.LENGTH_SHORT).show());
+            }
+            public void onClick(Manager m) { }
+        });
+        rv.setAdapter(adapter);
+        if (fab != null) fab.setOnClickListener(v -> startActivity(new Intent(this, AddManagerActivity.class)));
+        if (etSearch != null) etSearch.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence c, int a, int b, int d) {}
+            public void onTextChanged(CharSequence c, int a, int b, int d) { filter(c.toString()); }
+            public void afterTextChanged(Editable e) {}
+        });
+        loadManagers();
+    }
+
+    @Override protected void onResume() { super.onResume(); loadManagers(); }
+
+    private void loadManagers() {
+        pb.setVisibility(View.VISIBLE);
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_MANAGERS).get()
+                .addOnSuccessListener(snap -> {
+                    allList.clear();
+                    for (QueryDocumentSnapshot d : snap) {
+                        Manager m = d.toObject(Manager.class); m.setId(d.getId()); allList.add(m);
+                    }
+                    pb.setVisibility(View.GONE);
+                    if (tvEmpty != null) tvEmpty.setVisibility(allList.isEmpty() ? View.VISIBLE : View.GONE);
+                    adapter.updateList(new ArrayList<>(allList));
+                })
+                .addOnFailureListener(e -> { pb.setVisibility(View.GONE);
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show(); });
+    }
+
+    private void filter(String q) {
+        if (q.isEmpty()) { adapter.updateList(new ArrayList<>(allList)); return; }
+        List<Manager> f = new ArrayList<>();
+        for (Manager m : allList) {
+            if (m.getName() != null && m.getName().toLowerCase().contains(q.toLowerCase())) f.add(m);
+        }
+        adapter.updateList(f);
+    }
+}

@@ -1,0 +1,121 @@
+package com.workverse.app.adapters;
+
+import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import com.workverse.app.R;
+import com.workverse.app.models.LeaveRequest;
+import java.util.List;
+
+public class LeaveRequestAdapter extends RecyclerView.Adapter<LeaveRequestAdapter.VH> {
+
+    public interface Listener {
+        void onApprove(LeaveRequest l);
+        void onReject(LeaveRequest l);
+    }
+
+    private List<LeaveRequest> list;
+    private final boolean showActions;
+    private final Listener listener;
+
+    public LeaveRequestAdapter(List<LeaveRequest> list, boolean showActions, Listener l) {
+        this.list        = list;
+        this.showActions = showActions;
+        this.listener    = l;
+    }
+
+    public void updateList(List<LeaveRequest> nl) {
+        list = nl;
+        notifyDataSetChanged();
+    }
+
+    @NonNull
+    @Override
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_leave_request, parent, false);
+        return new VH(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull VH h, int pos) {
+        LeaveRequest r = list.get(pos);
+
+        // Name
+        h.tvEmployeeName.setText(r.getEmployeeName() != null ? r.getEmployeeName() : "—");
+
+        // Role badge — show if role field exists
+        if (r.getRole() != null && !r.getRole().isEmpty()) {
+            h.tvRole.setVisibility(View.VISIBLE);
+            h.tvRole.setText(r.getRole());
+            if ("Manager".equals(r.getRole())) {
+                h.tvRole.setBackgroundColor(Color.parseColor("#4A148C"));
+            } else {
+                h.tvRole.setBackgroundColor(Color.parseColor("#1565C0"));
+            }
+        } else {
+            h.tvRole.setVisibility(View.GONE);
+        }
+
+        // Leave info
+        h.tvLeaveType.setText(r.getLeaveType() != null ? r.getLeaveType() : "—");
+        h.tvDateRange.setText((r.getFromDate() != null ? r.getFromDate() : "?")
+                + "  →  " + (r.getToDate() != null ? r.getToDate() : "?"));
+        h.tvReason.setText(r.getReason() != null ? r.getReason() : "—");
+
+        // Status with color
+        String status = r.getStatus() != null ? r.getStatus() : "Pending";
+        h.tvStatus.setText(status);
+        switch (status) {
+            case "Approved":
+                h.tvStatus.setTextColor(Color.parseColor("#2E7D32"));
+                h.tvStatus.setBackgroundColor(Color.parseColor("#E8F5E9"));
+                break;
+            case "Rejected":
+                h.tvStatus.setTextColor(Color.parseColor("#C62828"));
+                h.tvStatus.setBackgroundColor(Color.parseColor("#FFEBEE"));
+                break;
+            default: // Pending
+                h.tvStatus.setTextColor(Color.parseColor("#E65100"));
+                h.tvStatus.setBackgroundColor(Color.parseColor("#FFF3E0"));
+                break;
+        }
+
+        // Show approve/reject buttons only when showActions=true AND status is Pending
+        boolean showBtn = showActions && "Pending".equals(status);
+        h.llActions.setVisibility(showBtn ? View.VISIBLE : View.GONE);
+
+        if (showBtn && listener != null) {
+            h.btnApprove.setOnClickListener(v -> listener.onApprove(r));
+            h.btnReject.setOnClickListener(v -> listener.onReject(r));
+        }
+    }
+
+    @Override
+    public int getItemCount() { return list == null ? 0 : list.size(); }
+
+    static class VH extends RecyclerView.ViewHolder {
+        TextView    tvEmployeeName, tvRole, tvLeaveType, tvDateRange, tvReason, tvStatus;
+        LinearLayout llActions;
+        Button       btnApprove, btnReject;
+
+        VH(View v) {
+            super(v);
+            tvEmployeeName = v.findViewById(R.id.tvEmployeeName);
+            tvRole         = v.findViewById(R.id.tvRole);
+            tvLeaveType    = v.findViewById(R.id.tvLeaveType);
+            tvDateRange    = v.findViewById(R.id.tvDateRange);
+            tvReason       = v.findViewById(R.id.tvReason);
+            tvStatus       = v.findViewById(R.id.tvStatus);
+            llActions      = v.findViewById(R.id.llActions);
+            btnApprove     = v.findViewById(R.id.btnApprove);
+            btnReject      = v.findViewById(R.id.btnReject);
+        }
+    }
+}
