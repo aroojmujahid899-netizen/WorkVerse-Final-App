@@ -13,9 +13,10 @@ import com.workverse.app.utils.SharedPrefManager;
 
 public class AdminDashboardActivity extends AppCompatActivity {
 
-    TextView tvAdminName, tvTotalEmployees, tvPresentToday, tvPendingLeaves, tvTotalManagers;
-    LinearLayout qaRoles, qaEmployees, qaAddMgr, qaAttendance, qaLeave,
-            qaPerformance, qaFeedback, qaSales;
+    TextView tvAdminName, tvTotalEmployees, tvPresentToday,
+            tvPendingLeaves, tvTotalManagers;
+    LinearLayout qaRoles, qaEmployees, qaAddMgr, qaAttendance,
+            qaLeave, qaPerformance, qaFeedback, qaSales;
     LinearLayout navHome, navNotif, navProfile, navLogout;
     FirebaseFirestore db;
     SharedPrefManager spm;
@@ -35,10 +36,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
         tvTotalManagers  = findViewById(R.id.tvTotalManagers);
 
         if (tvAdminName != null)
-            tvAdminName.setText(spm.getFullName() != null ? spm.getFullName() : "Admin");
+            tvAdminName.setText(spm.getFullName() != null
+                    ? spm.getFullName() : "Admin");
 
+        // MERGED: qaEmployees = Add + View Employee
         qaRoles       = findViewById(R.id.qaRoles);
-        // MERGED: qaEmployees = Add + View Employee (FAB inside ViewEmployees for Add)
         qaEmployees   = findViewById(R.id.qaViewEmp);
         qaAddMgr      = findViewById(R.id.qaAddMgr);
         qaAttendance  = findViewById(R.id.qaAttendance);
@@ -52,20 +54,29 @@ public class AdminDashboardActivity extends AppCompatActivity {
         navProfile = findViewById(R.id.navProfile);
         navLogout  = findViewById(R.id.navLogout);
 
-        // qaAddEmp removed — ViewEmployees has FAB to add
-        if (qaRoles      != null) qaRoles.setOnClickListener(v      -> go(ManageRolesActivity.class));
-        if (qaEmployees  != null) qaEmployees.setOnClickListener(v  -> go(ViewEmployeesActivity.class));
-        if (qaAddMgr     != null) qaAddMgr.setOnClickListener(v     -> go(AddManagerActivity.class));
-        if (qaAttendance != null) qaAttendance.setOnClickListener(v -> go(AdminAttendanceActivity.class));
-        if (qaLeave      != null) qaLeave.setOnClickListener(v      -> go(AdminLeaveManagementActivity.class));
-        // Performance: sirf View — AddPerformance button nahi
-        if (qaPerformance != null) qaPerformance.setOnClickListener(v -> go(AdminPerformanceActivity.class));
-        if (qaFeedback   != null) qaFeedback.setOnClickListener(v   -> go(AdminFeedbackActivity.class));
-        if (qaSales      != null) qaSales.setOnClickListener(v      -> go(AdminSalesReportActivity.class));
+        if (qaRoles      != null) qaRoles.setOnClickListener(v ->
+                go(ManageRolesActivity.class));
+        if (qaEmployees  != null) qaEmployees.setOnClickListener(v ->
+                go(ViewEmployeesActivity.class));
+        if (qaAddMgr     != null) qaAddMgr.setOnClickListener(v ->
+                go(AddManagerActivity.class));
+        if (qaAttendance != null) qaAttendance.setOnClickListener(v ->
+                go(AdminAttendanceActivity.class));
+        if (qaLeave      != null) qaLeave.setOnClickListener(v ->
+                go(AdminLeaveManagementActivity.class));
+        if (qaPerformance != null) qaPerformance.setOnClickListener(v ->
+                go(AdminPerformanceActivity.class));
+        if (qaFeedback   != null) qaFeedback.setOnClickListener(v ->
+                go(AdminFeedbackActivity.class));
+        if (qaSales      != null) qaSales.setOnClickListener(v ->
+                go(AdminSalesReportActivity.class));
 
-        if (navNotif   != null) navNotif.setOnClickListener(v   -> go(AdminNotificationsActivity.class));
-        if (navProfile != null) navProfile.setOnClickListener(v -> go(AdminProfileActivity.class));
-        if (navLogout  != null) navLogout.setOnClickListener(v  -> logout());
+        if (navNotif   != null) navNotif.setOnClickListener(v ->
+                go(AdminNotificationsActivity.class));
+        if (navProfile != null) navProfile.setOnClickListener(v ->
+                go(AdminProfileActivity.class));
+        if (navLogout  != null) navLogout.setOnClickListener(v ->
+                logout());
 
         loadStats();
     }
@@ -75,24 +86,41 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
     private void loadStats() {
         db.collection(FirebaseHelper.COL_EMPLOYEES).get()
-                .addOnSuccessListener(s -> { if (tvTotalEmployees != null) tvTotalEmployees.setText(String.valueOf(s.size())); });
+                .addOnSuccessListener(s -> {
+                    if (tvTotalEmployees != null)
+                        tvTotalEmployees.setText(String.valueOf(s.size()));
+                });
         db.collection(FirebaseHelper.COL_MANAGERS).get()
-                .addOnSuccessListener(s -> { if (tvTotalManagers != null) tvTotalManagers.setText(String.valueOf(s.size())); });
-        db.collection(FirebaseHelper.COL_LEAVES).whereEqualTo("status", "Pending").get()
-                .addOnSuccessListener(s -> { if (tvPendingLeaves != null) tvPendingLeaves.setText(String.valueOf(s.size())); });
+                .addOnSuccessListener(s -> {
+                    if (tvTotalManagers != null)
+                        tvTotalManagers.setText(String.valueOf(s.size()));
+                });
+        db.collection(FirebaseHelper.COL_LEAVES)
+                .whereEqualTo("status", "Pending").get()
+                .addOnSuccessListener(s -> {
+                    if (tvPendingLeaves != null)
+                        tvPendingLeaves.setText(String.valueOf(s.size()));
+                });
         db.collection(FirebaseHelper.COL_ATTENDANCE)
-                .whereEqualTo("date", com.workverse.app.utils.DateTimeUtils.getCurrentDate())
+                .whereEqualTo("date",
+                        com.workverse.app.utils.DateTimeUtils.getCurrentDate())
                 .whereEqualTo("status", "Present").get()
-                .addOnSuccessListener(s -> { if (tvPresentToday != null) tvPresentToday.setText(String.valueOf(s.size())); });
+                .addOnSuccessListener(s -> {
+                    if (tvPresentToday != null)
+                        tvPresentToday.setText(String.valueOf(s.size()));
+                });
     }
 
-    private void go(Class<?> c) { startActivity(new Intent(this, c)); }
+    private void go(Class<?> c) {
+        startActivity(new Intent(this, c));
+    }
 
     private void logout() {
         FirebaseHelper.getAuth().signOut();
         spm.clear();
         Intent i = new Intent(this, LoginActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
 }
