@@ -172,12 +172,13 @@
                         app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#E0F7FA"
                         app:cardElevation="2dp">
+
                         <ImageView
                             android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_attendance"
-                            app:tint="@color/card_teal"/>
+                            app:tint="@color/card_teal" />
                     </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="wrap_content"
