@@ -152,5 +152,3 @@ public class ManagerNotificationsActivity
                             Toast.LENGTH_SHORT).show();
                 });
     }
-}
-

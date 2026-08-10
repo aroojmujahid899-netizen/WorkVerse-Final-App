@@ -1,4 +1,4 @@
-+S
+
 package com.workverse.app.activities.manager;
 
 import android.content.Intent;
@@ -115,3 +115,4 @@ public class ManagerDashboardActivity extends AppCompatActivity {
         startActivity(new Intent(this, c));
     }
 }
+

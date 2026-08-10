@@ -1,74 +1,153 @@
+
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/background">
-    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
-        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary" app:titleTextColor="@color/white"
+<LinearLayout
+    xmlns:android=
+        "http://schemas.android.com/apk/res/android"
+    xmlns:app=
+        "http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/ic_back"/>
-    <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_gravity="center"
-        android:visibility="gone"/>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="horizontal" android:padding="16dp">
-        <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="80dp"
-            android:layout_weight="1" android:layout_marginEnd="8dp"
-            app:cardCornerRadius="10dp" app:cardElevation="4dp">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                android:gravity="center" android:orientation="vertical" android:background="@color/card_blue">
-                <TextView android:id="@+id/tvAvgKpi" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="0" android:textColor="@color/white"
-                    android:textSize="22sp" android:fontFamily="sans-serif-bold"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Avg KPI" android:textColor="#BBDEFB" android:textSize="11sp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Avatar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background=
+                        "@drawable/bg_circle_primary"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CEO"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:fontFamily=
+                            "sans-serif-bold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Role -->
+            <TextView android:id="@+id/tvRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chief Executive Officer"
+                android:textColor="@color/primary"
+                android:textSize="13sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="sans-serif-medium"/>
+
+            <!-- Full Name (editable) -->
+            <com.google.android.material.textfield
+            .TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            style="@style/Widget.MaterialComponents
+            .TextInputLayout.OutlinedBox"
+            android:layout_marginBottom="14dp">
+            <com.google.android.material.textfield
+            .TextInputEditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType=
+            "textPersonName|textCapWords"/>
+        </com.google.android.material.textfield
+            .TextInputLayout>
+
+            <!-- Email (read-only) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="#F5F5F5">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email (read-only)"
+                    android:textSize="11sp"
+                    android:textColor=
+                        "@color/text_secondary"/>
+                <TextView android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="14sp"
+                    android:textColor=
+                        "@color/text_primary"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="80dp"
-            android:layout_weight="1" app:cardCornerRadius="10dp" app:cardElevation="4dp">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                android:gravity="center" android:orientation="vertical" android:background="@color/card_green">
-                <TextView android:id="@+id/tvTotalRecords" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="0" android:textColor="@color/white"
-                    android:textSize="22sp" android:fontFamily="sans-serif-bold"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Records" android:textColor="#C8E6C9" android:textSize="11sp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="80dp"
-            android:layout_weight="1" android:layout_marginStart="8dp"
-            app:cardCornerRadius="10dp" app:cardElevation="4dp">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                android:gravity="center" android:orientation="vertical" android:background="@color/card_purple">
-                <TextView android:id="@+id/tvPositive" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="0" android:textColor="@color/white"
-                    android:textSize="22sp" android:fontFamily="sans-serif-bold"/>
-                <TextView android:id="@+id/tvNegative" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvNeutral" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvPresentCount" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvAbsentCount" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvTotalSales" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvTotalAmount" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvName" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvEmail" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-                <TextView android:id="@+id/tvRole" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="" android:textColor="#E1BEE7" android:textSize="10sp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-    <TextView android:id="@+id/tvEmpty" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:text="No data available"
-        android:textColor="@color/text_secondary" android:layout_gravity="center"
-        android:layout_marginTop="30dp" android:visibility="gone"/>
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
-        android:layout_width="match_parent" android:layout_height="0dp"
-        android:layout_weight="1" android:padding="12dp" android:clipToPadding="false"/>
+
+        <!-- Phone (editable) -->
+        <com.google.android.material.textfield
+        .TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        style="@style/Widget.MaterialComponents
+        .TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="20dp">
+        <com.google.android.material.textfield
+        .TextInputEditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"/>
+    </com.google.android.material.textfield
+        .TextInputLayout>
+
+        <!-- ProgressBar -->
+    <ProgressBar android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Save Button -->
+    <Button android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Save Changes"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="10dp"/>
+
 </LinearLayout>
+    </ScrollView>
+    </LinearLayout>
+
