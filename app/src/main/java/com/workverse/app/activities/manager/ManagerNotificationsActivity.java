@@ -1,4 +1,3 @@
-
 package com.workverse.app.activities.manager;
 
 import android.app.AlertDialog;
@@ -152,3 +151,4 @@ public class ManagerNotificationsActivity
                             Toast.LENGTH_SHORT).show();
                 });
     }
+}
