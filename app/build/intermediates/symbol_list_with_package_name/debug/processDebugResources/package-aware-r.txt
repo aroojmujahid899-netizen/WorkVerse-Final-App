@@ -3295,6 +3295,7 @@ id btnLogin
 id btnLogout
 id btnReject
 id btnReset
+id btnSave
 id btnSubmit
 id buttonPanel
 id cache_measures
@@ -3391,7 +3392,9 @@ id etKpiScore
 id etLeaveType
 id etMessage
 id etMonth
+id etName
 id etPassword
+id etPhone
 id etReason
 id etSearch
 id etTarget
@@ -3611,6 +3614,7 @@ id qaReports
 id qaRoles
 id qaSales
 id qaTeamLeave
+id qaTeamMembers
 id qaViewEmp
 id radio
 id ratio
@@ -4171,6 +4175,7 @@ string fallback_menu_item_share_link
 string faq
 string fcm_fallback_notification_channel_label
 string feedback
+string firebase_database_url
 string firebase_note
 string forgot_password
 string gcm_defaultSenderId

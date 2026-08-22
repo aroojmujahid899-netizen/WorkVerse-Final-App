@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.workverse.app-mergeDebugResources-41:/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "com.workverse.app-mergeDebugResources-3:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\LENOVO E14\\.gradle\\caches\\9.0.0\\transforms\\9903b8187118293dd85a13e942af13c2\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "source": "C:\\Users\\dell\\.gradle\\caches\\9.0.0\\transforms\\9903b8187118293dd85a13e942af13c2\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",

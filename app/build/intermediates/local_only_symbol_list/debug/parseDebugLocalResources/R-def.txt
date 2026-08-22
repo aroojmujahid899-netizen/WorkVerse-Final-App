@@ -67,6 +67,7 @@ id btnLogin
 id btnLogout
 id btnReject
 id btnReset
+id btnSave
 id btnSubmit
 id containerFAQ
 id etAchieved
@@ -81,7 +82,9 @@ id etKpiScore
 id etLeaveType
 id etMessage
 id etMonth
+id etName
 id etPassword
+id etPhone
 id etReason
 id etSearch
 id etTarget
@@ -120,6 +123,7 @@ id qaReports
 id qaRoles
 id qaSales
 id qaTeamLeave
+id qaTeamMembers
 id qaViewEmp
 id recyclerView
 id toolbar
@@ -262,6 +266,7 @@ string edit_profile
 string employees
 string faq
 string feedback
+string firebase_database_url
 string firebase_note
 string forgot_password
 string gcm_defaultSenderId

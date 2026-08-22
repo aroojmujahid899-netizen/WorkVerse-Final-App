@@ -9,691 +9,691 @@
 9        android:targetSdkVersion="36" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:4:5-67
-11-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:4:22-64
+11-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:4:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:5:5-79
-12-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:5:22-76
+12-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:5:5-79
+12-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:5:22-76
 13    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-13-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:6:5-77
-13-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:6:22-74
+13-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:6:5-77
+13-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:6:22-74
 14    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-14-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:5-68
-14-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:22-65
+14-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:5-68
+14-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:22-65
 15    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-15-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:5-82
-15-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:22-79
+15-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:5-82
+15-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:22-79
 16    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-16-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2f1d7c1958111b8dbd8fec35fe571fdd\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:5-98
-16-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2f1d7c1958111b8dbd8fec35fe571fdd\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:22-95
+16-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2f1d7c1958111b8dbd8fec35fe571fdd\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:5-98
+16-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2f1d7c1958111b8dbd8fec35fe571fdd\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:22-95
 17
 18    <permission
-18-->[androidx.core:core:1.18.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
+18-->[androidx.core:core:1.18.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
 19        android:name="com.workverse.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-19-->[androidx.core:core:1.18.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
+19-->[androidx.core:core:1.18.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
 20        android:protectionLevel="signature" />
-20-->[androidx.core:core:1.18.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
+20-->[androidx.core:core:1.18.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
 21
 22    <uses-permission android:name="com.workverse.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-22-->[androidx.core:core:1.18.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
-22-->[androidx.core:core:1.18.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
+22-->[androidx.core:core:1.18.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.18.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
 23
 24    <application
-24-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:8:5-88:19
+24-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:8:5-88:19
 25        android:allowBackup="true"
-25-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:9:9-35
+25-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:9:9-35
 26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-26-->[androidx.core:core:1.18.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:28:18-86
+26-->[androidx.core:core:1.18.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\388216ffc4485f3968bc326daa9f46f6\transformed\core-1.18.0\AndroidManifest.xml:28:18-86
 27        android:debuggable="true"
 28        android:extractNativeLibs="false"
 29        android:icon="@mipmap/ic_launcher"
-29-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:10:9-43
+29-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:10:9-43
 30        android:label="@string/app_name"
-30-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:11:9-41
+30-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:11:9-41
 31        android:roundIcon="@mipmap/ic_launcher_round"
-31-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:12:9-54
+31-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:12:9-54
 32        android:supportsRtl="true"
-32-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:13:9-35
+32-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:13:9-35
 33        android:testOnly="true"
 34        android:theme="@style/Theme.WorkVerse" >
-34-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:14:9-47
+34-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:14:9-47
 35
 36        <!-- ========== SPLASH & AUTH ========== -->
 37        <activity
-37-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:17:9-23:20
+37-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:17:9-23:20
 38            android:name="com.workverse.app.activities.SplashActivity"
-38-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:17:19-60
+38-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:17:19-60
 39            android:exported="true"
-39-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:17:61-84
+39-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:17:61-84
 40            android:theme="@style/Theme.WorkVerse.Splash" >
-40-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:18:13-58
+40-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:18:13-58
 41            <intent-filter>
-41-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:19:13-22:29
+41-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:19:13-22:29
 42                <action android:name="android.intent.action.MAIN" />
-42-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:20:17-69
-42-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:20:25-66
+42-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:20:17-69
+42-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:20:25-66
 43
 44                <category android:name="android.intent.category.LAUNCHER" />
-44-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:21:17-77
-44-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:21:27-74
+44-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:21:17-77
+44-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:21:27-74
 45            </intent-filter>
 46        </activity>
 47        <activity
-47-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:24:9-87
+47-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:24:9-87
 48            android:name="com.workverse.app.activities.LoginActivity"
-48-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:24:19-59
+48-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:24:19-59
 49            android:exported="false" />
-49-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:24:60-84
+49-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:24:60-84
 50        <activity
-50-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:25:9-96
+50-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:25:9-96
 51            android:name="com.workverse.app.activities.ForgotPasswordActivity"
-51-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:25:19-68
+51-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:25:19-68
 52            android:exported="false" />
-52-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:25:69-93
+52-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:25:69-93
 53
 54        <!-- ========== ADMIN ========== -->
 55        <activity
-55-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:28:9-102
+55-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:28:9-102
 56            android:name="com.workverse.app.activities.admin.AdminDashboardActivity"
-56-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:28:19-74
+56-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:28:19-74
 57            android:exported="false" />
-57-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:28:75-99
+57-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:28:75-99
 58        <activity
-58-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:29:9-99
+58-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:29:9-99
 59            android:name="com.workverse.app.activities.admin.ManageRolesActivity"
-59-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:29:19-71
+59-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:29:19-71
 60            android:exported="false" />
-60-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:29:72-96
+60-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:29:72-96
 61        <activity
-61-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:30:9-99
+61-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:30:9-99
 62            android:name="com.workverse.app.activities.admin.AddEmployeeActivity"
-62-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:30:19-71
+62-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:30:19-71
 63            android:exported="false" />
-63-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:30:72-96
+63-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:30:72-96
 64        <activity
-64-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:31:9-101
+64-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:31:9-101
 65            android:name="com.workverse.app.activities.admin.ViewEmployeesActivity"
-65-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:31:19-73
+65-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:31:19-73
 66            android:exported="false" />
-66-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:31:74-98
+66-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:31:74-98
 67        <activity
-67-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:32:9-102
+67-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:32:9-102
 68            android:name="com.workverse.app.activities.admin.EmployeeDetailActivity"
-68-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:32:19-74
+68-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:32:19-74
 69            android:exported="false" />
-69-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:32:75-99
+69-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:32:75-99
 70        <activity
-70-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:33:9-98
+70-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:33:9-98
 71            android:name="com.workverse.app.activities.admin.AddManagerActivity"
-71-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:33:19-70
+71-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:33:19-70
 72            android:exported="false" />
-72-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:33:71-95
+72-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:33:71-95
 73        <activity
-73-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:34:9-100
+73-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:34:9-100
 74            android:name="com.workverse.app.activities.admin.ViewManagersActivity"
-74-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:34:19-72
+74-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:34:19-72
 75            android:exported="false" />
-75-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:34:73-97
+75-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:34:73-97
 76        <activity
-76-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:35:9-103
+76-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:35:9-103
 77            android:name="com.workverse.app.activities.admin.AdminAttendanceActivity"
-77-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:35:19-75
+77-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:35:19-75
 78            android:exported="false" />
-78-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:35:76-100
+78-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:35:76-100
 79        <activity
-79-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:36:9-108
+79-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:36:9-108
 80            android:name="com.workverse.app.activities.admin.AdminLeaveManagementActivity"
-80-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:36:19-80
+80-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:36:19-80
 81            android:exported="false" />
-81-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:36:81-105
+81-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:36:81-105
 82        <activity
-82-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:37:9-104
+82-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:37:9-104
 83            android:name="com.workverse.app.activities.admin.AdminPerformanceActivity"
-83-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:37:19-76
+83-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:37:19-76
 84            android:exported="false" />
-84-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:37:77-101
+84-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:37:77-101
 85        <activity
-85-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:38:9-102
+85-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:38:9-102
 86            android:name="com.workverse.app.activities.admin.AddPerformanceActivity"
-86-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:38:19-74
+86-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:38:19-74
 87            android:exported="false" />
-87-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:38:75-99
+87-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:38:75-99
 88        <activity
-88-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:39:9-101
+88-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:39:9-101
 89            android:name="com.workverse.app.activities.admin.AdminFeedbackActivity"
-89-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:39:19-73
+89-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:39:19-73
 90            android:exported="false" />
-90-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:39:74-98
+90-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:39:74-98
 91        <activity
-91-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:40:9-104
+91-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:40:9-104
 92            android:name="com.workverse.app.activities.admin.AdminSalesReportActivity"
-92-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:40:19-76
+92-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:40:19-76
 93            android:exported="false" />
-93-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:40:77-101
+93-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:40:77-101
 94        <activity
-94-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:41:9-106
+94-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:41:9-106
 95            android:name="com.workverse.app.activities.admin.AdminNotificationsActivity"
-95-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:41:19-78
+95-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:41:19-78
 96            android:exported="false" />
-96-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:41:79-103
+96-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:41:79-103
 97        <activity
-97-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:42:9-100
+97-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:42:9-100
 98            android:name="com.workverse.app.activities.admin.AdminProfileActivity"
-98-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:42:19-72
+98-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:42:19-72
 99            android:exported="false" />
-99-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:42:73-97
+99-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:42:73-97
 100
 101        <!-- ========== CEO (NEW) ========== -->
 102        <activity
-102-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:45:9-98
+102-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:45:9-98
 103            android:name="com.workverse.app.activities.ceo.CEODashboardActivity"
-103-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:45:19-70
+103-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:45:19-70
 104            android:exported="false" />
-104-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:45:71-95
+104-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:45:71-95
 105        <activity
-105-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:46:9-100
+105-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:46:9-100
 106            android:name="com.workverse.app.activities.ceo.CEOPerformanceActivity"
-106-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:46:19-72
+106-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:46:19-72
 107            android:exported="false" />
-107-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:46:73-97
+107-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:46:73-97
 108        <activity
-108-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:47:9-99
+108-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:47:9-99
 109            android:name="com.workverse.app.activities.ceo.CEOAttendanceActivity"
-109-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:47:19-71
+109-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:47:19-71
 110            android:exported="false" />
-110-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:47:72-96
+110-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:47:72-96
 111        <activity
-111-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:48:9-97
+111-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:48:9-97
 112            android:name="com.workverse.app.activities.ceo.CEOFeedbackActivity"
-112-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:48:19-69
+112-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:48:19-69
 113            android:exported="false" />
-113-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:48:70-94
+113-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:48:70-94
 114        <activity
-114-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:49:9-100
+114-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:49:9-100
 115            android:name="com.workverse.app.activities.ceo.CEOSalesReportActivity"
-115-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:49:19-72
+115-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:49:19-72
 116            android:exported="false" />
-116-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:49:73-97
+116-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:49:73-97
 117        <activity
-117-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:50:9-96
+117-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:50:9-96
 118            android:name="com.workverse.app.activities.ceo.CEOProfileActivity"
-118-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:50:19-68
+118-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:50:19-68
 119            android:exported="false" />
-119-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:50:69-93
+119-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:50:69-93
 120        <activity
-120-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:51:9-102
+120-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:51:9-102
 121            android:name="com.workverse.app.activities.ceo.CEONotificationsActivity"
-121-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:51:19-74
+121-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:51:19-74
 122            android:exported="false" />
-122-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:51:75-99
+122-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:51:75-99
 123
 124        <!-- ========== MANAGER ========== -->
 125        <activity
-125-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:54:9-106
+125-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:54:9-106
 126            android:name="com.workverse.app.activities.manager.ManagerDashboardActivity"
-126-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:54:19-78
+126-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:54:19-78
 127            android:exported="false" />
-127-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:54:79-103
+127-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:54:79-103
 128        <activity
-128-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:55:9-101
+128-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:55:9-101
 129            android:name="com.workverse.app.activities.manager.ManagerTeamActivity"
-129-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:55:19-73
+129-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:55:19-73
 130            android:exported="false" />
-130-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:55:74-98
+130-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:55:74-98
 131        <activity
-131-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:56:9-107
+131-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:56:9-107
 132            android:name="com.workverse.app.activities.manager.ManagerAttendanceActivity"
-132-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:56:19-79
+132-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:56:19-79
 133            android:exported="false" />
-133-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:56:80-104
+133-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:56:80-104
 134        <activity
-134-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:57:9-110
+134-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:57:9-110
 135            android:name="com.workverse.app.activities.manager.ManagerLeaveApprovalActivity"
-135-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:57:19-82
+135-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:57:19-82
 136            android:exported="false" />
-136-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:57:83-107
+136-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:57:83-107
 137        <activity
-137-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:58:9-108
+137-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:58:9-108
 138            android:name="com.workverse.app.activities.manager.ManagerLeaveStatusActivity"
-138-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:58:19-80
+138-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:58:19-80
 139            android:exported="false" />
-139-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:58:81-105
+139-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:58:81-105
 140        <activity
-140-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:59:9-107
+140-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:59:9-107
 141            android:name="com.workverse.app.activities.manager.ManagerApplyLeaveActivity"
-141-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:59:19-79
+141-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:59:19-79
 142            android:exported="false" />
-142-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:59:80-104
+142-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:59:80-104
 143        <activity
-143-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:60:9-108
+143-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:60:9-108
 144            android:name="com.workverse.app.activities.manager.ManagerPerformanceActivity"
-144-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:60:19-80
+144-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:60:19-80
 145            android:exported="false" />
-145-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:60:81-105
+145-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:60:81-105
 146        <activity
-146-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:61:9-105
+146-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:61:9-105
 147            android:name="com.workverse.app.activities.manager.ManagerFeedbackActivity"
-147-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:61:19-77
+147-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:61:19-77
 148            android:exported="false" />
-148-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:61:78-102
+148-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:61:78-102
 149        <activity
-149-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:62:9-108
+149-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:62:9-108
 150            android:name="com.workverse.app.activities.manager.ManagerSalesReportActivity"
-150-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:62:19-80
+150-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:62:19-80
 151            android:exported="false" />
-151-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:62:81-105
+151-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:62:81-105
 152        <activity
-152-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:63:9-110
+152-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:63:9-110
 153            android:name="com.workverse.app.activities.manager.ManagerNotificationsActivity"
-153-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:63:19-82
+153-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:63:19-82
 154            android:exported="false" />
-154-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:63:83-107
+154-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:63:83-107
 155        <activity
-155-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:64:9-104
+155-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:64:9-104
 156            android:name="com.workverse.app.activities.manager.ManagerProfileActivity"
-156-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:64:19-76
+156-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:64:19-76
 157            android:exported="false" />
-157-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:64:77-101
+157-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:64:77-101
 158
 159        <!-- ========== EMPLOYEE ========== -->
 160        <activity
-160-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:67:9-108
+160-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:67:9-108
 161            android:name="com.workverse.app.activities.employee.EmployeeDashboardActivity"
-161-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:67:19-80
+161-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:67:19-80
 162            android:exported="false" />
-162-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:67:81-105
+162-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:67:81-105
 163        <activity
-163-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:9-105
+163-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:68:9-105
 164            android:name="com.workverse.app.activities.employee.MarkAttendanceActivity"
-164-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:19-77
+164-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:68:19-77
 165            android:exported="false" />
-165-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:78-102
+165-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:68:78-102
 166        <activity
-166-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:69:9-105
+166-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:69:9-105
 167            android:name="com.workverse.app.activities.employee.ViewAttendanceActivity"
-167-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:69:19-77
+167-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:69:19-77
 168            android:exported="false" />
-168-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:69:78-102
+168-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:69:78-102
 169        <activity
-169-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:9-101
+169-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:70:9-101
 170            android:name="com.workverse.app.activities.employee.ApplyLeaveActivity"
-170-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:19-73
+170-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:70:19-73
 171            android:exported="false" />
-171-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:74-98
+171-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:70:74-98
 172        <activity
-172-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:9-106
+172-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:71:9-106
 173            android:name="com.workverse.app.activities.employee.ViewLeaveStatusActivity"
-173-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:19-78
+173-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:71:19-78
 174            android:exported="false" />
-174-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:79-103
+174-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:71:79-103
 175        <activity
-175-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:9-110
+175-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:72:9-110
 176            android:name="com.workverse.app.activities.employee.EmployeePerformanceActivity"
-176-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:19-82
+176-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:72:19-82
 177            android:exported="false" />
-177-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:83-107
+177-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:72:83-107
 178        <activity
-178-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:9-105
+178-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:73:9-105
 179            android:name="com.workverse.app.activities.employee.SubmitFeedbackActivity"
-179-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:19-77
+179-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:73:19-77
 180            android:exported="false" />
-180-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:78-102
+180-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:73:78-102
 181        <activity
-181-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:9-98
+181-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:74:9-98
 182            android:name="com.workverse.app.activities.employee.ViewFAQActivity"
-182-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:19-70
+182-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:74:19-70
 183            android:exported="false" />
-183-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:71-95
+183-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:74:71-95
 184        <activity
-184-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:9-110
+184-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:75:9-110
 185            android:name="com.workverse.app.activities.employee.EmployeeSalesReportActivity"
-185-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:19-82
+185-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:75:19-82
 186            android:exported="false" />
-186-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:83-107
+186-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:75:83-107
 187        <activity
-187-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:9-98
+187-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:76:9-98
 188            android:name="com.workverse.app.activities.employee.AddSaleActivity"
-188-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:19-70
+188-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:76:19-70
 189            android:exported="false" />
-189-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:71-95
+189-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:76:71-95
 190        <activity
-190-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:9-112
+190-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:77:9-112
 191            android:name="com.workverse.app.activities.employee.EmployeeNotificationsActivity"
-191-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:19-84
+191-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:77:19-84
 192            android:exported="false" />
-192-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:85-109
+192-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:77:85-109
 193        <activity
-193-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:9-106
+193-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:78:9-106
 194            android:name="com.workverse.app.activities.employee.EmployeeProfileActivity"
-194-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:19-78
+194-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:78:19-78
 195            android:exported="false" />
-195-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:79-103
+195-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:78:79-103
 196        <activity
-196-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:9-102
+196-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:79:9-102
 197            android:name="com.workverse.app.activities.employee.EditProfileActivity"
-197-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:19-74
+197-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:79:19-74
 198            android:exported="false" />
-198-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:75-99
+198-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:79:75-99
 199
 200        <!-- ========== SERVICES ========== -->
 201        <service
-201-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:82:9-86:19
+201-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:82:9-86:19
 202            android:name="com.workverse.app.utils.WorkVerseMessagingService"
-202-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:82:18-65
+202-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:82:18-65
 203            android:exported="false" >
-203-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:82:66-90
+203-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:82:66-90
 204            <intent-filter>
-204-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:83:13-85:29
+204-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:83:13-85:29
 205                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-205-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:84:17-78
-205-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:84:25-75
+205-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:84:17-78
+205-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:84:25-75
 206            </intent-filter>
 207        </service>
 208
 209        <activity
-209-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:29:9-46:20
+209-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:29:9-46:20
 210            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-210-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:30:13-80
+210-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:30:13-80
 211            android:excludeFromRecents="true"
-211-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:31:13-46
+211-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:31:13-46
 212            android:exported="true"
-212-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:32:13-36
+212-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:32:13-36
 213            android:launchMode="singleTask"
-213-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:33:13-44
+213-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:33:13-44
 214            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-214-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:34:13-72
+214-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:34:13-72
 215            <intent-filter>
-215-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:35:13-45:29
+215-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:35:13-45:29
 216                <action android:name="android.intent.action.VIEW" />
-216-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:17-69
-216-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:25-66
+216-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:17-69
+216-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:25-66
 217
 218                <category android:name="android.intent.category.DEFAULT" />
-218-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:17-76
-218-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:27-73
+218-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:17-76
+218-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:27-73
 219                <category android:name="android.intent.category.BROWSABLE" />
-219-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:17-78
-219-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:27-75
+219-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:17-78
+219-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:27-75
 220
 221                <data
-221-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:41:17-44:51
+221-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:41:17-44:51
 222                    android:host="firebase.auth"
-222-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:42:21-49
+222-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:42:21-49
 223                    android:path="/"
-223-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:43:21-37
+223-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:43:21-37
 224                    android:scheme="genericidp" />
-224-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:44:21-48
+224-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:44:21-48
 225            </intent-filter>
 226        </activity>
 227        <activity
-227-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:47:9-64:20
+227-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:47:9-64:20
 228            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-228-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:48:13-79
+228-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:48:13-79
 229            android:excludeFromRecents="true"
-229-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:49:13-46
+229-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:49:13-46
 230            android:exported="true"
-230-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:50:13-36
+230-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:50:13-36
 231            android:launchMode="singleTask"
-231-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:51:13-44
+231-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:51:13-44
 232            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-232-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:52:13-72
+232-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:52:13-72
 233            <intent-filter>
-233-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:53:13-63:29
+233-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:53:13-63:29
 234                <action android:name="android.intent.action.VIEW" />
-234-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:17-69
-234-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:25-66
+234-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:17-69
+234-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:25-66
 235
 236                <category android:name="android.intent.category.DEFAULT" />
-236-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:17-76
-236-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:27-73
+236-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:17-76
+236-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:27-73
 237                <category android:name="android.intent.category.BROWSABLE" />
-237-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:17-78
-237-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:27-75
+237-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:17-78
+237-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:27-75
 238
 239                <data
-239-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:41:17-44:51
+239-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:41:17-44:51
 240                    android:host="firebase.auth"
-240-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:42:21-49
+240-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:42:21-49
 241                    android:path="/"
-241-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:43:21-37
+241-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:43:21-37
 242                    android:scheme="recaptcha" />
-242-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:44:21-48
+242-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:44:21-48
 243            </intent-filter>
 244        </activity>
 245
 246        <service
-246-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
+246-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
 247            android:name="com.google.firebase.components.ComponentDiscoveryService"
-247-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:67:13-84
+247-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:67:13-84
 248            android:directBootAware="true"
-248-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:32:13-43
+248-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:32:13-43
 249            android:exported="false" >
-249-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:68:13-37
+249-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:68:13-37
 250            <meta-data
-250-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:69:13-71:85
+250-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:69:13-71:85
 251                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-251-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:70:17-109
+251-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:70:17-109
 252                android:value="com.google.firebase.components.ComponentRegistrar" />
-252-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:71:17-82
+252-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\2cacd97e206657e21e79f82bece5feee\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:71:17-82
 253            <meta-data
-253-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:17:13-19:85
+253-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:17:13-19:85
 254                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
-254-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:18:17-122
+254-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:18:17-122
 255                android:value="com.google.firebase.components.ComponentRegistrar" />
-255-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:19:17-82
+255-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:19:17-82
 256            <meta-data
-256-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:20:13-22:85
+256-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:20:13-22:85
 257                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-257-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:21:17-111
+257-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:21:17-111
 258                android:value="com.google.firebase.components.ComponentRegistrar" />
-258-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:22:17-82
+258-->[com.google.firebase:firebase-firestore:24.10.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\58830d2c2c0a6781618dfe1fac2ec49e\transformed\jetified-firebase-firestore-24.10.2\AndroidManifest.xml:22:17-82
 259            <meta-data
-259-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:57:13-59:85
+259-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:57:13-59:85
 260                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
-260-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:58:17-122
+260-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:58:17-122
 261                android:value="com.google.firebase.components.ComponentRegistrar" />
-261-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:59:17-82
+261-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:59:17-82
 262            <meta-data
-262-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:60:13-62:85
+262-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:60:13-62:85
 263                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-263-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:61:17-119
+263-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:61:17-119
 264                android:value="com.google.firebase.components.ComponentRegistrar" />
-264-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:62:17-82
+264-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:62:17-82
 265            <meta-data
-265-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:15:13-17:85
+265-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:15:13-17:85
 266                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
-266-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:16:17-130
+266-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:16:17-130
 267                android:value="com.google.firebase.components.ComponentRegistrar" />
-267-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:17:17-82
+267-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:17:17-82
 268            <meta-data
-268-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:18:13-20:85
+268-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:18:13-20:85
 269                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-269-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:19:17-127
+269-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:19:17-127
 270                android:value="com.google.firebase.components.ComponentRegistrar" />
-270-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:20:17-82
+270-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\2d0c0f29037eece7a77d83f4234df347\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:20:17-82
 271            <meta-data
-271-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\a0e67ae7bcd0096184b638b25c45a4c1\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
+271-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\a0e67ae7bcd0096184b638b25c45a4c1\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
 272                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-272-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\a0e67ae7bcd0096184b638b25c45a4c1\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
+272-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\a0e67ae7bcd0096184b638b25c45a4c1\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
 273                android:value="com.google.firebase.components.ComponentRegistrar" />
-273-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\a0e67ae7bcd0096184b638b25c45a4c1\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
+273-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\a0e67ae7bcd0096184b638b25c45a4c1\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
 274            <meta-data
-274-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
+274-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
 275                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-275-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:36:17-109
+275-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:36:17-109
 276                android:value="com.google.firebase.components.ComponentRegistrar" />
-276-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:37:17-82
+276-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:37:17-82
 277            <meta-data
-277-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\4cc0ee8ac40b1f822e2800df1b3c6b27\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:27:13-29:85
+277-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\dell\.gradle\caches\9.0.0\transforms\4cc0ee8ac40b1f822e2800df1b3c6b27\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:27:13-29:85
 278                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-278-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\4cc0ee8ac40b1f822e2800df1b3c6b27\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:28:17-115
+278-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\dell\.gradle\caches\9.0.0\transforms\4cc0ee8ac40b1f822e2800df1b3c6b27\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:28:17-115
 279                android:value="com.google.firebase.components.ComponentRegistrar" />
-279-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\4cc0ee8ac40b1f822e2800df1b3c6b27\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
+279-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\dell\.gradle\caches\9.0.0\transforms\4cc0ee8ac40b1f822e2800df1b3c6b27\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
 280        </service>
 281
 282        <receiver
-282-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:29:9-40:20
+282-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:29:9-40:20
 283            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-283-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:30:13-78
+283-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:30:13-78
 284            android:exported="true"
-284-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:31:13-36
+284-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:31:13-36
 285            android:permission="com.google.android.c2dm.permission.SEND" >
-285-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:32:13-73
+285-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:32:13-73
 286            <intent-filter>
-286-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:33:13-35:29
+286-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:33:13-35:29
 287                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-287-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:17-81
-287-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:25-78
+287-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:17-81
+287-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:25-78
 288            </intent-filter>
 289
 290            <meta-data
-290-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:37:13-39:40
+290-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:37:13-39:40
 291                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
-291-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:38:17-92
+291-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:38:17-92
 292                android:value="true" />
-292-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:39:17-37
+292-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:39:17-37
 293        </receiver>
 294        <!--
 295             FirebaseMessagingService performs security checks at runtime,
 296             but set to not exported to explicitly avoid allowing another app to call it.
 297        -->
 298        <service
-298-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:46:9-53:19
+298-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:46:9-53:19
 299            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-299-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:47:13-82
+299-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:47:13-82
 300            android:directBootAware="true"
-300-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:48:13-43
+300-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:48:13-43
 301            android:exported="false" >
-301-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:49:13-37
+301-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\cde9db79ad03875a013e6d2b12cfa655\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:49:13-37
 302            <intent-filter android:priority="-500" >
-302-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:83:13-85:29
+302-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:83:13-85:29
 303                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-303-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:84:17-78
-303-->D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:84:25-75
+303-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:84:17-78
+303-->C:\Projects\WorkVerse-Final-App\app\src\main\AndroidManifest.xml:84:25-75
 304            </intent-filter>
 305        </service>
 306
 307        <provider
-307-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
+307-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
 308            android:name="com.google.firebase.provider.FirebaseInitProvider"
-308-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:24:13-77
+308-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:24:13-77
 309            android:authorities="com.workverse.app.firebaseinitprovider"
-309-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:25:13-72
+309-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:25:13-72
 310            android:directBootAware="true"
-310-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:26:13-43
+310-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:26:13-43
 311            android:exported="false"
-311-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:27:13-37
+311-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:27:13-37
 312            android:initOrder="100" />
-312-->[com.google.firebase:firebase-common:20.4.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:28:13-36
+312-->[com.google.firebase:firebase-common:20.4.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\16da4a5557f4698c8197394952657891\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:28:13-36
 313
 314        <activity
-314-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+314-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
 315            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-315-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+315-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
 316            android:exported="false"
-316-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+316-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
 317            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-317-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+317-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\dell\.gradle\caches\9.0.0\transforms\93bf77f9d4e9a59375955ec896390d6a\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
 318
 319        <provider
-319-->[androidx.emoji2:emoji2:1.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+319-->[androidx.emoji2:emoji2:1.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
 320            android:name="androidx.startup.InitializationProvider"
-320-->[androidx.emoji2:emoji2:1.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+320-->[androidx.emoji2:emoji2:1.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
 321            android:authorities="com.workverse.app.androidx-startup"
-321-->[androidx.emoji2:emoji2:1.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+321-->[androidx.emoji2:emoji2:1.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
 322            android:exported="false" >
-322-->[androidx.emoji2:emoji2:1.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+322-->[androidx.emoji2:emoji2:1.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
 323            <meta-data
-323-->[androidx.emoji2:emoji2:1.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+323-->[androidx.emoji2:emoji2:1.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
 324                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-324-->[androidx.emoji2:emoji2:1.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+324-->[androidx.emoji2:emoji2:1.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
 325                android:value="androidx.startup" />
-325-->[androidx.emoji2:emoji2:1.2.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+325-->[androidx.emoji2:emoji2:1.2.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\def923cd1c0938e807cf56c20855aad3\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
 326            <meta-data
-326-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7721ec16fb3288a4eaaf8da9319228c9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+326-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\7721ec16fb3288a4eaaf8da9319228c9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
 327                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-327-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7721ec16fb3288a4eaaf8da9319228c9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+327-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\7721ec16fb3288a4eaaf8da9319228c9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
 328                android:value="androidx.startup" />
-328-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7721ec16fb3288a4eaaf8da9319228c9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+328-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\dell\.gradle\caches\9.0.0\transforms\7721ec16fb3288a4eaaf8da9319228c9\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
 329            <meta-data
-329-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+329-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
 330                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-330-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+330-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
 331                android:value="androidx.startup" />
-331-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+331-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
 332        </provider>
 333
 334        <meta-data
-334-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d4a04539af10402a3598061bf7875f7b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+334-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\d4a04539af10402a3598061bf7875f7b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
 335            android:name="com.google.android.gms.version"
-335-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d4a04539af10402a3598061bf7875f7b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+335-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\d4a04539af10402a3598061bf7875f7b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
 336            android:value="@integer/google_play_services_version" />
-336-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d4a04539af10402a3598061bf7875f7b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+336-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\d4a04539af10402a3598061bf7875f7b\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
 337
 338        <service
-338-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
+338-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
 339            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-339-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:29:13-103
+339-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:29:13-103
 340            android:exported="false" >
-340-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:30:13-37
+340-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:30:13-37
 341            <meta-data
-341-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:31:13-33:39
+341-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:31:13-33:39
 342                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-342-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:32:17-94
+342-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:32:17-94
 343                android:value="cct" />
-343-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:33:17-36
+343-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\7f18d0387456bcef6425757ff79dcf0d\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:33:17-36
 344        </service>
 345        <service
-345-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:26:9-30:19
+345-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:26:9-30:19
 346            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-346-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:27:13-117
+346-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:27:13-117
 347            android:exported="false"
-347-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:28:13-37
+347-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:28:13-37
 348            android:permission="android.permission.BIND_JOB_SERVICE" >
-348-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:29:13-69
+348-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:29:13-69
 349        </service>
 350
 351        <receiver
-351-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:32:9-34:40
+351-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:32:9-34:40
 352            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-352-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:33:13-132
+352-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:33:13-132
 353            android:exported="false" />
-353-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:34:13-37
+353-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\dell\.gradle\caches\9.0.0\transforms\d0b219042c0001981c52fba2b3e1b511\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:34:13-37
 354        <receiver
-354-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+354-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
 355            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-355-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+355-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
 356            android:directBootAware="false"
-356-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+356-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
 357            android:enabled="true"
-357-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+357-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
 358            android:exported="true"
-358-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+358-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
 359            android:permission="android.permission.DUMP" >
-359-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+359-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
 360            <intent-filter>
-360-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+360-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
 361                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-361-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-361-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+361-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+361-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
 362            </intent-filter>
 363            <intent-filter>
-363-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+363-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
 364                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-364-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-364-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+364-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+364-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
 365            </intent-filter>
 366            <intent-filter>
-366-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+366-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
 367                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-367-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-367-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+367-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+367-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
 368            </intent-filter>
 369            <intent-filter>
-369-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+369-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
 370                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-370-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-370-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+370-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+370-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\dell\.gradle\caches\9.0.0\transforms\eec90e2e96b2c4939bceea49deb9bd35\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
 371            </intent-filter>
 372        </receiver>
 373    </application>

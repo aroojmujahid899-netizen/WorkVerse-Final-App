@@ -1,13 +1,13 @@
-#Wed Jun 24 18:40:05 PKT 2026
-base.0=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
-base.3=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.4=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
-base.5=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
-base.6=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
-base.7=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.8=D\:\\WorkVerse_Final\\WorkVerse\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+#Tue Aug 18 15:50:31 PKT 2026
+base.0=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.3=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.4=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.5=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+base.6=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+base.7=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.8=C\:\\Projects\\WorkVerse-Final-App\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=10/classes.dex

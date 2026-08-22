@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         style="@style/WorkVerse.Toolbar"
         app:title="Notifications"
-        app:navigationIcon="@drawable/ic_arrow_back" />
+        app:navigationIcon="@drawable/ic_back" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

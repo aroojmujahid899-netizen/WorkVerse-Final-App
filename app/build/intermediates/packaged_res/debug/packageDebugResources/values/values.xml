@@ -38,6 +38,7 @@
     <string name="employees">Employees</string>
     <string name="faq">FAQs</string>
     <string name="feedback">Feedback</string>
+    <string name="firebase_database_url" translatable="false">https://workverse-final-app-default-rtdb.firebaseio.com</string>
     <string name="firebase_note">IMPORTANT: Replace google-services.json with your own Firebase project config before running.</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="gcm_defaultSenderId" translatable="false">259608809511</string>
