@@ -1,3 +1,4 @@
+
 package com.workverse.app.activities.ceo;
 
 import android.app.AlertDialog;
@@ -155,5 +156,4 @@ public class CEONotificationsActivity
                 });
     }
 }
-
 
