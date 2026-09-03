@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.workverse.app-mergeDebugResources-3:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.workverse.app-mergeDebugResources-41:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\dell\\.gradle\\caches\\9.0.0\\transforms\\fefbe0d7aa466fce72292bc40dd58ec1\\transformed\\material-1.11.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\LENOVO E14\\.gradle\\caches\\9.0.0\\transforms\\fefbe0d7aa466fce72292bc40dd58ec1\\transformed\\material-1.11.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

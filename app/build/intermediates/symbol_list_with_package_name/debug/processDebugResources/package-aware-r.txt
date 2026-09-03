@@ -3601,7 +3601,6 @@ id pressed
 id progressBar
 id progress_circular
 id progress_horizontal
-id qaAddEmp
 id qaAddMgr
 id qaAttendance
 id qaFAQ
@@ -3769,6 +3768,7 @@ id tvLeaveType
 id tvMessage
 id tvMonth
 id tvName
+id tvNeedsImprovement
 id tvNegative
 id tvNeutral
 id tvPendingLeaves
@@ -3787,6 +3787,7 @@ id tvStat1
 id tvStat2
 id tvStatus
 id tvTarget
+id tvTargetAmount
 id tvTasks
 id tvTime
 id tvTitle

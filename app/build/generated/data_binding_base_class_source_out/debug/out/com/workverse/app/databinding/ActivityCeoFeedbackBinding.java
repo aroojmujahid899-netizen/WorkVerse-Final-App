@@ -32,19 +32,7 @@ public final class ActivityCeoFeedbackBinding implements ViewBinding {
   public final Toolbar toolbar;
 
   @NonNull
-  public final TextView tvAbsentCount;
-
-  @NonNull
-  public final TextView tvAvgKpi;
-
-  @NonNull
-  public final TextView tvEmail;
-
-  @NonNull
   public final TextView tvEmpty;
-
-  @NonNull
-  public final TextView tvName;
 
   @NonNull
   public final TextView tvNegative;
@@ -55,45 +43,18 @@ public final class ActivityCeoFeedbackBinding implements ViewBinding {
   @NonNull
   public final TextView tvPositive;
 
-  @NonNull
-  public final TextView tvPresentCount;
-
-  @NonNull
-  public final TextView tvRole;
-
-  @NonNull
-  public final TextView tvTotalAmount;
-
-  @NonNull
-  public final TextView tvTotalRecords;
-
-  @NonNull
-  public final TextView tvTotalSales;
-
   private ActivityCeoFeedbackBinding(@NonNull LinearLayout rootView,
       @NonNull ProgressBar progressBar, @NonNull RecyclerView recyclerView,
-      @NonNull Toolbar toolbar, @NonNull TextView tvAbsentCount, @NonNull TextView tvAvgKpi,
-      @NonNull TextView tvEmail, @NonNull TextView tvEmpty, @NonNull TextView tvName,
-      @NonNull TextView tvNegative, @NonNull TextView tvNeutral, @NonNull TextView tvPositive,
-      @NonNull TextView tvPresentCount, @NonNull TextView tvRole, @NonNull TextView tvTotalAmount,
-      @NonNull TextView tvTotalRecords, @NonNull TextView tvTotalSales) {
+      @NonNull Toolbar toolbar, @NonNull TextView tvEmpty, @NonNull TextView tvNegative,
+      @NonNull TextView tvNeutral, @NonNull TextView tvPositive) {
     this.rootView = rootView;
     this.progressBar = progressBar;
     this.recyclerView = recyclerView;
     this.toolbar = toolbar;
-    this.tvAbsentCount = tvAbsentCount;
-    this.tvAvgKpi = tvAvgKpi;
-    this.tvEmail = tvEmail;
     this.tvEmpty = tvEmpty;
-    this.tvName = tvName;
     this.tvNegative = tvNegative;
     this.tvNeutral = tvNeutral;
     this.tvPositive = tvPositive;
-    this.tvPresentCount = tvPresentCount;
-    this.tvRole = tvRole;
-    this.tvTotalAmount = tvTotalAmount;
-    this.tvTotalRecords = tvTotalRecords;
-    this.tvTotalSales = tvTotalSales;
   }
 
   @Override
@@ -141,33 +102,9 @@ public final class ActivityCeoFeedbackBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvAbsentCount;
-      TextView tvAbsentCount = ViewBindings.findChildViewById(rootView, id);
-      if (tvAbsentCount == null) {
-        break missingId;
-      }
-
-      id = R.id.tvAvgKpi;
-      TextView tvAvgKpi = ViewBindings.findChildViewById(rootView, id);
-      if (tvAvgKpi == null) {
-        break missingId;
-      }
-
-      id = R.id.tvEmail;
-      TextView tvEmail = ViewBindings.findChildViewById(rootView, id);
-      if (tvEmail == null) {
-        break missingId;
-      }
-
       id = R.id.tvEmpty;
       TextView tvEmpty = ViewBindings.findChildViewById(rootView, id);
       if (tvEmpty == null) {
-        break missingId;
-      }
-
-      id = R.id.tvName;
-      TextView tvName = ViewBindings.findChildViewById(rootView, id);
-      if (tvName == null) {
         break missingId;
       }
 
@@ -189,39 +126,8 @@ public final class ActivityCeoFeedbackBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvPresentCount;
-      TextView tvPresentCount = ViewBindings.findChildViewById(rootView, id);
-      if (tvPresentCount == null) {
-        break missingId;
-      }
-
-      id = R.id.tvRole;
-      TextView tvRole = ViewBindings.findChildViewById(rootView, id);
-      if (tvRole == null) {
-        break missingId;
-      }
-
-      id = R.id.tvTotalAmount;
-      TextView tvTotalAmount = ViewBindings.findChildViewById(rootView, id);
-      if (tvTotalAmount == null) {
-        break missingId;
-      }
-
-      id = R.id.tvTotalRecords;
-      TextView tvTotalRecords = ViewBindings.findChildViewById(rootView, id);
-      if (tvTotalRecords == null) {
-        break missingId;
-      }
-
-      id = R.id.tvTotalSales;
-      TextView tvTotalSales = ViewBindings.findChildViewById(rootView, id);
-      if (tvTotalSales == null) {
-        break missingId;
-      }
-
       return new ActivityCeoFeedbackBinding((LinearLayout) rootView, progressBar, recyclerView,
-          toolbar, tvAbsentCount, tvAvgKpi, tvEmail, tvEmpty, tvName, tvNegative, tvNeutral,
-          tvPositive, tvPresentCount, tvRole, tvTotalAmount, tvTotalRecords, tvTotalSales);
+          toolbar, tvEmpty, tvNegative, tvNeutral, tvPositive);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -44,32 +44,35 @@ public class CEOFeedbackActivity extends AppCompatActivity {
         loadData();
     }
 
+    @Override
+    protected void onResume() { super.onResume(); loadData(); }
+
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_FEEDBACK)
-            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener(snap -> {
-                List<Feedback> list = new ArrayList<>();
-                int pos = 0, neg = 0, neu = 0;
-                for (QueryDocumentSnapshot d : snap) {
-                    Feedback f = d.toObject(Feedback.class);
-                    f.setId(d.getId()); list.add(f);
-                    String sent = f.getSentiment();
-                    if ("Positive".equals(sent)) pos++;
-                    else if ("Negative".equals(sent)) neg++;
-                    else neu++;
-                }
-                pb.setVisibility(View.GONE);
-                tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
-                if (tvPositive != null) tvPositive.setText(String.valueOf(pos));
-                if (tvNegative != null) tvNegative.setText(String.valueOf(neg));
-                if (tvNeutral  != null) tvNeutral.setText(String.valueOf(neu));
-                adapter.updateList(list);
-            })
-            .addOnFailureListener(e -> {
-                pb.setVisibility(View.GONE);
-                Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
-            });
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener(snap -> {
+                    List<Feedback> list = new ArrayList<>();
+                    int pos = 0, neg = 0, neu = 0;
+                    for (QueryDocumentSnapshot d : snap) {
+                        Feedback f = d.toObject(Feedback.class);
+                        f.setId(d.getId()); list.add(f);
+                        String sent = f.getSentiment();
+                        if ("Positive".equals(sent)) pos++;
+                        else if ("Negative".equals(sent)) neg++;
+                        else neu++;
+                    }
+                    pb.setVisibility(View.GONE);
+                    tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+                    if (tvPositive != null) tvPositive.setText(String.valueOf(pos));
+                    if (tvNegative != null) tvNegative.setText(String.valueOf(neg));
+                    if (tvNeutral  != null) tvNeutral.setText(String.valueOf(neu));
+                    adapter.updateList(list);
+                })
+                .addOnFailureListener(e -> {
+                    pb.setVisibility(View.GONE);
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
+                });
     }
 }

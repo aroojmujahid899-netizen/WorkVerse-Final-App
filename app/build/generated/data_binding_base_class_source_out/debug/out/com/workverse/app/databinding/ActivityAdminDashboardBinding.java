@@ -36,9 +36,6 @@ public final class ActivityAdminDashboardBinding implements ViewBinding {
   public final LinearLayout navProfile;
 
   @NonNull
-  public final LinearLayout qaAddEmp;
-
-  @NonNull
   public final LinearLayout qaAddMgr;
 
   @NonNull
@@ -80,20 +77,18 @@ public final class ActivityAdminDashboardBinding implements ViewBinding {
   private ActivityAdminDashboardBinding(@NonNull LinearLayout rootView, @NonNull ImageView ivNotif,
       @NonNull LinearLayout navHome, @NonNull LinearLayout navLogout,
       @NonNull LinearLayout navNotif, @NonNull LinearLayout navProfile,
-      @NonNull LinearLayout qaAddEmp, @NonNull LinearLayout qaAddMgr,
-      @NonNull LinearLayout qaAttendance, @NonNull LinearLayout qaFeedback,
-      @NonNull LinearLayout qaLeave, @NonNull LinearLayout qaPerformance,
-      @NonNull LinearLayout qaRoles, @NonNull LinearLayout qaSales, @NonNull LinearLayout qaViewEmp,
-      @NonNull TextView tvAdminName, @NonNull TextView tvPendingLeaves,
-      @NonNull TextView tvPresentToday, @NonNull TextView tvTotalEmployees,
-      @NonNull TextView tvTotalManagers) {
+      @NonNull LinearLayout qaAddMgr, @NonNull LinearLayout qaAttendance,
+      @NonNull LinearLayout qaFeedback, @NonNull LinearLayout qaLeave,
+      @NonNull LinearLayout qaPerformance, @NonNull LinearLayout qaRoles,
+      @NonNull LinearLayout qaSales, @NonNull LinearLayout qaViewEmp, @NonNull TextView tvAdminName,
+      @NonNull TextView tvPendingLeaves, @NonNull TextView tvPresentToday,
+      @NonNull TextView tvTotalEmployees, @NonNull TextView tvTotalManagers) {
     this.rootView = rootView;
     this.ivNotif = ivNotif;
     this.navHome = navHome;
     this.navLogout = navLogout;
     this.navNotif = navNotif;
     this.navProfile = navProfile;
-    this.qaAddEmp = qaAddEmp;
     this.qaAddMgr = qaAddMgr;
     this.qaAttendance = qaAttendance;
     this.qaFeedback = qaFeedback;
@@ -163,12 +158,6 @@ public final class ActivityAdminDashboardBinding implements ViewBinding {
       id = R.id.navProfile;
       LinearLayout navProfile = ViewBindings.findChildViewById(rootView, id);
       if (navProfile == null) {
-        break missingId;
-      }
-
-      id = R.id.qaAddEmp;
-      LinearLayout qaAddEmp = ViewBindings.findChildViewById(rootView, id);
-      if (qaAddEmp == null) {
         break missingId;
       }
 
@@ -251,9 +240,9 @@ public final class ActivityAdminDashboardBinding implements ViewBinding {
       }
 
       return new ActivityAdminDashboardBinding((LinearLayout) rootView, ivNotif, navHome, navLogout,
-          navNotif, navProfile, qaAddEmp, qaAddMgr, qaAttendance, qaFeedback, qaLeave,
-          qaPerformance, qaRoles, qaSales, qaViewEmp, tvAdminName, tvPendingLeaves, tvPresentToday,
-          tvTotalEmployees, tvTotalManagers);
+          navNotif, navProfile, qaAddMgr, qaAttendance, qaFeedback, qaLeave, qaPerformance, qaRoles,
+          qaSales, qaViewEmp, tvAdminName, tvPendingLeaves, tvPresentToday, tvTotalEmployees,
+          tvTotalManagers);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

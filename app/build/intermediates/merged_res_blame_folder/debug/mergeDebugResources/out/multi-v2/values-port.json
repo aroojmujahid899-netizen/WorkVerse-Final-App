@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.workverse.app-mergeDebugResources-3:/values-port/values-port.xml",
+            "outputFile": "com.workverse.app-mergeDebugResources-41:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\dell\\.gradle\\caches\\9.0.0\\transforms\\9903b8187118293dd85a13e942af13c2\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\LENOVO E14\\.gradle\\caches\\9.0.0\\transforms\\9903b8187118293dd85a13e942af13c2\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

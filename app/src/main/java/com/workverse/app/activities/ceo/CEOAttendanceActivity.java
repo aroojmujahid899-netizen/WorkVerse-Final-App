@@ -20,7 +20,7 @@ import java.util.List;
 
 public class CEOAttendanceActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb;
-    TextView tvPresentCount, tvAbsentCount, tvEmpty;
+    TextView tvPresentCount, tvAbsentCount, tvTotalRecords, tvEmpty;
     AttendanceAdapter adapter;
 
     @Override
@@ -36,6 +36,7 @@ public class CEOAttendanceActivity extends AppCompatActivity {
         pb             = findViewById(R.id.progressBar);
         tvPresentCount = findViewById(R.id.tvPresentCount);
         tvAbsentCount  = findViewById(R.id.tvAbsentCount);
+        tvTotalRecords = findViewById(R.id.tvTotalRecords);
         tvEmpty        = findViewById(R.id.tvEmpty);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -44,29 +45,33 @@ public class CEOAttendanceActivity extends AppCompatActivity {
         loadData();
     }
 
+    @Override
+    protected void onResume() { super.onResume(); loadData(); }
+
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
         String today = DateTimeUtils.getCurrentDate();
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE)
-            .whereEqualTo("date", today).get()
-            .addOnSuccessListener(snap -> {
-                List<Attendance> list = new ArrayList<>();
-                int present = 0, absent = 0;
-                for (QueryDocumentSnapshot d : snap) {
-                    Attendance a = d.toObject(Attendance.class);
-                    a.setId(d.getId()); list.add(a);
-                    if ("Present".equals(a.getStatus())) present++;
-                    else absent++;
-                }
-                pb.setVisibility(View.GONE);
-                tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
-                if (tvPresentCount != null) tvPresentCount.setText(String.valueOf(present));
-                if (tvAbsentCount != null) tvAbsentCount.setText(String.valueOf(absent));
-                adapter.updateList(list);
-            })
-            .addOnFailureListener(e -> {
-                pb.setVisibility(View.GONE);
-                Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
-            });
+                .whereEqualTo("date", today).get()
+                .addOnSuccessListener(snap -> {
+                    List<Attendance> list = new ArrayList<>();
+                    int present = 0, absent = 0;
+                    for (QueryDocumentSnapshot d : snap) {
+                        Attendance a = d.toObject(Attendance.class);
+                        a.setId(d.getId()); list.add(a);
+                        if ("Present".equals(a.getStatus())) present++;
+                        else absent++;
+                    }
+                    pb.setVisibility(View.GONE);
+                    tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+                    if (tvPresentCount != null) tvPresentCount.setText(String.valueOf(present));
+                    if (tvAbsentCount  != null) tvAbsentCount.setText(String.valueOf(absent));
+                    if (tvTotalRecords != null) tvTotalRecords.setText(String.valueOf(list.size()));
+                    adapter.updateList(list);
+                })
+                .addOnFailureListener(e -> {
+                    pb.setVisibility(View.GONE);
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
+                });
     }
 }

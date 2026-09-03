@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CEOSalesReportActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb;
-    TextView tvTotalSales, tvTotalAmount, tvEmpty;
+    TextView tvTotalSales, tvTotalAmount, tvTargetAmount, tvEmpty;
     SalesReportAdapter adapter;
 
     @Override
@@ -35,6 +35,7 @@ public class CEOSalesReportActivity extends AppCompatActivity {
         pb             = findViewById(R.id.progressBar);
         tvTotalSales   = findViewById(R.id.tvTotalSales);
         tvTotalAmount  = findViewById(R.id.tvTotalAmount);
+        tvTargetAmount = findViewById(R.id.tvTargetAmount);
         tvEmpty        = findViewById(R.id.tvEmpty);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -43,28 +44,33 @@ public class CEOSalesReportActivity extends AppCompatActivity {
         loadData();
     }
 
+    @Override
+    protected void onResume() { super.onResume(); loadData(); }
+
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_SALES)
-            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener(snap -> {
-                List<SalesReport> list = new ArrayList<>();
-                double totalAmt = 0;
-                for (QueryDocumentSnapshot d : snap) {
-                    SalesReport r = d.toObject(SalesReport.class);
-                    r.setId(d.getId()); list.add(r);
-                    if (r.getAmount() > 0) totalAmt += r.getAmount();
-                }
-                pb.setVisibility(View.GONE);
-                tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
-                if (tvTotalSales  != null) tvTotalSales.setText(String.valueOf(list.size()));
-                if (tvTotalAmount != null) tvTotalAmount.setText(String.format("PKR %.0f", totalAmt));
-                adapter.updateList(list);
-            })
-            .addOnFailureListener(e -> {
-                pb.setVisibility(View.GONE);
-                Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
-            });
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener(snap -> {
+                    List<SalesReport> list = new ArrayList<>();
+                    double totalTarget = 0, totalAchieved = 0;
+                    for (QueryDocumentSnapshot d : snap) {
+                        SalesReport r = d.toObject(SalesReport.class);
+                        r.setId(d.getId()); list.add(r);
+                        totalTarget   += r.getTargetAmount();
+                        totalAchieved += r.getAchievedAmount();
+                    }
+                    pb.setVisibility(View.GONE);
+                    tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+                    if (tvTotalSales   != null) tvTotalSales.setText(String.valueOf(list.size()));
+                    if (tvTotalAmount  != null) tvTotalAmount.setText(String.format("PKR %.0f", totalAchieved));
+                    if (tvTargetAmount != null) tvTargetAmount.setText(String.format("PKR %.0f", totalTarget));
+                    adapter.updateList(list);
+                })
+                .addOnFailureListener(e -> {
+                    pb.setVisibility(View.GONE);
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
+                });
     }
 }
