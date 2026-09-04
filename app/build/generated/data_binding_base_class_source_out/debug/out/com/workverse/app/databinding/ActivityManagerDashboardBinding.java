@@ -30,9 +30,6 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
   public final LinearLayout navLogout;
 
   @NonNull
-  public final LinearLayout navNotif;
-
-  @NonNull
   public final LinearLayout navProfile;
 
   @NonNull
@@ -40,6 +37,9 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout qaFeedback;
+
+  @NonNull
+  public final LinearLayout qaMyAttendance;
 
   @NonNull
   public final LinearLayout qaMyLeave;
@@ -57,9 +57,6 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
   public final LinearLayout qaTeamLeave;
 
   @NonNull
-  public final LinearLayout qaTeamMembers;
-
-  @NonNull
   public final TextView tvLeaveCount;
 
   @NonNull
@@ -70,27 +67,25 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
 
   private ActivityManagerDashboardBinding(@NonNull LinearLayout rootView,
       @NonNull ImageView ivNotif, @NonNull LinearLayout navHome, @NonNull LinearLayout navLogout,
-      @NonNull LinearLayout navNotif, @NonNull LinearLayout navProfile,
-      @NonNull LinearLayout qaAttendance, @NonNull LinearLayout qaFeedback,
+      @NonNull LinearLayout navProfile, @NonNull LinearLayout qaAttendance,
+      @NonNull LinearLayout qaFeedback, @NonNull LinearLayout qaMyAttendance,
       @NonNull LinearLayout qaMyLeave, @NonNull LinearLayout qaNotifications,
       @NonNull LinearLayout qaPerformance, @NonNull LinearLayout qaSales,
-      @NonNull LinearLayout qaTeamLeave, @NonNull LinearLayout qaTeamMembers,
-      @NonNull TextView tvLeaveCount, @NonNull TextView tvPresentDays,
-      @NonNull TextView tvUserName) {
+      @NonNull LinearLayout qaTeamLeave, @NonNull TextView tvLeaveCount,
+      @NonNull TextView tvPresentDays, @NonNull TextView tvUserName) {
     this.rootView = rootView;
     this.ivNotif = ivNotif;
     this.navHome = navHome;
     this.navLogout = navLogout;
-    this.navNotif = navNotif;
     this.navProfile = navProfile;
     this.qaAttendance = qaAttendance;
     this.qaFeedback = qaFeedback;
+    this.qaMyAttendance = qaMyAttendance;
     this.qaMyLeave = qaMyLeave;
     this.qaNotifications = qaNotifications;
     this.qaPerformance = qaPerformance;
     this.qaSales = qaSales;
     this.qaTeamLeave = qaTeamLeave;
-    this.qaTeamMembers = qaTeamMembers;
     this.tvLeaveCount = tvLeaveCount;
     this.tvPresentDays = tvPresentDays;
     this.tvUserName = tvUserName;
@@ -141,12 +136,6 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.navNotif;
-      LinearLayout navNotif = ViewBindings.findChildViewById(rootView, id);
-      if (navNotif == null) {
-        break missingId;
-      }
-
       id = R.id.navProfile;
       LinearLayout navProfile = ViewBindings.findChildViewById(rootView, id);
       if (navProfile == null) {
@@ -162,6 +151,12 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
       id = R.id.qaFeedback;
       LinearLayout qaFeedback = ViewBindings.findChildViewById(rootView, id);
       if (qaFeedback == null) {
+        break missingId;
+      }
+
+      id = R.id.qaMyAttendance;
+      LinearLayout qaMyAttendance = ViewBindings.findChildViewById(rootView, id);
+      if (qaMyAttendance == null) {
         break missingId;
       }
 
@@ -195,12 +190,6 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.qaTeamMembers;
-      LinearLayout qaTeamMembers = ViewBindings.findChildViewById(rootView, id);
-      if (qaTeamMembers == null) {
-        break missingId;
-      }
-
       id = R.id.tvLeaveCount;
       TextView tvLeaveCount = ViewBindings.findChildViewById(rootView, id);
       if (tvLeaveCount == null) {
@@ -220,8 +209,8 @@ public final class ActivityManagerDashboardBinding implements ViewBinding {
       }
 
       return new ActivityManagerDashboardBinding((LinearLayout) rootView, ivNotif, navHome,
-          navLogout, navNotif, navProfile, qaAttendance, qaFeedback, qaMyLeave, qaNotifications,
-          qaPerformance, qaSales, qaTeamLeave, qaTeamMembers, tvLeaveCount, tvPresentDays,
+          navLogout, navProfile, qaAttendance, qaFeedback, qaMyAttendance, qaMyLeave,
+          qaNotifications, qaPerformance, qaSales, qaTeamLeave, tvLeaveCount, tvPresentDays,
           tvUserName);
     }
     String missingId = rootView.getResources().getResourceName(id);

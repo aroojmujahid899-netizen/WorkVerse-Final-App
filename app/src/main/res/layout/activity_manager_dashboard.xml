@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background">
-
-    <!-- Header -->
+    android:background="@color/background"
+    android:orientation="vertical">
+    <!--  Header  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,52 +16,53 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Welcome Back,"
                     android:textColor="#BBDEFB"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
+
                 <TextView
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-bold"
                     android:text="Manager"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:fontFamily="sans-serif-bold"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivNotif"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:src="@drawable/ic_notification"
                 android:background="@drawable/bg_circle"
-                app:tint="#FFFFFF"
-                android:padding="8dp"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:padding="8dp"
+                android:src="@drawable/ic_notification"
+                app:tint="#FFFFFF" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Manager Dashboard"
             android:textColor="#E3F2FD"
-            android:textSize="13sp"
-            android:layout_marginTop="4dp"/>
+            android:textSize="13sp" />
     </LinearLayout>
-
-    <!-- Content -->
+    <!--  Content  -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -74,374 +73,393 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <!-- Stat Cards -->
+            <!--  Stat Cards  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="110dp"
-                    android:layout_weight="1"
                     android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="4dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/card_teal"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tvPresentDays"
+                            style="@style/CardCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
-                            style="@style/CardCount"/>
+                            android:text="0" />
+
                         <TextView
+                            style="@style/CardTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Present Days"
-                            style="@style/CardTitle"/>
+                            android:text="Present Days" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="110dp"
-                    android:layout_weight="1"
                     android:layout_marginStart="6dp"
+                    android:layout_weight="1"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="4dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/card_orange"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tvLeaveCount"
+                            style="@style/CardCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
-                            style="@style/CardCount"/>
+                            android:text="0" />
+
                         <TextView
+                            style="@style/CardTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Leaves Taken"
-                            style="@style/CardTitle"/>
+                            android:text="Leaves Taken" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
             </LinearLayout>
-
-            <!-- Quick Actions Label -->
+            <!--  Quick Actions Label  -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="sans-serif-bold"
                 android:text="Quick Actions"
                 android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:fontFamily="sans-serif-bold"
-                android:layout_marginBottom="12dp"/>
-
-            <!-- ROW 1: Attendance | My Leave | Team Leaves | Team Members -->
+                android:textSize="16sp" />
+            <!--  ROW 1: My Attendance | Attendance (Team) | My Leave  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <!--  My Attendance  -->
+                <LinearLayout
+                    android:id="@+id/qaMyAttendance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <!-- Attendance -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        app:cardBackgroundColor="#E8F5E9"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="2dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_attendance"
+                            app:tint="@color/card_green" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="My Attendance"
+                        android:textSize="11sp" />
+                </LinearLayout>
+                <!--  Attendance (Team)  -->
                 <LinearLayout
                     android:id="@+id/qaAttendance"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="52dp"
                         android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#E0F7FA"
+                        app:cardCornerRadius="14dp"
                         app:cardElevation="2dp">
 
                         <ImageView
                             android:layout_width="24dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_attendance"
                             app:tint="@color/card_teal" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Attendance"
-                        android:textSize="11sp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="Attendance"
+                        android:textSize="11sp" />
                 </LinearLayout>
-
-                <!-- My Leave — Manager's own leave apply + status -->
+                <!--  My Leave — Manager's own leave apply + status  -->
                 <LinearLayout
                     android:id="@+id/qaMyLeave"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="52dp"
                         android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#FFF3E0"
+                        app:cardCornerRadius="14dp"
                         app:cardElevation="2dp">
+
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_leave"
-                            app:tint="@color/card_orange"/>
+                            app:tint="@color/card_orange" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="My Leave"
-                        android:textSize="11sp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="My Leave"
+                        android:textSize="11sp" />
                 </LinearLayout>
-
-                <!-- Team Leaves — Approve/Reject employee leaves -->
+            </LinearLayout>
+            <!--  ROW 2: Team Leaves | Performance | Feedback  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+                <!--  Team Leaves — Approve/Reject employee leaves  -->
                 <LinearLayout
                     android:id="@+id/qaTeamLeave"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="52dp"
                         android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#E8F5E9"
+                        app:cardCornerRadius="14dp"
                         app:cardElevation="2dp">
+
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_leave"
-                            app:tint="@color/card_green"/>
+                            app:tint="@color/card_green" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
                         android:text="Team Leaves"
-                        android:textSize="11sp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"/>
+                        android:textSize="11sp" />
                 </LinearLayout>
-
-                <!-- Team Members -->
-                <LinearLayout
-                    android:id="@+id/qaTeamMembers"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="52dp"
-                        android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
-                        app:cardBackgroundColor="#E1F5FE"
-                        app:cardElevation="2dp">
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_employees"
-                            app:tint="#0288D1"/>
-                    </androidx.cardview.widget.CardView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Team"
-                        android:textSize="11sp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- ROW 2: Performance | Feedback | Sales | Alerts -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="4dp">
-
-                <!-- Performance -->
+                <!--  Performance  -->
                 <LinearLayout
                     android:id="@+id/qaPerformance"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="52dp"
                         android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#F3E5F5"
+                        app:cardCornerRadius="14dp"
                         app:cardElevation="2dp">
+
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_performance"
-                            app:tint="@color/card_purple"/>
+                            app:tint="@color/card_purple" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Performance"
-                        android:textSize="11sp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="Performance"
+                        android:textSize="11sp" />
                 </LinearLayout>
-
-                <!-- Feedback -->
+                <!--  Feedback  -->
                 <LinearLayout
                     android:id="@+id/qaFeedback"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="52dp"
                         android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#FCE4EC"
+                        app:cardCornerRadius="14dp"
                         app:cardElevation="2dp">
+
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_feedback"
-                            app:tint="@color/card_pink"/>
+                            app:tint="@color/card_pink" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Feedback"
-                        android:textSize="11sp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="Feedback"
+                        android:textSize="11sp" />
                 </LinearLayout>
-
-                <!-- Sales -->
+            </LinearLayout>
+            <!--  ROW 3: Sales | Alerts  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+                <!--  Sales  -->
                 <LinearLayout
                     android:id="@+id/qaSales"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="52dp"
                         android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#E8F5E9"
+                        app:cardCornerRadius="14dp"
                         app:cardElevation="2dp">
+
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_sales"
-                            app:tint="@color/card_green"/>
+                            app:tint="@color/card_green" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sales"
-                        android:textSize="11sp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="Sales"
+                        android:textSize="11sp" />
                 </LinearLayout>
-
-                <!-- Alerts -->
+                <!--  Alerts  -->
                 <LinearLayout
                     android:id="@+id/qaNotifications"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="52dp"
                         android:layout_height="52dp"
-                        app:cardCornerRadius="14dp"
                         app:cardBackgroundColor="#E3F2FD"
+                        app:cardCornerRadius="14dp"
                         app:cardElevation="2dp">
+
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_notification"
-                            app:tint="@color/primary"/>
+                            app:tint="@color/primary" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alerts"
-                        android:textSize="11sp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:text="Alerts"
+                        android:textSize="11sp" />
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
-    <!-- Bottom Nav -->
+    <!--  Bottom Nav  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -454,43 +472,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_dashboard"
-                app:tint="@color/primary"/>
+                app:tint="@color/primary" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
                 android:textColor="@color/primary"
-                android:textSize="10sp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/navNotif"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_notification"
-                app:tint="@color/text_secondary"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alerts"
-                android:textColor="@color/text_secondary"
-                android:textSize="10sp"/>
+                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -498,21 +496,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_profile"
-                app:tint="@color/text_secondary"/>
+                app:tint="@color/text_secondary" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile"
                 android:textColor="@color/text_secondary"
-                android:textSize="10sp"/>
+                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -520,23 +520,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/ic_logout"
-                app:tint="@color/text_secondary"/>
+                app:tint="@color/text_secondary" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Logout"
                 android:textColor="@color/text_secondary"
-                android:textSize="10sp"/>
+                android:textSize="10sp" />
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

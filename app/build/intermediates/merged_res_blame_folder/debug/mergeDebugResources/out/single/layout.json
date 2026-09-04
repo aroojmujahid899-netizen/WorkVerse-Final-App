@@ -1,11 +1,15 @@
 [
     {
+        "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_manager_performance.xml",
+        "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_manager_performance.xml"
+    },
+    {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_forgot_password.xml",
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_forgot_password.xml"
     },
     {
-        "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_manager_performance.xml",
-        "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_manager_performance.xml"
+        "merged": "com.workverse.app-mergeDebugResources-42:/layout/activity_manager_dashboard.xml",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_dashboard.xml"
     },
     {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_manager_leave_status.xml",
@@ -28,44 +32,28 @@
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_admin_feedback.xml"
     },
     {
-        "merged": "com.workverse.app-mergeDebugResources-42:/layout/activity_ceo_attendance.xml",
-        "source": "com.workverse.app-main-45:/layout/activity_ceo_attendance.xml"
-    },
-    {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\item_role.xml",
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\item_role.xml"
-    },
-    {
-        "merged": "com.workverse.app-mergeDebugResources-42:/layout/activity_ceo_performance.xml",
-        "source": "com.workverse.app-main-45:/layout/activity_ceo_performance.xml"
     },
     {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_admin_send_notification.xml",
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_admin_send_notification.xml"
     },
     {
-        "merged": "com.workverse.app-mergeDebugResources-42:/layout/activity_ceo_feedback.xml",
-        "source": "com.workverse.app-main-45:/layout/activity_ceo_feedback.xml"
-    },
-    {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_employee_profile.xml",
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_employee_profile.xml"
-    },
-    {
-        "merged": "com.workverse.app-mergeDebugResources-42:/layout/activity_ceo_sales_report.xml",
-        "source": "com.workverse.app-main-45:/layout/activity_ceo_sales_report.xml"
     },
     {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_employee_dashboard.xml",
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_employee_dashboard.xml"
     },
     {
-        "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_manager_notifications.xml",
-        "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_manager_notifications.xml"
-    },
-    {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_view_managers.xml",
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_view_managers.xml"
+    },
+    {
+        "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_manager_notifications.xml",
+        "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\activity_manager_notifications.xml"
     },
     {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\activity_manager_leave_approval.xml",
@@ -162,6 +150,10 @@
     {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\item_leave_request.xml",
         "source": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-main-45:\\layout\\item_leave_request.xml"
+    },
+    {
+        "merged": "com.workverse.app-mergeDebugResources-42:/layout/activity_manager_mark_attendance.xml",
+        "source": "com.workverse.app-main-45:/layout/activity_manager_mark_attendance.xml"
     },
     {
         "merged": "C:\\Users\\LENOVO E14\\.gradle\\daemon\\9.0.0\\com.workverse.app-mergeDebugResources-42:\\layout\\item_manager.xml",

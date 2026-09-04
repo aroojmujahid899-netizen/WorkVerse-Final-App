@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-90:12
-INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-90:12
-INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-90:12
-INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-90:12
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-91:12
+INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-91:12
+INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-91:12
+INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:2:1-91:12
 MERGED from [androidx.databinding:viewbinding:8.9.1] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\d4b381cc1404311fd4af13c49cac5935\transformed\jetified-viewbinding-8.9.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\fefbe0d7aa466fce72292bc40dd58ec1\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\99038778bd454e6a807a2db4c66ea9b3\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -137,8 +137,8 @@ MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\LENOVO E14\
 	android:name
 		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:6:22-74
 application
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:8:5-88:19
-INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:8:5-88:19
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:8:5-89:19
+INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:8:5-89:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\fefbe0d7aa466fce72292bc40dd58ec1\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\fefbe0d7aa466fce72292bc40dd58ec1\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\LENOVO E14\.gradle\caches\9.0.0\transforms\99038778bd454e6a807a2db4c66ea9b3\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -437,96 +437,102 @@ ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:64:9-10
 		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:64:77-101
 	android:name
 		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:64:19-76
+activity#com.workverse.app.activities.manager.ManagerMarkAttendanceActivity
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:65:9-111
+	android:exported
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:65:84-108
+	android:name
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:65:19-83
 activity#com.workverse.app.activities.employee.EmployeeDashboardActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:67:9-108
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:9-108
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:67:81-105
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:81-105
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:67:19-80
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:19-80
 activity#com.workverse.app.activities.employee.MarkAttendanceActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:9-105
-	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:78-102
-	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:68:19-77
-activity#com.workverse.app.activities.employee.ViewAttendanceActivity
 ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:69:9-105
 	android:exported
 		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:69:78-102
 	android:name
 		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:69:19-77
+activity#com.workverse.app.activities.employee.ViewAttendanceActivity
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:9-105
+	android:exported
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:78-102
+	android:name
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:19-77
 activity#com.workverse.app.activities.employee.ApplyLeaveActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:9-101
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:9-101
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:74-98
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:74-98
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:70:19-73
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:19-73
 activity#com.workverse.app.activities.employee.ViewLeaveStatusActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:9-106
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:9-106
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:79-103
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:79-103
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:71:19-78
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:19-78
 activity#com.workverse.app.activities.employee.EmployeePerformanceActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:9-110
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:9-110
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:83-107
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:83-107
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:72:19-82
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:19-82
 activity#com.workverse.app.activities.employee.SubmitFeedbackActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:9-105
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:9-105
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:78-102
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:78-102
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:73:19-77
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:19-77
 activity#com.workverse.app.activities.employee.ViewFAQActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:9-98
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:9-98
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:71-95
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:71-95
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:74:19-70
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:19-70
 activity#com.workverse.app.activities.employee.EmployeeSalesReportActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:9-110
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:9-110
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:83-107
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:83-107
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:75:19-82
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:19-82
 activity#com.workverse.app.activities.employee.AddSaleActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:9-98
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:9-98
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:71-95
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:71-95
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:76:19-70
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:19-70
 activity#com.workverse.app.activities.employee.EmployeeNotificationsActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:9-112
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:9-112
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:85-109
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:85-109
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:77:19-84
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:19-84
 activity#com.workverse.app.activities.employee.EmployeeProfileActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:9-106
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:9-106
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:79-103
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:79-103
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:78:19-78
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:19-78
 activity#com.workverse.app.activities.employee.EditProfileActivity
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:9-102
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:80:9-102
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:75-99
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:80:75-99
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:79:19-74
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:80:19-74
 service#com.workverse.app.utils.WorkVerseMessagingService
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:82:9-86:19
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:83:9-87:19
 	android:exported
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:82:66-90
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:83:66-90
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:82:18-65
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:83:18-65
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:83:13-85:29
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:84:13-86:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:84:17-78
+ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:85:17-78
 	android:name
-		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:84:25-75
+		ADDED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml:85:25-75
 uses-sdk
 INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\WorkVerse_Final\WorkVerse\app\src\main\AndroidManifest.xml

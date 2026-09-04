@@ -115,6 +115,7 @@ id qaAttendance
 id qaFAQ
 id qaFeedback
 id qaLeave
+id qaMyAttendance
 id qaMyLeave
 id qaNotifications
 id qaPerformance
@@ -122,7 +123,6 @@ id qaReports
 id qaRoles
 id qaSales
 id qaTeamLeave
-id qaTeamMembers
 id qaViewEmp
 id recyclerView
 id toolbar
@@ -223,6 +223,7 @@ layout activity_manager_dashboard
 layout activity_manager_feedback
 layout activity_manager_leave_approval
 layout activity_manager_leave_status
+layout activity_manager_mark_attendance
 layout activity_manager_notifications
 layout activity_manager_performance
 layout activity_manager_profile
