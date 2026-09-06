@@ -1,144 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
-        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary" app:titleTextColor="@color/white"
-        app:navigationIcon="@drawable/ic_back"/>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/WorkVerse.Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="Add Performance Record" />
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" android:padding="16dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Employee Info" android:textSize="14sp" android:fontFamily="sans-serif-bold"
-                android:textColor="@color/primary" android:layout_marginBottom="8dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="Employee Name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="10dp">
-                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEmployeeName"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="Employee ID (Firebase UID)"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="10dp">
-                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEmployeeId"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="Month"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginEnd="8dp" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etMonth"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"/>
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="Year"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etYear"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <View android:layout_width="match_parent" android:layout_height="1dp"
-                android:background="#EEEEEE" android:layout_marginVertical="8dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="Performance Data" android:textSize="14sp" android:fontFamily="sans-serif-bold"
-                android:textColor="@color/primary" android:layout_marginBottom="8dp"/>
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="Tasks Assigned"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginEnd="8dp" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etTasksAssigned"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="Tasks Completed"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etTasksCompleted"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="KPI Score (%)"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginEnd="8dp" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etKpiScore"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"/>
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="Attendance (%)"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etAttendance"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"/>
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <View android:layout_width="match_parent" android:layout_height="1dp"
-                android:background="#EEEEEE" android:layout_marginVertical="8dp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="🤖 AI Feedback Analysis (Call Center)" android:textSize="14sp"
-                android:fontFamily="sans-serif-bold" android:textColor="#7B1FA2" android:layout_marginBottom="8dp"/>
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="Total Calls"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginEnd="8dp" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etTotalCalls"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:layout_weight="1" android:hint="Total Sales"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="10dp">
-                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etTotalSales"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:inputType="number"/>
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Employee Feedback Text (for AI sentiment analysis)"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:layout_marginBottom="10dp">
-                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etFeedbackText"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:minLines="3" android:gravity="top" android:inputType="textMultiLine"/>
+                android:layout_marginBottom="6dp"
+                android:text="Select Employee"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <Spinner
+                android:id="@+id/spinnerEmployee"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="16dp"
+                android:padding="12dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Month (e.g. March)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView android:id="@+id/tvAIPreview" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="AI will auto-analyze on save"
-                android:textColor="#7B1FA2" android:textSize="11sp" android:layout_marginBottom="12dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Year (e.g. 2026)">
 
-            <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_gravity="center"
-                android:visibility="gone" android:layout_marginBottom="8dp"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <Button android:id="@+id/btnSubmit" android:layout_width="match_parent"
-                android:layout_height="52dp" android:text="Save Performance Record"
-                android:backgroundTint="@color/primary" android:textColor="@color/white"
-                app:cornerRadius="10dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Tasks Assigned">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTasksAssigned"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Tasks Completed">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTasksCompleted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="KPI Score (0-100)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etKpiScore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="Attendance % (0-100)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAttendance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_btn_primary"
+                android:text="SAVE PERFORMANCE RECORD"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

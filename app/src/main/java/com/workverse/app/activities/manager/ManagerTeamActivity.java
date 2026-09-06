@@ -1,4 +1,5 @@
 package com.workverse.app.activities.manager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -7,20 +8,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
+import com.workverse.app.activities.admin.AddEmployeeActivity;
 import com.workverse.app.adapters.EmployeeAdapter;
 import com.workverse.app.models.Employee;
 import com.workverse.app.utils.FirebaseHelper;
 import java.util.ArrayList;
 import java.util.List;
 public class ManagerTeamActivity extends AppCompatActivity {
-    RecyclerView rv; ProgressBar pb; EmployeeAdapter adapter;
+    RecyclerView rv; ProgressBar pb; FloatingActionButton fabAdd; EmployeeAdapter adapter;
     @Override protected void onCreate(Bundle s){
         super.onCreate(s);
         setContentView(R.layout.activity_manager_team);
         Toolbar tb=findViewById(R.id.toolbar);setSupportActionBar(tb);tb.setNavigationOnClickListener(v->finish());
         rv=findViewById(R.id.recyclerView);pb=findViewById(R.id.progressBar);
+        fabAdd=findViewById(R.id.fabAdd);
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter=new EmployeeAdapter(new ArrayList<>(),new EmployeeAdapter.OnEmployeeClickListener(){
             public void onEditClick(Employee e){}
@@ -28,16 +32,18 @@ public class ManagerTeamActivity extends AppCompatActivity {
             public void onItemClick(Employee e){}
         });
         rv.setAdapter(adapter);
+        if (fabAdd != null) fabAdd.setOnClickListener(v -> startActivity(new Intent(this, AddEmployeeActivity.class)));
         loadTeam();
     }
+    @Override protected void onResume(){ super.onResume(); loadTeam(); }
     private void loadTeam(){
         pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_EMPLOYEES).get()
-            .addOnSuccessListener(snap->{
-                List<Employee> list=new ArrayList<>();
-                for(QueryDocumentSnapshot d:snap){Employee e=d.toObject(Employee.class);e.setId(d.getId());list.add(e);}
-                pb.setVisibility(View.GONE);
-                adapter.updateList(list);
-            }).addOnFailureListener(e->{pb.setVisibility(View.GONE);Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show();});
+                .addOnSuccessListener(snap->{
+                    List<Employee> list=new ArrayList<>();
+                    for(QueryDocumentSnapshot d:snap){Employee e=d.toObject(Employee.class);e.setId(d.getId());list.add(e);}
+                    pb.setVisibility(View.GONE);
+                    adapter.updateList(list);
+                }).addOnFailureListener(e->{pb.setVisibility(View.GONE);Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show();});
     }
 }

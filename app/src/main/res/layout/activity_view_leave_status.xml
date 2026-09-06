@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/background">
-    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
-        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-        style="@style/WorkVerse.Toolbar" app:title="My Leaves" app:navigationIcon="@drawable/ic_back"/>
-    
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
-        android:layout_width="match_parent" android:layout_height="0dp"
-        android:layout_weight="1" android:padding="8dp" android:clipToPadding="false"/>
-    <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone"/>
-    <TextView android:id="@+id/tvEmpty" android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:text="No data found" android:gravity="center" android:padding="40dp"
-        android:textColor="@color/text_secondary" android:textSize="16sp" android:visibility="gone"/>
-</LinearLayout>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/background">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" style="@style/WorkVerse.Toolbar" app:title="My Leave Requests" app:navigationIcon="@drawable/ic_back"/>
+        <!--  3 Stats Cards  -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="12dp">
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1" android:layout_marginEnd="6dp" app:cardCornerRadius="10dp" app:cardElevation="3dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/card_blue" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tvTotalLeaves" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="@android:color/white" android:textSize="24sp" android:fontFamily="sans-serif-bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total" android:textColor="#BBDEFB" android:textSize="11sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1" android:layout_marginEnd="6dp" app:cardCornerRadius="10dp" app:cardElevation="3dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/card_orange" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tvPendingLeaves" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="@android:color/white" android:textSize="24sp" android:fontFamily="sans-serif-bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pending" android:textColor="#FFF9C4" android:textSize="11sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1" app:cardCornerRadius="10dp" app:cardElevation="3dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/card_green" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tvApprovedLeaves" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="@android:color/white" android:textSize="24sp" android:fontFamily="sans-serif-bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Approved" android:textColor="#C8E6C9" android:textSize="11sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:padding="8dp" android:clipToPadding="false" android:paddingBottom="80dp"/>
+        <TextView android:id="@+id/tvEmpty" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No leave requests yet. Tap + to apply for leave." android:gravity="center" android:padding="40dp" android:textColor="@color/text_secondary" android:textSize="15sp" android:visibility="gone"/>
+        <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone"/>
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fabApply" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_margin="16dp" app:srcCompat="@drawable/ic_add" app:tint="@android:color/white"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -19,9 +19,6 @@ public class LeaveRequest {
         this.timestamp    = System.currentTimeMillis();
     }
 
-    public LeaveRequest(String uid, String s, String type, String from, String to, String reason) {
-    }
-
     // Getters and Setters
     public String getId()           { return id; }
     public void   setId(String v)   { id = v; }

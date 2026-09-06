@@ -30,6 +30,7 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         loadData();
     }
+    @Override protected void onResume() { super.onResume(); loadData(); }
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE)
@@ -38,7 +39,10 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
                 .addOnSuccessListener(snap -> {
                     List<Attendance> list = new ArrayList<>();
                     for (QueryDocumentSnapshot d : snap) {
-                        Attendance a = d.toObject(Attendance.class); a.setId(d.getId()); list.add(a);
+                        Attendance a = d.toObject(Attendance.class);
+                        // Team Attendance should only show Employees — never the manager's own record
+                        if ("Manager".equals(a.getRole())) continue;
+                        a.setId(d.getId()); list.add(a);
                     }
                     pb.setVisibility(View.GONE);
                     if (tvEmpty != null) tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);

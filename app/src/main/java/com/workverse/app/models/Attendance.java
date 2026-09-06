@@ -1,6 +1,6 @@
 package com.workverse.app.models;
 public class Attendance {
-    private String id, userId, employeeName, date, checkInTime, checkOutTime, status;
+    private String id, userId, employeeName, date, checkInTime, checkOutTime, status, role;
     public Attendance() {}
     public Attendance(String userId,String employeeName,String date,String checkInTime,String status){
         this.userId=userId;this.employeeName=employeeName;this.date=date;
@@ -13,4 +13,5 @@ public class Attendance {
     public String getCheckInTime(){return checkInTime;} public void setCheckInTime(String v){checkInTime=v;}
     public String getCheckOutTime(){return checkOutTime;} public void setCheckOutTime(String v){checkOutTime=v;}
     public String getStatus(){return status;} public void setStatus(String v){status=v;}
+    public String getRole(){return role;} public void setRole(String v){role=v;}
 }

@@ -33,12 +33,13 @@ public class ApplyLeaveActivity extends AppCompatActivity {
                 Toast.makeText(this,"All fields required",Toast.LENGTH_SHORT).show();return;}
             pb.setVisibility(View.VISIBLE);btnSubmit.setEnabled(false);
             SharedPrefManager spm=SharedPrefManager.getInstance(this);
-            LeaveRequest lr=new LeaveRequest(spm.getUid(),spm.getFullName()!=null?spm.getFullName():"Employee",type,from,to,reason);
+            LeaveRequest lr=new LeaveRequest(spm.getUid(),spm.getFullName()!=null?spm.getFullName():"Employee",
+                    type,from,to,reason,"Employee");
             FirebaseHelper.getDb().collection(FirebaseHelper.COL_LEAVES).add(lr)
-                .addOnSuccessListener(r->{pb.setVisibility(View.GONE);
-                    Toast.makeText(this,"Leave request submitted!",Toast.LENGTH_SHORT).show();finish();})
-                .addOnFailureListener(e->{pb.setVisibility(View.GONE);btnSubmit.setEnabled(true);
-                    Toast.makeText(this,"Failed: "+e.getMessage(),Toast.LENGTH_SHORT).show();});
+                    .addOnSuccessListener(r->{pb.setVisibility(View.GONE);
+                        Toast.makeText(this,"Leave request submitted!",Toast.LENGTH_SHORT).show();finish();})
+                    .addOnFailureListener(e->{pb.setVisibility(View.GONE);btnSubmit.setEnabled(true);
+                        Toast.makeText(this,"Failed: "+e.getMessage(),Toast.LENGTH_SHORT).show();});
         });
     }
     private void findEditTexts(android.view.ViewGroup vg,List<TextInputEditText> list){
