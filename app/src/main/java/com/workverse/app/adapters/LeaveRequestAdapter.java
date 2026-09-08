@@ -47,17 +47,24 @@ public class LeaveRequestAdapter extends RecyclerView.Adapter<LeaveRequestAdapte
     public void onBindViewHolder(@NonNull VH h, int pos) {
         LeaveRequest r = list.get(pos);
 
-        // Name
-        h.tvEmployeeName.setText(r.getEmployeeName() != null ? r.getEmployeeName() : "—");
+        String name = r.getEmployeeName() != null && !r.getEmployeeName().isEmpty()
+                ? r.getEmployeeName() : "Unknown";
+        h.tvEmployeeName.setText(name);
 
-        // Role badge — show if role field exists
+        // Avatar initials
+        String initials = name.trim().isEmpty() ? "?" : name.trim().substring(0, 1).toUpperCase();
+        h.tvInitials.setText(initials);
+
+        // Role badge
         if (r.getRole() != null && !r.getRole().isEmpty()) {
             h.tvRole.setVisibility(View.VISIBLE);
             h.tvRole.setText(r.getRole());
-            if ("Manager".equals(r.getRole())) {
-                h.tvRole.setBackgroundColor(Color.parseColor("#4A148C"));
+            if ("Manager".equalsIgnoreCase(r.getRole())) {
+                h.tvRole.setBackgroundResource(R.drawable.bg_role_manager);
+                h.tvRole.setTextColor(Color.parseColor("#6A1B9A"));
             } else {
-                h.tvRole.setBackgroundColor(Color.parseColor("#1565C0"));
+                h.tvRole.setBackgroundResource(R.drawable.bg_role_employee);
+                h.tvRole.setTextColor(Color.parseColor("#1565C0"));
             }
         } else {
             h.tvRole.setVisibility(View.GONE);
@@ -101,7 +108,7 @@ public class LeaveRequestAdapter extends RecyclerView.Adapter<LeaveRequestAdapte
     public int getItemCount() { return list == null ? 0 : list.size(); }
 
     static class VH extends RecyclerView.ViewHolder {
-        TextView    tvEmployeeName, tvRole, tvLeaveType, tvDateRange, tvReason, tvStatus;
+        TextView    tvEmployeeName, tvRole, tvLeaveType, tvDateRange, tvReason, tvStatus, tvInitials;
         LinearLayout llActions;
         Button       btnApprove, btnReject;
 
@@ -116,6 +123,7 @@ public class LeaveRequestAdapter extends RecyclerView.Adapter<LeaveRequestAdapte
             llActions      = v.findViewById(R.id.llActions);
             btnApprove     = v.findViewById(R.id.btnApprove);
             btnReject      = v.findViewById(R.id.btnReject);
+            tvInitials     = v.findViewById(R.id.tvInitials);
         }
     }
 }

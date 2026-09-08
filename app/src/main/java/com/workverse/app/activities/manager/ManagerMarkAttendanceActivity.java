@@ -1,4 +1,5 @@
 package com.workverse.app.activities.manager;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -6,16 +7,20 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import com.workverse.app.R;
 import com.workverse.app.utils.DateTimeUtils;
 import com.workverse.app.utils.FirebaseHelper;
 import com.workverse.app.utils.SharedPrefManager;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ManagerMarkAttendanceActivity extends AppCompatActivity {
+
     TextView tvDate, tvTime, tvStatus;
     Button btnCheckIn, btnCheckOut;
     ProgressBar pb;
@@ -84,25 +89,41 @@ public class ManagerMarkAttendanceActivity extends AppCompatActivity {
         SharedPrefManager spm = SharedPrefManager.getInstance(this);
         String uid = spm.getUid();
         String name = spm.getFullName();
-        Map<String, Object> att = new HashMap<>();
-        att.put("userId", uid);
-        att.put("employeeName", name != null ? name : "Manager");
-        att.put("role", "Manager");
-        att.put("date", DateTimeUtils.getCurrentDate());
-        att.put("checkInTime", DateTimeUtils.getCurrentTime());
-        att.put("status", "Present");
-        FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE).add(att)
-                .addOnSuccessListener(r -> {
-                    attendanceId = r.getId();
-                    pb.setVisibility(View.GONE);
-                    tvStatus.setText("Checked In \u2713");
-                    btnCheckOut.setEnabled(true);
-                    Toast.makeText(this, "Check-in recorded!", Toast.LENGTH_SHORT).show();
+
+        // Firestore se designation/campaign fetch karo (role already known: Manager)
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_USERS).document(uid).get()
+                .addOnSuccessListener(userDoc -> {
+                    String designation = userDoc.getString("designation");
+                    String campaign = userDoc.getString("campaign");
+
+                    Map<String, Object> att = new HashMap<>();
+                    att.put("userId", uid);
+                    att.put("employeeName", name != null ? name : "Manager");
+                    att.put("role", "Manager");
+                    att.put("designation", designation != null ? designation : "");
+                    att.put("campaign", campaign != null ? campaign : "");
+                    att.put("date", DateTimeUtils.getCurrentDate());
+                    att.put("checkInTime", DateTimeUtils.getCurrentTime());
+                    att.put("status", "Present");
+
+                    FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE).add(att)
+                            .addOnSuccessListener(r -> {
+                                attendanceId = r.getId();
+                                pb.setVisibility(View.GONE);
+                                tvStatus.setText("Checked In \u2713");
+                                btnCheckOut.setEnabled(true);
+                                Toast.makeText(this, "Check-in recorded!", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e -> {
+                                pb.setVisibility(View.GONE);
+                                btnCheckIn.setEnabled(true);
+                                Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
                 })
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
                     btnCheckIn.setEnabled(true);
-                    Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Could not fetch user info: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 

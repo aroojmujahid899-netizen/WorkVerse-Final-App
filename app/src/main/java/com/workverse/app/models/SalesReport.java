@@ -1,38 +1,47 @@
 package com.workverse.app.models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class SalesReport {
-    private String id, userId, employeeName, date, month;
-    private double targetAmount, achievedAmount;
+    private String id;
+    private String employeeName;
+    private String designation;
+    private String campaign;
+    private int targetAmount;
+    private int achievedAmount;
     private long timestamp;
 
-    public SalesReport() {}
+    public SalesReport() {
+        // Required for Firebase
+    }
 
     public String getId() { return id; }
-    public void setId(String v) { id = v; }
-
-    public String getUserId() { return userId; }
-    public void setUserId(String v) { userId = v; }
+    public void setId(String id) { this.id = id; }
 
     public String getEmployeeName() { return employeeName; }
-    public void setEmployeeName(String v) { employeeName = v; }
+    public void setEmployeeName(String employeeName) { this.employeeName = employeeName; }
 
-    public String getDate() { return date; }
-    public void setDate(String v) { date = v; }
+    public String getDesignation() { return designation; }
+    public void setDesignation(String designation) { this.designation = designation; }
 
-    public String getMonth() { return month; }
-    public void setMonth(String v) { month = v; }
+    public String getCampaign() { return campaign; }
+    public void setCampaign(String campaign) { this.campaign = campaign; }
 
-    public double getTargetAmount() { return targetAmount; }
-    public void setTargetAmount(double v) { targetAmount = v; }
+    public int getTargetAmount() { return targetAmount; }
+    public void setTargetAmount(int targetAmount) { this.targetAmount = targetAmount; }
 
-    public double getAchievedAmount() { return achievedAmount; }
-    public void setAchievedAmount(double v) { achievedAmount = v; }
+    public int getAchievedAmount() { return achievedAmount; }
+    public void setAchievedAmount(int achievedAmount) { this.achievedAmount = achievedAmount; }
 
     public long getTimestamp() { return timestamp; }
-    public void setTimestamp(long v) { timestamp = v; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 
-    // getAmount() = alias for achievedAmount
-    public double getAmount() {
-        return achievedAmount;
+    // Helper method for Adapter
+    public String getDate() {
+        if (timestamp == 0) return "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        return sdf.format(new Date(timestamp));
     }
 }

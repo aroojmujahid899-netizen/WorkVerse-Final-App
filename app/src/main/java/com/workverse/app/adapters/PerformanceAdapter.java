@@ -1,6 +1,7 @@
 package com.workverse.app.adapters;
 
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.workverse.app.R;
 import com.workverse.app.models.PerformanceReport;
+import com.workverse.app.views.DonutChartView;
 import java.util.List;
 
 public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.VH> {
@@ -27,32 +29,51 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
     public void onBindViewHolder(@NonNull VH h, int pos) {
         PerformanceReport r = list.get(pos);
 
-        if (h.tvEmployeeName != null)
-            h.tvEmployeeName.setText(r.getEmployeeName() != null ? r.getEmployeeName() : "—");
+        String name = r.getEmployeeName() != null && !r.getEmployeeName().isEmpty()
+                ? r.getEmployeeName() : "Unknown";
+
+        if (h.tvEmployeeName != null) h.tvEmployeeName.setText(name);
+
+        if (h.tvInitials != null) {
+            String initials = name.trim().isEmpty() ? "?" : name.trim().substring(0, 1).toUpperCase();
+            h.tvInitials.setText(initials);
+        }
+
+        // Campaign badge
+        if (h.tvCampaign != null) {
+            String campaign = r.getCampaign();
+            if (!TextUtils.isEmpty(campaign)) {
+                h.tvCampaign.setText(campaign);
+                h.tvCampaign.setVisibility(View.VISIBLE);
+            } else {
+                h.tvCampaign.setVisibility(View.GONE);
+            }
+        }
 
         if (h.tvMonth != null)
             h.tvMonth.setText((r.getMonth() != null ? r.getMonth() : "") + " " + (r.getYear() != null ? r.getYear() : ""));
 
+        double kpi = r.getKpiScore();
         if (h.tvKpi != null)
-            h.tvKpi.setText(String.format("%.0f%%", r.getKpiScore()));
+            h.tvKpi.setText(String.format("%.0f%%", kpi));
 
-        // Color KPI score
-        if (h.tvKpi != null) {
-            double kpi = r.getKpiScore();
-            if      (kpi >= 80) h.tvKpi.setTextColor(Color.parseColor("#2E7D32")); // green
-            else if (kpi >= 50) h.tvKpi.setTextColor(Color.parseColor("#E65100")); // orange
-            else                h.tvKpi.setTextColor(Color.parseColor("#C62828")); // red
+        int kpiColor;
+        if (kpi >= 80)      kpiColor = Color.parseColor("#2E7D32");
+        else if (kpi >= 50) kpiColor = Color.parseColor("#E65100");
+        else                kpiColor = Color.parseColor("#C62828");
+
+        if (h.donutKpi != null) {
+            h.donutKpi.setProgress((float) kpi);
+            h.donutKpi.setProgressColor(kpiColor);
         }
+        if (h.tvKpi != null) h.tvKpi.setTextColor(kpiColor);
 
-        // Tasks
         if (h.tvTasks != null)
             h.tvTasks.setText("Tasks: " + r.getTasksCompleted() + "/" + r.getTasksAssigned());
 
-        // Attendance
         if (h.tvAttendance != null)
             h.tvAttendance.setText("Attendance: " + (int) r.getAttendancePercentage() + "%");
 
-        // AI Feedback Sentiment badge
         if (h.tvSentiment != null) {
             String sent = r.getFeedbackSentiment();
             if (sent != null && !sent.isEmpty()) {
@@ -69,7 +90,6 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
             }
         }
 
-        // AI Insight
         if (h.tvInsight != null) {
             String insight = r.getPerformanceInsight();
             if (insight != null && !insight.isEmpty()) {
@@ -84,7 +104,9 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
     @Override public int getItemCount() { return list.size(); }
 
     static class VH extends RecyclerView.ViewHolder {
-        TextView tvEmployeeName, tvMonth, tvKpi, tvTasks, tvAttendance, tvSentiment, tvInsight;
+        TextView tvEmployeeName, tvMonth, tvKpi, tvTasks, tvAttendance, tvSentiment, tvInsight, tvInitials, tvCampaign;
+        DonutChartView donutKpi;
+
         VH(View v) {
             super(v);
             tvEmployeeName = v.findViewById(R.id.tvEmployeeName);
@@ -94,6 +116,9 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
             tvAttendance   = v.findViewById(R.id.tvAttendance);
             tvSentiment    = v.findViewById(R.id.tvSentiment);
             tvInsight      = v.findViewById(R.id.tvInsight);
+            tvInitials     = v.findViewById(R.id.tvInitials);
+            tvCampaign     = v.findViewById(R.id.tvCampaign);
+            donutKpi       = v.findViewById(R.id.donutKpi);
         }
     }
 }

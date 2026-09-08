@@ -2,6 +2,8 @@ package com.workverse.app.activities.admin;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,9 +23,13 @@ import java.util.List;
 public class AdminLeaveManagementActivity extends AppCompatActivity {
 
     private RecyclerView rv;
-    private ProgressBar  pb;
-    private TextView     tvEmpty;
+    private ProgressBar pb;
+    private TextView tvEmpty;
+    private AutoCompleteTextView actvRoleFilter;
     private LeaveRequestAdapter adapter;
+
+    private List<LeaveRequest> fullList = new ArrayList<>();
+    private String selectedFilterRole = "All";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,20 +40,23 @@ public class AdminLeaveManagementActivity extends AppCompatActivity {
         setSupportActionBar(tb);
         tb.setNavigationOnClickListener(v -> finish());
 
-        rv      = findViewById(R.id.recyclerView);
-        pb      = findViewById(R.id.progressBar);
+        rv = findViewById(R.id.recyclerView);
+        pb = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
+        actvRoleFilter = findViewById(R.id.actvRoleFilter);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        // Admin CAN approve/reject everyone — showActions=true
         adapter = new LeaveRequestAdapter(new ArrayList<>(), true,
                 new LeaveRequestAdapter.Listener() {
+                    @Override
                     public void onApprove(LeaveRequest l) { updateStatus(l, "Approved"); }
+                    @Override
                     public void onReject(LeaveRequest l)  { updateStatus(l, "Rejected"); }
                 });
         rv.setAdapter(adapter);
 
+        setupRoleDropdown();
         loadData();
     }
 
@@ -57,31 +66,63 @@ public class AdminLeaveManagementActivity extends AppCompatActivity {
         loadData();
     }
 
+    private void setupRoleDropdown() {
+        String[] roles = new String[]{"All", "Employees", "Managers"};
+        ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, roles);
+        actvRoleFilter.setAdapter(dropdownAdapter);
+
+        actvRoleFilter.setOnItemClickListener((parent, view, position, id) -> {
+            selectedFilterRole = parent.getItemAtPosition(position).toString();
+            applyRoleFilter();
+        });
+    }
+
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
         if (tvEmpty != null) tvEmpty.setVisibility(View.GONE);
 
-        // Admin sees ALL leaves — Employee AND Manager
         FirebaseHelper.getDb()
                 .collection(FirebaseHelper.COL_LEAVES)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(snap -> {
-                    List<LeaveRequest> list = new ArrayList<>();
+                    fullList.clear();
                     for (QueryDocumentSnapshot d : snap) {
                         LeaveRequest lr = d.toObject(LeaveRequest.class);
                         lr.setId(d.getId());
-                        list.add(lr);
+                        fullList.add(lr);
                     }
                     pb.setVisibility(View.GONE);
-                    if (tvEmpty != null)
-                        tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
-                    adapter.updateList(list);
+                    applyRoleFilter();
                 })
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
                     Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void applyRoleFilter() {
+        List<LeaveRequest> filteredList = new ArrayList<>();
+
+        if ("All".equalsIgnoreCase(selectedFilterRole)) {
+            filteredList.addAll(fullList);
+        } else {
+            for (LeaveRequest item : fullList) {
+                String userRole = item.getRole(); // Fixed: getRole() updated here
+                if (userRole != null) {
+                    if ("Employees".equalsIgnoreCase(selectedFilterRole) && "Employee".equalsIgnoreCase(userRole)) {
+                        filteredList.add(item);
+                    } else if ("Managers".equalsIgnoreCase(selectedFilterRole) && "Manager".equalsIgnoreCase(userRole)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+        }
+
+        if (tvEmpty != null) {
+            tvEmpty.setVisibility(filteredList.isEmpty() ? View.VISIBLE : View.GONE);
+        }
+        adapter.updateList(filteredList);
     }
 
     private void updateStatus(LeaveRequest lr, String status) {

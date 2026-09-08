@@ -3,6 +3,8 @@ package com.workverse.app.activities.admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,15 +22,18 @@ import com.workverse.app.models.PerformanceReport;
 import com.workverse.app.utils.FirebaseHelper;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 public class AdminPerformanceActivity extends AppCompatActivity {
 
     RecyclerView rv;
     ProgressBar pb;
-    TextView tvEmpty, tvAvgKpi, tvTotalRecords;
+    TextView tvEmpty, tvAvgKpi, tvTotalRecords, tvNeedsReview;
+    AutoCompleteTextView actCampaignFilter;
     PerformanceAdapter adapter;
     FloatingActionButton fabAddPerformance;
+    List<PerformanceReport> fullList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle s) {
@@ -37,10 +42,7 @@ public class AdminPerformanceActivity extends AppCompatActivity {
 
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Performance Reports");
-        }
+        if (getSupportActionBar() != null) getSupportActionBar().setTitle("Performance Reports");
         tb.setNavigationOnClickListener(v -> finish());
 
         rv = findViewById(R.id.recyclerView);
@@ -48,14 +50,13 @@ public class AdminPerformanceActivity extends AppCompatActivity {
         tvEmpty = findViewById(R.id.tvEmpty);
         tvAvgKpi = findViewById(R.id.tvAvgKpi);
         tvTotalRecords = findViewById(R.id.tvTotalRecords);
+        tvNeedsReview = findViewById(R.id.tvNeedsReview);
+        actCampaignFilter = findViewById(R.id.actCampaignFilter);
 
-        // XML layout ke mutabiq exact ID (R.id.fabAdd) match kar di gayi hai
         fabAddPerformance = findViewById(R.id.fabAdd);
-
         if (fabAddPerformance != null) {
-            fabAddPerformance.setOnClickListener(v -> {
-                startActivity(new Intent(AdminPerformanceActivity.this, AddPerformanceActivity.class));
-            });
+            fabAddPerformance.setOnClickListener(v ->
+                    startActivity(new Intent(AdminPerformanceActivity.this, AddPerformanceActivity.class)));
         }
 
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -78,33 +79,61 @@ public class AdminPerformanceActivity extends AppCompatActivity {
                 .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(snap -> {
-                    List<PerformanceReport> list = new ArrayList<>();
-                    double totalKpi = 0;
-
+                    fullList.clear();
                     for (QueryDocumentSnapshot d : snap) {
                         PerformanceReport r = d.toObject(PerformanceReport.class);
                         r.setId(d.getId());
-                        list.add(r);
-                        totalKpi += r.getKpiScore();
+                        fullList.add(r);
                     }
-
                     pb.setVisibility(View.GONE);
-                    tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
-
-                    double avg = list.isEmpty() ? 0 : totalKpi / list.size();
-
-                    if (tvAvgKpi != null) {
-                        tvAvgKpi.setText(String.format("%.0f%%", avg));
-                    }
-                    if (tvTotalRecords != null) {
-                        tvTotalRecords.setText(String.valueOf(list.size()));
-                    }
-
-                    adapter.updateList(list);
+                    setupCampaignFilter();
+                    applyFilter(actCampaignFilter.getText().toString());
                 })
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
                     Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void setupCampaignFilter() {
+        LinkedHashSet<String> campaigns = new LinkedHashSet<>();
+        campaigns.add("All");
+        for (PerformanceReport r : fullList) {
+            if (r.getCampaign() != null && !r.getCampaign().isEmpty()) {
+                campaigns.add(r.getCampaign());
+            }
+        }
+        List<String> campaignList = new ArrayList<>(campaigns);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, campaignList);
+        actCampaignFilter.setAdapter(adapter);
+
+        if (actCampaignFilter.getText().toString().isEmpty()) {
+            actCampaignFilter.setText("All", false);
+        }
+
+        actCampaignFilter.setOnItemClickListener((parent, view, position, id) ->
+                applyFilter(campaignList.get(position)));
+    }
+
+    private void applyFilter(String campaign) {
+        List<PerformanceReport> filtered = new ArrayList<>();
+        double totalKpi = 0;
+        int needsReviewCount = 0;
+
+        for (PerformanceReport r : fullList) {
+            if ("All".equals(campaign) || campaign.equals(r.getCampaign())) {
+                filtered.add(r);
+                totalKpi += r.getKpiScore();
+                if (r.getKpiScore() < 50) needsReviewCount++;
+            }
+        }
+
+        double avg = filtered.isEmpty() ? 0 : totalKpi / filtered.size();
+        if (tvAvgKpi != null) tvAvgKpi.setText(String.format("%.0f%%", avg));
+        if (tvTotalRecords != null) tvTotalRecords.setText(String.valueOf(filtered.size()));
+        if (tvNeedsReview != null) tvNeedsReview.setText(String.valueOf(needsReviewCount));
+
+        if (tvEmpty != null) tvEmpty.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
+        adapter.updateList(filtered);
     }
 }
