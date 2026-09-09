@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.workverse.app.R;
 import com.workverse.app.models.Employee;
 import java.util.List;
+
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.VH> {
     public interface OnEmployeeClickListener {
         void onEditClick(Employee e);
@@ -17,7 +18,16 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.VH> {
     }
     private List<Employee> list;
     private OnEmployeeClickListener listener;
-    public EmployeeAdapter(List<Employee> list, OnEmployeeClickListener l){this.list=list;this.listener=l;}
+    private boolean viewOnly;
+
+    public EmployeeAdapter(List<Employee> list, OnEmployeeClickListener l){
+        this(list, false, l);
+    }
+
+    public EmployeeAdapter(List<Employee> list, boolean viewOnly, OnEmployeeClickListener l){
+        this.list=list;this.listener=l;this.viewOnly=viewOnly;
+    }
+
     public void updateList(List<Employee> newList){list=newList;notifyDataSetChanged();}
     @NonNull @Override
     public VH onCreateViewHolder(@NonNull ViewGroup p, int t){
@@ -29,8 +39,16 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.VH> {
         h.tvName.setText(e.getName());
         h.tvDesignation.setText(e.getDesignation()!=null?e.getDesignation():"");
         h.tvDepartment.setText(e.getDepartment()!=null?e.getDepartment():"");
-        h.ivEdit.setOnClickListener(v->listener.onEditClick(e));
-        h.ivDelete.setOnClickListener(v->listener.onDeleteClick(e));
+
+        if (viewOnly) {
+            h.ivEdit.setVisibility(View.GONE);
+            h.ivDelete.setVisibility(View.GONE);
+        } else {
+            h.ivEdit.setVisibility(View.VISIBLE);
+            h.ivDelete.setVisibility(View.VISIBLE);
+            h.ivEdit.setOnClickListener(v->listener.onEditClick(e));
+            h.ivDelete.setOnClickListener(v->listener.onDeleteClick(e));
+        }
         h.itemView.setOnClickListener(v->listener.onItemClick(e));
     }
     @Override public int getItemCount(){return list.size();}

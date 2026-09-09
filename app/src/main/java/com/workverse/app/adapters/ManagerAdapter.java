@@ -21,10 +21,16 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.VH> {
 
     private List<Manager> list;
     private Listener listener;
+    private boolean viewOnly;
 
     public ManagerAdapter(List<Manager> list, Listener listener) {
+        this(list, false, listener);
+    }
+
+    public ManagerAdapter(List<Manager> list, boolean viewOnly, Listener listener) {
         this.list = list;
         this.listener = listener;
+        this.viewOnly = viewOnly;
     }
 
     public void updateList(List<Manager> newList) {
@@ -54,16 +60,22 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.VH> {
             h.tvDepartment.setText(m.getCampaign() != null ? m.getCampaign() : "");
         }
 
-        if (h.btnEdit != null) {
-            h.btnEdit.setOnClickListener(v -> {
-                if (listener != null) listener.onEdit(m);
-            });
-        }
-
-        if (h.btnDelete != null) {
-            h.btnDelete.setOnClickListener(v -> {
-                if (listener != null) listener.onDelete(m);
-            });
+        if (viewOnly) {
+            if (h.btnEdit != null) h.btnEdit.setVisibility(View.GONE);
+            if (h.btnDelete != null) h.btnDelete.setVisibility(View.GONE);
+        } else {
+            if (h.btnEdit != null) {
+                h.btnEdit.setVisibility(View.VISIBLE);
+                h.btnEdit.setOnClickListener(v -> {
+                    if (listener != null) listener.onEdit(m);
+                });
+            }
+            if (h.btnDelete != null) {
+                h.btnDelete.setVisibility(View.VISIBLE);
+                h.btnDelete.setOnClickListener(v -> {
+                    if (listener != null) listener.onDelete(m);
+                });
+            }
         }
 
         h.itemView.setOnClickListener(v -> {

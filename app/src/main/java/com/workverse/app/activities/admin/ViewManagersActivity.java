@@ -19,6 +19,7 @@ import com.workverse.app.R;
 import com.workverse.app.adapters.ManagerAdapter;
 import com.workverse.app.models.Manager;
 import com.workverse.app.utils.FirebaseHelper;
+import com.workverse.app.utils.SharedPrefManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +32,15 @@ public class ViewManagersActivity extends AppCompatActivity {
     FloatingActionButton fab;
     ManagerAdapter adapter;
     List<Manager> allList = new ArrayList<>();
+    boolean isViewOnly = false;
 
     @Override
     protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_view_managers);
+
+        String role = SharedPrefManager.getInstance(this).getRole();
+        isViewOnly = "CEO".equalsIgnoreCase(role);
 
         Toolbar tb = findViewById(R.id.toolbar);
         if (tb != null) {
@@ -49,9 +54,13 @@ public class ViewManagersActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.etSearch);
         fab = findViewById(R.id.fabAdd);
 
+        if (isViewOnly && fab != null) {
+            fab.setVisibility(View.GONE);
+        }
+
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new ManagerAdapter(new ArrayList<>(), new ManagerAdapter.Listener() {
+        adapter = new ManagerAdapter(new ArrayList<>(), isViewOnly, new ManagerAdapter.Listener() {
             @Override
             public void onEdit(Manager m) {
                 Intent i = new Intent(ViewManagersActivity.this, AddManagerActivity.class);
@@ -78,12 +87,10 @@ public class ViewManagersActivity extends AppCompatActivity {
 
         rv.setAdapter(adapter);
 
-        // Floating Action Button (+) click -> Opens AddManagerActivity
         if (fab != null) {
             fab.setOnClickListener(v -> startActivity(new Intent(this, AddManagerActivity.class)));
         }
 
-        // Live Search Filter
         if (etSearch != null) {
             etSearch.addTextChangedListener(new TextWatcher() {
                 public void beforeTextChanged(CharSequence c, int a, int b, int d) {}
