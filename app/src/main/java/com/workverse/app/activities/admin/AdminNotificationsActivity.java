@@ -51,7 +51,6 @@ public class AdminNotificationsActivity extends AppCompatActivity {
         EditText etTitle = new EditText(this); etTitle.setHint("Title");
         EditText etMsg   = new EditText(this); etMsg.setHint("Message"); etMsg.setMinLines(2);
         Spinner spRole   = new Spinner(this);
-        // CEO added to target roles
         ArrayAdapter<String> ra = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 new String[]{"All", "Employee", "Manager", "CEO"});
         ra.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -59,45 +58,63 @@ public class AdminNotificationsActivity extends AppCompatActivity {
         ll.addView(etTitle); ll.addView(etMsg); ll.addView(spRole);
 
         new AlertDialog.Builder(this).setTitle("Send Notification").setView(ll)
-            .setPositiveButton("Send", (d, w) -> {
-                String title = etTitle.getText().toString().trim();
-                String msg   = etMsg.getText().toString().trim();
-                String role  = spRole.getSelectedItem().toString();
-                if (TextUtils.isEmpty(title) || TextUtils.isEmpty(msg)) {
-                    Toast.makeText(this, "Title and message required", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String sender = SharedPrefManager.getInstance(this).getFullName();
-                Notification n = new Notification(title, msg, role, sender != null ? sender : "Admin");
-                FirebaseHelper.getDb().collection(FirebaseHelper.COL_NOTIFICATIONS).add(n)
-                    .addOnSuccessListener(r -> {
-                        Toast.makeText(this, "Notification sent to " + role + "!", Toast.LENGTH_SHORT).show();
-                        loadData();
-                    })
-                    .addOnFailureListener(e ->
-                        Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            })
-            .setNegativeButton("Cancel", null).show();
+                .setPositiveButton("Send", (d, w) -> {
+                    String title = etTitle.getText().toString().trim();
+                    String msg   = etMsg.getText().toString().trim();
+                    String role  = spRole.getSelectedItem().toString();
+                    if (TextUtils.isEmpty(title) || TextUtils.isEmpty(msg)) {
+                        Toast.makeText(this, "Title and message required", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    String sender = SharedPrefManager.getInstance(this).getFullName();
+                    if (TextUtils.isEmpty(sender)) sender = "Admin";
+
+                    Notification n = new Notification(title, msg, role, sender);
+                    FirebaseHelper.getDb().collection(FirebaseHelper.COL_NOTIFICATIONS).add(n)
+                            .addOnSuccessListener(r -> {
+                                Toast.makeText(this, "Notification sent to " + role + "!", Toast.LENGTH_SHORT).show();
+                                loadData();
+                            })
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                })
+                .setNegativeButton("Cancel", null).show();
     }
 
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
+        String currentSenderName = SharedPrefManager.getInstance(this).getFullName();
+        if (TextUtils.isEmpty(currentSenderName)) currentSenderName = "Admin";
+
+        final String finalSenderName = currentSenderName;
+
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_NOTIFICATIONS)
-            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener(snap -> {
-                List<Notification> list = new ArrayList<>();
-                for (QueryDocumentSnapshot d : snap) {
-                    Notification n = d.toObject(Notification.class);
-                    n.setId(d.getId()); list.add(n);
-                }
-                pb.setVisibility(View.GONE);
-                if (tvEmpty != null) tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
-                adapter.updateList(list);
-            })
-            .addOnFailureListener(e -> {
-                pb.setVisibility(View.GONE);
-                Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
-            });
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener(snap -> {
+                    List<Notification> list = new ArrayList<>();
+                    for (QueryDocumentSnapshot d : snap) {
+                        Notification n = d.toObject(Notification.class);
+                        n.setId(d.getId());
+
+                        String targetRole = n.getTargetRole();
+                        String sender = n.getSenderName();
+
+                        // FIX: Sirf Admin target, All, ya Admin ki apni bheji hui notification dikhegi
+                        if ("Admin".equalsIgnoreCase(targetRole) ||
+                                "All".equalsIgnoreCase(targetRole) ||
+                                finalSenderName.equalsIgnoreCase(sender) ||
+                                "Admin".equalsIgnoreCase(sender)) {
+                            list.add(n);
+                        }
+                    }
+                    pb.setVisibility(View.GONE);
+                    if (tvEmpty != null) tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+                    adapter.updateList(list);
+                })
+                .addOnFailureListener(e -> {
+                    pb.setVisibility(View.GONE);
+                    Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show();
+                });
     }
 }

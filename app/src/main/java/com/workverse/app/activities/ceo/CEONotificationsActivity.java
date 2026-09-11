@@ -1,4 +1,3 @@
-
 package com.workverse.app.activities.ceo;
 
 import android.app.AlertDialog;
@@ -15,8 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.floatingactionbutton
-        .FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
 import com.workverse.app.adapters.NotificationAdapter;
@@ -26,8 +24,7 @@ import com.workverse.app.utils.SharedPrefManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CEONotificationsActivity
-        extends AppCompatActivity {
+public class CEONotificationsActivity extends AppCompatActivity {
 
     RecyclerView rv;
     ProgressBar pb;
@@ -38,9 +35,7 @@ public class CEONotificationsActivity
     @Override
     protected void onCreate(Bundle s) {
         super.onCreate(s);
-        // Reuse manager_notifications layout
-        setContentView(
-                R.layout.activity_manager_notifications);
+        setContentView(R.layout.activity_manager_notifications);
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         if (getSupportActionBar() != null)
@@ -62,10 +57,8 @@ public class CEONotificationsActivity
     }
 
     private void showSendDialog() {
-        android.widget.LinearLayout ll =
-                new android.widget.LinearLayout(this);
-        ll.setOrientation(
-                android.widget.LinearLayout.VERTICAL);
+        android.widget.LinearLayout ll = new android.widget.LinearLayout(this);
+        ll.setOrientation(android.widget.LinearLayout.VERTICAL);
         ll.setPadding(48, 24, 48, 24);
         EditText etTitle = new EditText(this);
         etTitle.setHint("Title");
@@ -75,9 +68,8 @@ public class CEONotificationsActivity
         Spinner spRole = new Spinner(this);
         ArrayAdapter<String> ra = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,
-                new String[]{"All","Employee","Manager","Admin"});
-        ra.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
+                new String[]{"All", "Employee", "Manager", "Admin"});
+        ra.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spRole.setAdapter(ra);
         ll.addView(etTitle);
         ll.addView(etMsg);
@@ -87,38 +79,26 @@ public class CEONotificationsActivity
                 .setTitle("Send Notification")
                 .setView(ll)
                 .setPositiveButton("Send", (d, w) -> {
-                    String title = etTitle.getText()
-                            .toString().trim();
-                    String msg = etMsg.getText()
-                            .toString().trim();
-                    String role = spRole.getSelectedItem()
-                            .toString();
-                    if (TextUtils.isEmpty(title) ||
-                            TextUtils.isEmpty(msg)) {
-                        Toast.makeText(this,
-                                "Title and message required",
-                                Toast.LENGTH_SHORT).show();
+                    String title = etTitle.getText().toString().trim();
+                    String msg   = etMsg.getText().toString().trim();
+                    String role  = spRole.getSelectedItem().toString();
+                    if (TextUtils.isEmpty(title) || TextUtils.isEmpty(msg)) {
+                        Toast.makeText(this, "Title and message required", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    String sender = SharedPrefManager
-                            .getInstance(this).getFullName();
-                    Notification n = new Notification(title,
-                            msg, role,
-                            sender != null ? sender : "CEO");
+                    String sender = SharedPrefManager.getInstance(this).getFullName();
+                    if (TextUtils.isEmpty(sender)) sender = "CEO";
+
+                    Notification n = new Notification(title, msg, role, sender);
                     FirebaseHelper.getDb()
-                            .collection(
-                                    FirebaseHelper.COL_NOTIFICATIONS)
+                            .collection(FirebaseHelper.COL_NOTIFICATIONS)
                             .add(n)
                             .addOnSuccessListener(r -> {
-                                Toast.makeText(this,
-                                        "Sent to " + role,
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Sent to " + role, Toast.LENGTH_SHORT).show();
                                 loadData();
                             })
                             .addOnFailureListener(e ->
-                                    Toast.makeText(this,
-                                                    "Failed", Toast.LENGTH_SHORT)
-                                            .show());
+                                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show());
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
@@ -126,34 +106,39 @@ public class CEONotificationsActivity
 
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
+        String currentSenderName = SharedPrefManager.getInstance(this).getFullName();
+        if (TextUtils.isEmpty(currentSenderName)) currentSenderName = "CEO";
+
+        final String finalSenderName = currentSenderName;
+
         FirebaseHelper.getDb()
                 .collection(FirebaseHelper.COL_NOTIFICATIONS)
-                .orderBy("timestamp",
-                        com.google.firebase.firestore.Query
-                                .Direction.DESCENDING)
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(snap -> {
                     List<Notification> list = new ArrayList<>();
                     for (QueryDocumentSnapshot d : snap) {
-                        Notification n =
-                                d.toObject(Notification.class);
+                        Notification n = d.toObject(Notification.class);
                         n.setId(d.getId());
-                        String role = n.getTargetRole();
-                        if ("CEO".equals(role) ||
-                                "All".equals(role))
+                        String targetRole = n.getTargetRole();
+                        String sender = n.getSenderName();
+
+                        // FIX: Agar notification CEO ke liye ho OR CEO ne khud send ki ho (History)
+                        if ("CEO".equalsIgnoreCase(targetRole) ||
+                                "All".equalsIgnoreCase(targetRole) ||
+                                finalSenderName.equalsIgnoreCase(sender) ||
+                                "CEO".equalsIgnoreCase(sender)) {
                             list.add(n);
+                        }
                     }
                     pb.setVisibility(View.GONE);
                     if (tvEmpty != null)
-                        tvEmpty.setVisibility(list.isEmpty()
-                                ? View.VISIBLE : View.GONE);
+                        tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
                     adapter.updateList(list);
                 })
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
-                    Toast.makeText(this, "Failed",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 });
     }
 }
-

@@ -122,7 +122,7 @@ public class CEODashboardActivity extends AppCompatActivity {
         if (qaNotifications != null)
             qaNotifications.setOnClickListener(v -> go(CEONotificationsActivity.class));
         if (qaOverallPerformance != null)
-            qaOverallPerformance.setOnClickListener(v -> go(CEOPerformanceActivity.class));
+            qaOverallPerformance.setOnClickListener(v -> go(CEOAllReportsActivity.class));
 
         if (ivNotif != null)
             ivNotif.setOnClickListener(v -> go(CEONotificationsActivity.class));

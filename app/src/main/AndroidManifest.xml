@@ -49,6 +49,7 @@
         <activity android:name=".activities.ceo.CEOSalesReportActivity" android:exported="false" />
         <activity android:name=".activities.ceo.CEOProfileActivity" android:exported="false" />
         <activity android:name=".activities.ceo.CEONotificationsActivity" android:exported="false" />
+        <activity android:name=".activities.ceo.CEOAllReportsActivity" android:exported="false" />
 
         <!-- ========== MANAGER ========== -->
         <activity android:name=".activities.manager.ManagerDashboardActivity" android:exported="false" />
