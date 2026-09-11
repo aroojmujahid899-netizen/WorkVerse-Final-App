@@ -20,6 +20,7 @@ import java.util.List;
 public class ManagerPerformanceActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb;
     FloatingActionButton fab; PerformanceAdapter adapter;
+    List<PerformanceReport> fullList = new ArrayList<>();
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_manager_performance);
@@ -40,17 +41,56 @@ public class ManagerPerformanceActivity extends AppCompatActivity {
         if (pb != null) pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_PERFORMANCE).get()
                 .addOnSuccessListener(snap -> {
-                    List<PerformanceReport> list = new ArrayList<>();
+                    fullList.clear();
                     for (QueryDocumentSnapshot d : snap) {
                         PerformanceReport r = d.toObject(PerformanceReport.class);
-                        r.setId(d.getId()); list.add(r);
+                        r.setId(d.getId()); fullList.add(r);
                     }
                     if (pb != null) pb.setVisibility(View.GONE);
-                    adapter.updateList(list);
+                    adapter.updateList(fullList);
                 })
                 .addOnFailureListener(e -> {
                     if (pb != null) pb.setVisibility(View.GONE);
                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_performance, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        if (item.getItemId() == R.id.action_sync_ai) {
+            syncAllAiInsights();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void syncAllAiInsights() {
+        if (fullList.isEmpty()) {
+            Toast.makeText(this, "No records to sync", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (pb != null) pb.setVisibility(View.VISIBLE);
+        Toast.makeText(this, "Syncing AI Insights...", Toast.LENGTH_SHORT).show();
+
+        java.util.LinkedHashSet<String> userIds = new java.util.LinkedHashSet<>();
+        for (PerformanceReport r : fullList) {
+            userIds.add(r.getUserId());
+        }
+
+        for (String uid : userIds) {
+            com.workverse.app.utils.KPISyncHelper.recomputeForUser(uid);
+        }
+
+        rv.postDelayed(() -> {
+            if (pb != null) pb.setVisibility(View.GONE);
+            Toast.makeText(this, "AI Sync triggered for " + userIds.size() + " users.", Toast.LENGTH_SHORT).show();
+            loadData();
+        }, 4000);
     }
 }

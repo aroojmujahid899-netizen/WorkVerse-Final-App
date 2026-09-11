@@ -11,6 +11,8 @@ android {
         targetSdk 36
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "GEMINI_API_KEY", "\"AQ.Ab8RN6JeD8uslA9hmAIjAIjICz8aH_zVYeYQSWpycIok_6IPgQ\""
+        buildConfigField "String", "GROQ_API_KEY", "\"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\""
     }
     buildTypes {
         release {
@@ -22,7 +24,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    buildFeatures { viewBinding true }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
 }
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -39,4 +44,5 @@ dependencies {
     implementation 'androidx.activity:activity:1.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.google.ai.client.generativeai:generativeai:0.9.0'
 }

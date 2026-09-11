@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Employee Dropdown -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -35,12 +34,11 @@
                 android:layout_marginBottom="4dp"/>
 
             <Spinner
-                android:id="@+id/spEmployee"
+                android:id="@+id/spinnerEmployee"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Campaign Dropdown -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
@@ -54,7 +52,6 @@
                     android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Month -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -67,7 +64,6 @@
                     android:hint="Month (e.g. March)"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Year -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -81,7 +77,6 @@
                     android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Tasks Assigned -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -95,7 +90,6 @@
                     android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Tasks Completed -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -109,7 +103,29 @@
                     android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- KPI Score -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAttendance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Attendance % (0-100)"
+                    android:inputType="numberDecimal"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnGenerateAi"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="16dp"
+                android:text="CALCULATE KPI WITH AI"
+                app:icon="@android:drawable/stat_notify_sync"/>
+
+            <!-- KPI Score - Now AI-calculated, read-only -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -119,22 +135,27 @@
                     android:id="@+id/etKpiScore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="KPI Score (0-100)"
-                    android:inputType="numberDecimal"/>
+                    android:hint="KPI Score (AI Calculated)"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Attendance -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="20dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etAttendance"
+                    android:id="@+id/etAiInsight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Attendance % (0-100)"
-                    android:inputType="numberDecimal"/>
+                    android:hint="AI Performance Insight (Auto-generated)"
+                    android:gravity="top"
+                    android:minLines="2"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

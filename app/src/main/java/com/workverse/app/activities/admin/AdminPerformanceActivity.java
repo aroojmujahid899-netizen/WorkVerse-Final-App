@@ -2,6 +2,8 @@ package com.workverse.app.activities.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -123,8 +125,8 @@ public class AdminPerformanceActivity extends AppCompatActivity {
         for (PerformanceReport r : fullList) {
             if ("All".equals(campaign) || campaign.equals(r.getCampaign())) {
                 filtered.add(r);
-                totalKpi += r.getKpiScore();
-                if (r.getKpiScore() < 50) needsReviewCount++;
+                totalKpi += r.getDisplayKpi();
+                if (r.getDisplayKpi() < 50) needsReviewCount++;
             }
         }
 
@@ -135,5 +137,47 @@ public class AdminPerformanceActivity extends AppCompatActivity {
 
         if (tvEmpty != null) tvEmpty.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
         adapter.updateList(filtered);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_performance, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_sync_ai) {
+            syncAllAiInsights();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void syncAllAiInsights() {
+        if (fullList.isEmpty()) {
+            Toast.makeText(this, "No records to sync", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        pb.setVisibility(View.VISIBLE);
+        Toast.makeText(this, "Syncing AI Insights... This may take a while.", Toast.LENGTH_LONG).show();
+
+        int[] count = {0};
+        LinkedHashSet<String> userIds = new LinkedHashSet<>();
+        for (PerformanceReport r : fullList) {
+            userIds.add(r.getUserId());
+        }
+
+        for (String uid : userIds) {
+            com.workverse.app.utils.KPISyncHelper.recomputeForUser(uid);
+            count[0]++;
+        }
+
+        rv.postDelayed(() -> {
+            pb.setVisibility(View.GONE);
+            Toast.makeText(this, "AI Sync triggered for " + count[0] + " users.", Toast.LENGTH_SHORT).show();
+            loadData();
+        }, 4000);
     }
 }

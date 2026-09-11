@@ -34,6 +34,7 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
 
         if (h.tvEmployeeName != null) h.tvEmployeeName.setText(name);
 
+        // Avatar Initials
         if (h.tvInitials != null) {
             String initials = name.trim().isEmpty() ? "?" : name.trim().substring(0, 1).toUpperCase();
             h.tvInitials.setText(initials);
@@ -57,10 +58,11 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
         if (h.tvKpi != null)
             h.tvKpi.setText(String.format("%.0f%%", kpi));
 
+        // Donut chart progress + color
         int kpiColor;
-        if (kpi >= 80)      kpiColor = Color.parseColor("#2E7D32");
-        else if (kpi >= 50) kpiColor = Color.parseColor("#E65100");
-        else                kpiColor = Color.parseColor("#C62828");
+        if (kpi >= 80)      kpiColor = Color.parseColor("#2E7D32"); // green
+        else if (kpi >= 50) kpiColor = Color.parseColor("#E65100"); // orange
+        else                kpiColor = Color.parseColor("#C62828"); // red
 
         if (h.donutKpi != null) {
             h.donutKpi.setProgress((float) kpi);
@@ -68,12 +70,15 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
         }
         if (h.tvKpi != null) h.tvKpi.setTextColor(kpiColor);
 
+        // Tasks
         if (h.tvTasks != null)
             h.tvTasks.setText("Tasks: " + r.getTasksCompleted() + "/" + r.getTasksAssigned());
 
+        // Attendance
         if (h.tvAttendance != null)
             h.tvAttendance.setText("Attendance: " + (int) r.getAttendancePercentage() + "%");
 
+        // AI Feedback Sentiment badge
         if (h.tvSentiment != null) {
             String sent = r.getFeedbackSentiment();
             if (sent != null && !sent.isEmpty()) {
@@ -90,6 +95,7 @@ public class PerformanceAdapter extends RecyclerView.Adapter<PerformanceAdapter.
             }
         }
 
+        // AI Insight
         if (h.tvInsight != null) {
             String insight = r.getPerformanceInsight();
             if (insight != null && !insight.isEmpty()) {

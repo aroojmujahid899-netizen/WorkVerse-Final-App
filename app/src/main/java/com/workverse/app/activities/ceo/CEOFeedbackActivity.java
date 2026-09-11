@@ -13,6 +13,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
 import com.workverse.app.adapters.FeedbackAdapter;
 import com.workverse.app.models.Feedback;
+import com.workverse.app.utils.FeedbackAnalysisHelper;
 import com.workverse.app.utils.FirebaseHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +40,18 @@ public class CEOFeedbackActivity extends AppCompatActivity {
         tvEmpty    = findViewById(R.id.tvEmpty);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FeedbackAdapter(new ArrayList<>());
+        adapter = new FeedbackAdapter(new ArrayList<>(), this::retryAnalysis);
         rv.setAdapter(adapter);
         loadData();
     }
-
-    @Override
-    protected void onResume() { super.onResume(); loadData(); }
+    private void retryAnalysis(Feedback f) {
+        if (f.getId() == null) return;
+        Toast.makeText(this, "Re-analyzing…", Toast.LENGTH_SHORT).show();
+        FeedbackAnalysisHelper.retry(f, () -> {
+            Toast.makeText(this, "Re-analysis complete", Toast.LENGTH_SHORT).show();
+            loadData();
+        });
+    }
 
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
@@ -58,10 +64,14 @@ public class CEOFeedbackActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot d : snap) {
                         Feedback f = d.toObject(Feedback.class);
                         f.setId(d.getId()); list.add(f);
-                        String sent = f.getSentiment();
-                        if ("Positive".equals(sent)) pos++;
-                        else if ("Negative".equals(sent)) neg++;
-                        else neu++;
+                        // Only count feedback the AI has actually finished analyzing —
+                        // pending/failed items shouldn't skew the sentiment breakdown.
+                        if (f.hasAiResult()) {
+                            String sent = f.getAiSentiment();
+                            if ("Positive".equals(sent)) pos++;
+                            else if ("Negative".equals(sent)) neg++;
+                            else neu++;
+                        }
                     }
                     pb.setVisibility(View.GONE);
                     tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);

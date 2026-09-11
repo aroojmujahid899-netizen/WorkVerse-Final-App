@@ -16,7 +16,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
 import com.workverse.app.adapters.FeedbackAdapter;
 import com.workverse.app.models.Feedback;
-import com.workverse.app.utils.AIFeedbackAnalyzer;
+import com.workverse.app.utils.FeedbackAnalysisHelper;
 import com.workverse.app.utils.FirebaseHelper;
 import com.workverse.app.utils.SharedPrefManager;
 import java.util.ArrayList;
@@ -32,10 +32,18 @@ public class ManagerFeedbackActivity extends AppCompatActivity {
         rv = findViewById(R.id.recyclerView); pb = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty); fab = findViewById(R.id.fabAdd);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FeedbackAdapter(new ArrayList<>());
+        adapter = new FeedbackAdapter(new ArrayList<>(), this::retryAnalysis);
         rv.setAdapter(adapter);
         if (fab != null) fab.setOnClickListener(v -> showSubmitDialog());
         loadData();
+    }
+    private void retryAnalysis(Feedback f) {
+        if (f.getId() == null) return;
+        Toast.makeText(this, "Re-analyzing…", Toast.LENGTH_SHORT).show();
+        FeedbackAnalysisHelper.retry(f, () -> {
+            Toast.makeText(this, "Re-analysis complete", Toast.LENGTH_SHORT).show();
+            loadData();
+        });
     }
 
     @Override protected void onResume() { super.onResume(); loadData(); }
@@ -55,10 +63,15 @@ public class ManagerFeedbackActivity extends AppCompatActivity {
                         Toast.makeText(this, "All fields required", Toast.LENGTH_SHORT).show(); return;
                     }
                     SharedPrefManager spm = SharedPrefManager.getInstance(this);
-                    Feedback fb = new Feedback(spm.getUid(), spm.getFullName() != null ? spm.getFullName() : "Manager", title, msg, "Manager");
-                    fb.setSentiment(AIFeedbackAnalyzer.analyzeSentiment(msg + " " + title));
+                    String userId = spm.getUid();
+                    Feedback fb = new Feedback(userId, spm.getFullName() != null ? spm.getFullName() : "Manager", title, msg, "Manager");
+                    // Save first, then call the real AI directly from the app.
                     FirebaseHelper.getDb().collection(FirebaseHelper.COL_FEEDBACK).add(fb)
-                            .addOnSuccessListener(r -> { Toast.makeText(this, "Feedback submitted!", Toast.LENGTH_SHORT).show(); loadData(); })
+                            .addOnSuccessListener(r -> {
+                                Toast.makeText(this, "Feedback submitted! AI analysis in progress.", Toast.LENGTH_SHORT).show();
+                                FeedbackAnalysisHelper.analyzeAndStore(r.getId(), userId, title, msg, this::loadData);
+                                loadData();
+                            })
                             .addOnFailureListener(e -> Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show());
                 })
                 .setNegativeButton("Cancel", null).show();

@@ -18,8 +18,8 @@ public class SalesReportAdapter extends RecyclerView.Adapter<SalesReportAdapter.
         SalesReport s=list.get(pos);
         h.tvEmployee.setText(s.getEmployeeName());
         h.tvDate.setText(s.getDate());
-        h.tvAchieved.setText("PKR "+String.format("%.0f",s.getAchievedAmount()));
-        h.tvTarget.setText("Target: "+String.format("%.0f",s.getTargetAmount()));
+        h.tvAchieved.setText("PKR "+String.format("%.0f",(double) s.getAchievedAmount()));
+        h.tvTarget.setText("Target: "+String.format("%.0f",(double) s.getTargetAmount()));
     }
     @Override public int getItemCount(){return list.size();}
     static class VH extends RecyclerView.ViewHolder{

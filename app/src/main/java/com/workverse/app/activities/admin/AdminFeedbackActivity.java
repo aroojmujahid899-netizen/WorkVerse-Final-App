@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
 import com.workverse.app.adapters.FeedbackAdapter;
 import com.workverse.app.models.Feedback;
+import com.workverse.app.utils.FeedbackAnalysisHelper;
 import com.workverse.app.utils.FirebaseHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,17 @@ public class AdminFeedbackActivity extends AppCompatActivity {
         rv = findViewById(R.id.recyclerView); pb = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FeedbackAdapter(new ArrayList<>());
+        adapter = new FeedbackAdapter(new ArrayList<>(), this::retryAnalysis);
         rv.setAdapter(adapter);
         loadData();
+    }
+    private void retryAnalysis(Feedback f) {
+        if (f.getId() == null) return;
+        Toast.makeText(this, "Re-analyzing…", Toast.LENGTH_SHORT).show();
+        FeedbackAnalysisHelper.retry(f, () -> {
+            Toast.makeText(this, "Re-analysis complete", Toast.LENGTH_SHORT).show();
+            loadData();
+        });
     }
     private void loadData() {
         pb.setVisibility(View.VISIBLE);
