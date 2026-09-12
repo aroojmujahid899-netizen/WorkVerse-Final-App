@@ -44,74 +44,70 @@ public class ViewFAQActivity extends AppCompatActivity {
         pb.setVisibility(View.VISIBLE);
 
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_FAQS)
-            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.ASCENDING)
-            .get()
-            .addOnSuccessListener(snap -> {
-                pb.setVisibility(View.GONE);
-                containerFAQ.removeAllViews();
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.ASCENDING)
+                .get()
+                .addOnSuccessListener(snap -> {
+                    pb.setVisibility(View.GONE);
+                    containerFAQ.removeAllViews();
 
-                if (snap.isEmpty()) {
-                    // Show default FAQs if Firestore is empty
+                    if (snap.isEmpty()) {
+                        // Show default FAQs if Firestore is empty
+                        loadDefaultFAQs();
+                        return;
+                    }
+
+                    for (QueryDocumentSnapshot d : snap) {
+                        FAQ faq = d.toObject(FAQ.class);
+                        faq.setId(d.getId());
+                        addFAQCard(faq.getQuestion(), faq.getAnswer(), faq.getCategory());
+                    }
+                    tvEmpty.setVisibility(View.GONE);
+                })
+                .addOnFailureListener(e -> {
+                    pb.setVisibility(View.GONE);
+                    // Load default FAQs on failure too
                     loadDefaultFAQs();
-                    return;
-                }
-
-                for (QueryDocumentSnapshot d : snap) {
-                    FAQ faq = d.toObject(FAQ.class);
-                    faq.setId(d.getId());
-                    addFAQCard(faq.getQuestion(), faq.getAnswer(), faq.getCategory());
-                }
-                tvEmpty.setVisibility(View.GONE);
-            })
-            .addOnFailureListener(e -> {
-                pb.setVisibility(View.GONE);
-                // Load default FAQs on failure too
-                loadDefaultFAQs();
-            });
+                });
     }
 
     private void loadDefaultFAQs() {
         tvEmpty.setVisibility(View.GONE);
         // Default hardcoded FAQs
         addFAQCard("How do I mark my attendance?",
-            "Go to Dashboard → Mark Attendance. Tap Check In when you arrive and Check Out when you leave. Attendance is saved automatically in real time.",
-            "Attendance");
+                "Go to Dashboard → Mark Attendance. Tap Check In when you arrive and Check Out when you leave. Attendance is saved automatically in real time.",
+                "Attendance");
 
         addFAQCard("How do I apply for leave?",
-            "Go to Dashboard → Apply Leave. Select leave type (Sick/Casual/Annual), choose dates, write reason and submit. Your manager will approve or reject.",
-            "Leave");
+                "Go to Dashboard → Apply Leave. Select leave type (Sick/Casual/Annual), choose dates, write reason and submit. Your manager will approve or reject.",
+                "Leave");
 
         addFAQCard("Where can I see my performance and KPI?",
-            "Go to Dashboard → Performance. You will see your KPI score calculated from attendance, sales, and AI-analyzed feedback.",
-            "Performance");
+                "Go to Dashboard → Performance. You will see your KPI score calculated from attendance, sales, and AI-analyzed feedback.",
+                "Performance");
 
         addFAQCard("How does the AI Feedback Analyzer work?",
-            "When you submit feedback, the AI analyzes your text for sentiment (Positive/Negative/Neutral) and compares it with your actual call and sales data to generate a fair KPI score.",
-            "AI & Feedback");
+                "When you submit feedback, the AI analyzes your text for sentiment (Positive/Negative/Neutral) and compares it with your actual call and sales data to generate a fair KPI score.",
+                "AI & Feedback");
 
         addFAQCard("How do I submit my daily feedback?",
-            "Go to Dashboard → Feedback. Write your title and feedback message about your day, calls, sales etc. and tap Submit.",
-            "Feedback");
+                "Go to Dashboard → Feedback. Write your title and feedback message about your day, calls, sales etc. and tap Submit.",
+                "Feedback");
 
         addFAQCard("How do I check my leave status?",
-            "Go to Dashboard → Leave → View Leave Status. You will see all your leave requests with status (Pending/Approved/Rejected).",
-            "Leave");
+                "Go to Dashboard → Leave → View Leave Status. You will see all your leave requests with status (Pending/Approved/Rejected).",
+                "Leave");
 
         addFAQCard("Can I update my profile information?",
-            "Yes. Go to Profile from the bottom navigation. Tap Edit Profile to update your name, phone number and other details.",
-            "Profile");
-
-        addFAQCard("How do I add my daily sales report?",
-            "Go to Dashboard → Sales Report → tap the + button to add a new sale entry with date, amount, and description.",
-            "Sales");
+                "Yes. Go to Profile from the bottom navigation. Tap Edit Profile to update your name, phone number and other details.",
+                "Profile");
 
         addFAQCard("How will I receive notifications?",
-            "Your manager or admin will send notifications about attendance reminders, leave approvals, announcements etc. Check the Notifications section.",
-            "Notifications");
+                "Your manager or admin will send notifications about attendance reminders, leave approvals, announcements etc. Check the Notifications section.",
+                "Notifications");
 
         addFAQCard("What should I do if I forget my password?",
-            "On the login screen tap 'Forgot Password?' and enter your registered email. A reset link will be sent to your email.",
-            "Account");
+                "On the login screen tap 'Forgot Password?' and enter your registered email. A reset link will be sent to your email.",
+                "Account");
     }
 
     private void addFAQCard(String question, String answer, String category) {

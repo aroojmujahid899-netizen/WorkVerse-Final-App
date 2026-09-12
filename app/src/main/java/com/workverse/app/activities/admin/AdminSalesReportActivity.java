@@ -3,6 +3,7 @@ package com.workverse.app.activities.admin;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,7 +22,9 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
+import com.workverse.app.models.Employee;
 import com.workverse.app.models.SalesReport;
 import com.workverse.app.utils.FirebaseHelper;
 
@@ -36,6 +39,7 @@ public class AdminSalesReportActivity extends AppCompatActivity {
     private FloatingActionButton fabAdd;
 
     private List<SalesReport> salesList = new ArrayList<>();
+    private List<Employee> employeeList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,21 @@ public class AdminSalesReportActivity extends AppCompatActivity {
             fabAdd.setOnClickListener(v -> showAddSalesDialog());
         }
 
+        loadEmployees();
         loadSalesData();
+    }
+
+    private void loadEmployees() {
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_EMPLOYEES).get()
+                .addOnSuccessListener(snap -> {
+                    employeeList.clear();
+                    for (QueryDocumentSnapshot d : snap) {
+                        Employee e = d.toObject(Employee.class);
+                        e.setId(d.getId());
+                        employeeList.add(e);
+                    }
+                })
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to load employees", Toast.LENGTH_SHORT).show());
     }
 
     private void loadSalesData() {
@@ -77,7 +95,6 @@ public class AdminSalesReportActivity extends AppCompatActivity {
                         totalAchieved += r.getAchievedAmount();
                     }
 
-                    // Display counts without "PKR"
                     tvStat1.setText(String.valueOf(totalTarget));
                     tvStat2.setText(String.valueOf(totalAchieved));
 
@@ -105,11 +122,25 @@ public class AdminSalesReportActivity extends AppCompatActivity {
     private void showAddSalesDialog() {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.activity_add_sale, null);
 
-        TextInputEditText etName = dialogView.findViewById(R.id.etEmployeeName);
+        AutoCompleteTextView actEmployee = dialogView.findViewById(R.id.actEmployee);
         AutoCompleteTextView actDesignation = dialogView.findViewById(R.id.actDesignation);
         AutoCompleteTextView actCampaign = dialogView.findViewById(R.id.actCampaign);
         TextInputEditText etTarget = dialogView.findViewById(R.id.etTarget);
         TextInputEditText etAchieved = dialogView.findViewById(R.id.etAchieved);
+
+        // Setup Employee Dropdown
+        List<String> employeeNames = new ArrayList<>();
+        for (Employee e : employeeList) {
+            employeeNames.add(e.getName());
+        }
+        if (employeeNames.isEmpty()) {
+            employeeNames.add("No employees found");
+        }
+        actEmployee.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, employeeNames));
+        actEmployee.setOnClickListener(v -> actEmployee.showDropDown());
+        actEmployee.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) actEmployee.showDropDown();
+        });
 
         // Setup Designation Dropdown
         String[] designations = new String[]{"Fronters", "Verifiers", "Closers"};
@@ -122,19 +153,39 @@ public class AdminSalesReportActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setView(dialogView)
                 .setPositiveButton("SAVE", (dialog, which) -> {
-                    String name = etName.getText().toString().trim();
+                    String selectedName = actEmployee.getText().toString().trim();
                     String designation = actDesignation.getText().toString().trim();
                     String campaign = actCampaign.getText().toString().trim();
                     String targetStr = etTarget.getText().toString().trim();
                     String achievedStr = etAchieved.getText().toString().trim();
 
-                    if (name.isEmpty() || designation.isEmpty() || campaign.isEmpty() || targetStr.isEmpty() || achievedStr.isEmpty()) {
+                    if (selectedName.isEmpty() || designation.isEmpty() || campaign.isEmpty() || targetStr.isEmpty() || achievedStr.isEmpty()) {
                         Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
+                    // Find matching employee to get userId
+                    Employee matched = null;
+                    for (Employee e : employeeList) {
+                        if (e.getName() != null && e.getName().equals(selectedName)) {
+                            matched = e;
+                            break;
+                        }
+                    }
+
+                    if (matched == null) {
+                        Toast.makeText(this, "Please select a valid employee from the list", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(matched.getUserId())) {
+                        Toast.makeText(this, "This employee has no linked account yet", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     SalesReport record = new SalesReport();
-                    record.setEmployeeName(name);
+                    record.setUserId(matched.getUserId());
+                    record.setEmployeeName(matched.getName());
                     record.setDesignation(designation);
                     record.setCampaign(campaign);
                     record.setTargetAmount(Integer.parseInt(targetStr));

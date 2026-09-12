@@ -9,31 +9,49 @@
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="vertical" android:padding="20dp">
-            
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            style="@style/WorkVerse.TextInput" android:hint="Leave Type" android:layout_marginBottom="16dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            style="@style/WorkVerse.TextInput" android:hint="From Date (YYYY-MM-DD)" android:layout_marginBottom="16dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            style="@style/WorkVerse.TextInput" android:hint="To Date (YYYY-MM-DD)" android:layout_marginBottom="16dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            style="@style/WorkVerse.TextInput" android:hint="Reason" android:layout_marginBottom="16dp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent" android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                style="@style/WorkVerse.TextInput" android:hint="Leave Type" android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLeaveType"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- From Date - with calendar icon -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                style="@style/WorkVerse.TextInput" android:hint="From Date" android:layout_marginBottom="16dp"
+                app:endIconMode="custom" app:endIconDrawable="@drawable/ic_attendance">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFromDate"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- To Date - with calendar icon -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                style="@style/WorkVerse.TextInput" android:hint="To Date" android:layout_marginBottom="16dp"
+                app:endIconMode="custom" app:endIconDrawable="@drawable/ic_attendance">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etToDate"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:clickable="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                style="@style/WorkVerse.TextInput" android:hint="Reason" android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etReason"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button android:id="@+id/btnSubmit" android:layout_width="match_parent"
                 android:layout_height="52dp" android:text="Save" style="@style/WorkVerse.Button.Primary" android:layout_marginTop="8dp"/>
             <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content"
