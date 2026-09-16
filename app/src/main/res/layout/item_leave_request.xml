@@ -96,6 +96,18 @@
             android:layout_marginTop="2dp"
             android:layout_marginStart="50dp"/>
 
+        <!-- Designation / Campaign -->
+        <TextView
+            android:id="@+id/tvDesignation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Designation · Campaign"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="50dp"
+            android:visibility="gone"/>
+
         <!-- Reason -->
         <TextView
             android:id="@+id/tvReason"

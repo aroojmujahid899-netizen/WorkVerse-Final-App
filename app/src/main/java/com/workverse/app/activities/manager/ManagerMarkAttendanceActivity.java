@@ -104,6 +104,7 @@ public class ManagerMarkAttendanceActivity extends AppCompatActivity {
                     att.put("campaign", campaign != null ? campaign : "");
                     att.put("date", DateTimeUtils.getCurrentDate());
                     att.put("checkInTime", DateTimeUtils.getCurrentTime());
+                    att.put("timestamp", System.currentTimeMillis());
                     att.put("status", "Present");
 
                     FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE).add(att)

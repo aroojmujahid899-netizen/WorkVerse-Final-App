@@ -1,5 +1,6 @@
 package com.workverse.app.activities.manager;
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
@@ -24,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 public class ManagerSalesReportActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb; TextView tvStat1, tvStat2;
+    BarChart barChartSales;
     FloatingActionButton fab; SalesReportAdapter adapter;
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
@@ -34,6 +40,7 @@ public class ManagerSalesReportActivity extends AppCompatActivity {
         pb      = findViewById(R.id.progressBar);
         tvStat1 = findViewById(R.id.tvStat1);
         tvStat2 = findViewById(R.id.tvStat2);
+        barChartSales = findViewById(R.id.barChartSales);
         fab     = findViewById(R.id.fabAdd);
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SalesReportAdapter(new ArrayList<>());
@@ -90,13 +97,31 @@ public class ManagerSalesReportActivity extends AppCompatActivity {
                         tt += r.getTargetAmount(); ta += r.getAchievedAmount();
                     }
                     if (pb != null) pb.setVisibility(View.GONE);
-                    if (tvStat1 != null) tvStat1.setText(String.format("PKR %.0f", tt));
-                    if (tvStat2 != null) tvStat2.setText(String.format("PKR %.0f", ta));
+                    if (tvStat1 != null) tvStat1.setText(String.valueOf((long) tt));
+                    if (tvStat2 != null) tvStat2.setText(String.valueOf((long) ta));
+                    setupBarChart(tt, ta);
                     adapter.updateList(list);
                 })
                 .addOnFailureListener(e -> {
                     if (pb != null) pb.setVisibility(View.GONE);
                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 });
+    }
+    private void setupBarChart(double target, double achieved) {
+        if (barChartSales == null) return;
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(1f, (float) target));
+        entries.add(new BarEntry(2f, (float) achieved));
+
+        BarDataSet dataSet = new BarDataSet(entries, "Target vs Achieved");
+        dataSet.setColors(new int[]{Color.parseColor("#1976D2"), Color.parseColor("#388E3C")});
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(12f);
+
+        BarData barData = new BarData(dataSet);
+        barChartSales.setData(barData);
+        barChartSales.getDescription().setEnabled(false);
+        barChartSales.animateY(1000);
+        barChartSales.invalidate();
     }
 }

@@ -1,5 +1,6 @@
 package com.workverse.app.activities.manager;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,7 +13,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.workverse.app.R;
 import com.workverse.app.utils.FirebaseHelper;
 import com.workverse.app.utils.SharedPrefManager;
+
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ManagerApplyLeaveActivity extends AppCompatActivity {
@@ -37,7 +41,26 @@ public class ManagerApplyLeaveActivity extends AppCompatActivity {
         btnSubmit   = findViewById(R.id.btnSubmit);
         pb          = findViewById(R.id.progressBar);
 
+        etFromDate.setOnClickListener(v -> showDatePicker(etFromDate));
+        etToDate.setOnClickListener(v -> showDatePicker(etToDate));
+
         btnSubmit.setOnClickListener(v -> submit());
+    }
+
+    private void showDatePicker(TextInputEditText target) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    String formatted = String.format(Locale.getDefault(),
+                            "%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay);
+                    target.setText(formatted);
+                }, year, month, day);
+
+        dialog.show();
     }
 
     private void submit() {
@@ -50,10 +73,10 @@ public class ManagerApplyLeaveActivity extends AppCompatActivity {
             etLeaveType.setError("Required"); etLeaveType.requestFocus(); return;
         }
         if (TextUtils.isEmpty(fromDate)) {
-            etFromDate.setError("Required"); etFromDate.requestFocus(); return;
+            Toast.makeText(this, "Please select From Date", Toast.LENGTH_SHORT).show(); return;
         }
         if (TextUtils.isEmpty(toDate)) {
-            etToDate.setError("Required"); etToDate.requestFocus(); return;
+            Toast.makeText(this, "Please select To Date", Toast.LENGTH_SHORT).show(); return;
         }
         if (TextUtils.isEmpty(reason)) {
             etReason.setError("Required"); etReason.requestFocus(); return;
@@ -64,8 +87,6 @@ public class ManagerApplyLeaveActivity extends AppCompatActivity {
 
         SharedPrefManager spm = SharedPrefManager.getInstance(this);
 
-        // Build the document — same collection as employee leaves
-        // role = "Manager" so Admin can see it separately
         Map<String, Object> data = new HashMap<>();
         data.put("userId",       spm.getUid());
         data.put("employeeName", spm.getFullName() != null ? spm.getFullName() : "Manager");

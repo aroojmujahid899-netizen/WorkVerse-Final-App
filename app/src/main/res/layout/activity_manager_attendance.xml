@@ -6,7 +6,31 @@
     <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
         android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
         style="@style/WorkVerse.Toolbar" app:title="Team Attendance" app:navigationIcon="@drawable/ic_back"/>
-    
+
+    <!-- Filter Row -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="12dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:layout_marginEnd="6dp">
+            <AutoCompleteTextView
+                android:id="@+id/actDesignationFilter"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="Designation" android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <AutoCompleteTextView
+                android:id="@+id/actCampaignFilter"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="Campaign" android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
         android:layout_width="match_parent" android:layout_height="0dp"
         android:layout_weight="1" android:padding="8dp" android:clipToPadding="false"/>

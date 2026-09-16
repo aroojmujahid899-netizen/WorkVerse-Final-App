@@ -2,6 +2,7 @@ package com.workverse.app.models;
 
 public class LeaveRequest {
     private String id, userId, employeeName, leaveType, fromDate, toDate, reason, status, role;
+    private String designation, campaign;
     private long timestamp;
 
     public LeaveRequest() {}
@@ -46,6 +47,12 @@ public class LeaveRequest {
 
     public String getRole()           { return role; }
     public void   setRole(String v)   { role = v; }
+
+    public String getDesignation()          { return designation; }
+    public void   setDesignation(String v)  { designation = v; }
+
+    public String getCampaign()          { return campaign; }
+    public void   setCampaign(String v)  { campaign = v; }
 
     public long getTimestamp()          { return timestamp; }
     public void setTimestamp(long v)    { timestamp = v; }

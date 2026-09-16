@@ -106,6 +106,7 @@ public class MarkAttendanceActivity extends AppCompatActivity {
                     att.put("employeeName", name != null ? name : "Employee");
                     att.put("date", DateTimeUtils.getCurrentDate());
                     att.put("checkInTime", DateTimeUtils.getCurrentTime());
+                    att.put("timestamp", System.currentTimeMillis());
                     att.put("status", "Present");
                     att.put("role", role != null ? role : "Employee");
                     att.put("designation", designation != null ? designation : "");

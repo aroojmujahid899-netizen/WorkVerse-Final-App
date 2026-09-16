@@ -37,6 +37,7 @@ public class ViewAttendanceActivity extends AppCompatActivity {
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE)
                 .whereEqualTo("userId", uid)
                 .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(snap -> {
                     List<Attendance> list = new ArrayList<>();

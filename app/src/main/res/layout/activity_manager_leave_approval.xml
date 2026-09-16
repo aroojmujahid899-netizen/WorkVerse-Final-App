@@ -6,7 +6,39 @@
     <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
         android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
         style="@style/WorkVerse.Toolbar" app:title="Leave Approvals" app:navigationIcon="@drawable/ic_back"/>
-    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:weightSum="2">
+
+        <AutoCompleteTextView
+            android:id="@+id/actDesignationFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:hint="Designation"
+            android:inputType="none"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:textSize="14sp"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/actCampaignFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:hint="Campaign"
+            android:inputType="none"
+            android:padding="10dp"
+            android:background="@android:drawable/edit_text"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
         android:layout_width="match_parent" android:layout_height="0dp"
         android:layout_weight="1" android:padding="8dp" android:clipToPadding="false"/>

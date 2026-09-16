@@ -74,6 +74,23 @@ public class LeaveRequestAdapter extends RecyclerView.Adapter<LeaveRequestAdapte
         h.tvLeaveType.setText(r.getLeaveType() != null ? r.getLeaveType() : "—");
         h.tvDateRange.setText((r.getFromDate() != null ? r.getFromDate() : "?")
                 + "  →  " + (r.getToDate() != null ? r.getToDate() : "?"));
+
+        // Designation / Campaign line
+        String designation = r.getDesignation();
+        String campaign = r.getCampaign();
+        StringBuilder sub = new StringBuilder();
+        if (designation != null && !designation.isEmpty()) sub.append(designation);
+        if (campaign != null && !campaign.isEmpty()) {
+            if (sub.length() > 0) sub.append(" · ");
+            sub.append(campaign);
+        }
+        if (sub.length() > 0) {
+            h.tvDesignation.setText(sub.toString());
+            h.tvDesignation.setVisibility(View.VISIBLE);
+        } else {
+            h.tvDesignation.setVisibility(View.GONE);
+        }
+
         h.tvReason.setText(r.getReason() != null ? r.getReason() : "—");
 
         // Status with color
@@ -108,7 +125,7 @@ public class LeaveRequestAdapter extends RecyclerView.Adapter<LeaveRequestAdapte
     public int getItemCount() { return list == null ? 0 : list.size(); }
 
     static class VH extends RecyclerView.ViewHolder {
-        TextView    tvEmployeeName, tvRole, tvLeaveType, tvDateRange, tvReason, tvStatus, tvInitials;
+        TextView    tvEmployeeName, tvRole, tvLeaveType, tvDateRange, tvDesignation, tvReason, tvStatus, tvInitials;
         LinearLayout llActions;
         Button       btnApprove, btnReject;
 
@@ -118,6 +135,7 @@ public class LeaveRequestAdapter extends RecyclerView.Adapter<LeaveRequestAdapte
             tvRole         = v.findViewById(R.id.tvRole);
             tvLeaveType    = v.findViewById(R.id.tvLeaveType);
             tvDateRange    = v.findViewById(R.id.tvDateRange);
+            tvDesignation  = v.findViewById(R.id.tvDesignation);
             tvReason       = v.findViewById(R.id.tvReason);
             tvStatus       = v.findViewById(R.id.tvStatus);
             llActions      = v.findViewById(R.id.llActions);

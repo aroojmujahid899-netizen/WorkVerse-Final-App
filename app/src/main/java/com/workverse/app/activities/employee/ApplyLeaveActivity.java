@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.workverse.app.R;
+import com.workverse.app.models.Employee;
 import com.workverse.app.models.LeaveRequest;
 import com.workverse.app.utils.FirebaseHelper;
 import com.workverse.app.utils.SharedPrefManager;
@@ -77,19 +78,45 @@ public class ApplyLeaveActivity extends AppCompatActivity {
         btnSubmit.setEnabled(false);
 
         SharedPrefManager spm = SharedPrefManager.getInstance(this);
-        LeaveRequest lr = new LeaveRequest(spm.getUid(), spm.getFullName() != null ? spm.getFullName() : "Employee",
-                type, from, to, reason, "Employee");
+        String uid = spm.getUid();
 
-        FirebaseHelper.getDb().collection(FirebaseHelper.COL_LEAVES).add(lr)
-                .addOnSuccessListener(r -> {
-                    pb.setVisibility(View.GONE);
-                    Toast.makeText(this, "Leave request submitted!", Toast.LENGTH_SHORT).show();
-                    finish();
+        // Fetch employee's designation & campaign before submitting
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_EMPLOYEES)
+                .whereEqualTo("userId", uid)
+                .limit(1)
+                .get()
+                .addOnSuccessListener(snap -> {
+                    String designation = "";
+                    String campaign = "";
+                    if (!snap.isEmpty()) {
+                        Employee emp = snap.getDocuments().get(0).toObject(Employee.class);
+                        if (emp != null) {
+                            designation = emp.getDesignation() != null ? emp.getDesignation() : "";
+                            campaign = emp.getCampaign() != null ? emp.getCampaign() : "";
+                        }
+                    }
+
+                    LeaveRequest lr = new LeaveRequest(uid, spm.getFullName() != null ? spm.getFullName() : "Employee",
+                            type, from, to, reason, "Employee");
+                    lr.setDesignation(designation);
+                    lr.setCampaign(campaign);
+
+                    FirebaseHelper.getDb().collection(FirebaseHelper.COL_LEAVES).add(lr)
+                            .addOnSuccessListener(r -> {
+                                pb.setVisibility(View.GONE);
+                                Toast.makeText(this, "Leave request submitted!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            })
+                            .addOnFailureListener(e -> {
+                                pb.setVisibility(View.GONE);
+                                btnSubmit.setEnabled(true);
+                                Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
                 })
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
                     btnSubmit.setEnabled(true);
-                    Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to fetch employee info: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }
