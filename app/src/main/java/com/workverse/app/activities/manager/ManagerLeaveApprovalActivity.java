@@ -75,6 +75,17 @@ public class ManagerLeaveApprovalActivity extends AppCompatActivity {
         actDesignationFilter.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, desigList));
         actCampaignFilter.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, campList));
 
+        // Force dropdown list to show on tap/focus (AutoCompleteTextView needs this)
+        actDesignationFilter.setOnClickListener(v -> actDesignationFilter.showDropDown());
+        actDesignationFilter.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) actDesignationFilter.showDropDown();
+        });
+
+        actCampaignFilter.setOnClickListener(v -> actCampaignFilter.showDropDown());
+        actCampaignFilter.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) actCampaignFilter.showDropDown();
+        });
+
         if (actDesignationFilter.getText().toString().isEmpty()) actDesignationFilter.setText("All", false);
         if (actCampaignFilter.getText().toString().isEmpty()) actCampaignFilter.setText("All", false);
 
@@ -113,7 +124,6 @@ public class ManagerLeaveApprovalActivity extends AppCompatActivity {
 
                         String role = lr.getRole();
                         if (role == null || role.isEmpty() || "Employee".equals(role)) {
-                            // Fill missing designation/campaign from Users lookup (old records)
                             if (lr.getDesignation() == null || lr.getDesignation().isEmpty()) {
                                 String fallback = userDesignationMap.get(lr.getUserId());
                                 if (fallback != null) lr.setDesignation(fallback);
