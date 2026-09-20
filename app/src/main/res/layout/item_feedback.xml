@@ -104,5 +104,23 @@
             android:layout_marginTop="8dp"
             android:visibility="gone"/>
 
+        <!-- Manager Response Views -->
+        <TextView
+            android:id="@+id/tvManagerResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btnRespond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Respond"
+            android:textAllCaps="false"
+            android:layout_marginTop="8dp"/>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

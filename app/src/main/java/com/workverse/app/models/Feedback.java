@@ -3,24 +3,19 @@ package com.workverse.app.models;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Feedback submitted by an Employee/Manager, plus the result of the REAL
- * AI analysis performed directly from the app (GeminiFeedbackService -> Google Gemini API).
- */
 public class Feedback {
     private String id, userId, fromUserName, title, message, role;
     private String sentiment;
     private long timestamp;
 
-    /** "pending" | "processing" | "completed" | "failed" */
     private String aiStatus = "pending";
-    private String aiSentiment;              // "Positive" | "Neutral" | "Negative"
-    private Object aiScore;                  // Safe Object handling
+    private String aiSentiment;
+    private Object aiScore;
     private String aiSummary;
     private Object aiPositivePoints = new ArrayList<String>();
     private Object aiNegativePoints = new ArrayList<String>();
     private Object aiConcerns = new ArrayList<String>();
-    private Object aiConfidence;             // Safe Object handling
+    private Object aiConfidence;
     private String aiProvider;
     private String aiModel;
     private Long aiAnalyzedAt;
@@ -28,6 +23,10 @@ public class Feedback {
 
     private String insight;
     private Object accuracy;
+
+    // NEW: Manager's response to this feedback
+    private String managerResponse;
+    private Long managerResponseAt;
 
     public Feedback() {}
 
@@ -42,7 +41,6 @@ public class Feedback {
         this.aiStatus = "pending";
     }
 
-    // Standard Getters and Setters
     public String getId(){ return id; } public void setId(String v){ id = v; }
     public String getUserId(){ return userId; } public void setUserId(String v){ userId = v; }
     public String getFromUserName(){ return fromUserName; } public void setFromUserName(String v){ fromUserName = v; }
@@ -55,7 +53,6 @@ public class Feedback {
     public String getAiStatus(){ return aiStatus; } public void setAiStatus(String v){ aiStatus = v; }
     public String getAiSentiment(){ return aiSentiment; } public void setAiSentiment(String v){ aiSentiment = v; }
 
-    // Safe getters & setters for numeric/object values
     public Object getAiScore(){ return aiScore; }
     public void setAiScore(Object v){
         if (v instanceof Number) {
@@ -121,4 +118,7 @@ public class Feedback {
     public boolean hasAiResult() {
         return "completed".equals(aiStatus) && aiScore != null;
     }
+
+    public String getManagerResponse(){ return managerResponse; } public void setManagerResponse(String v){ managerResponse = v; }
+    public Long getManagerResponseAt(){ return managerResponseAt; } public void setManagerResponseAt(Long v){ managerResponseAt = v; }
 }

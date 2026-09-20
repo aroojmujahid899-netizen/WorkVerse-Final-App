@@ -22,8 +22,13 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.VH> {
         void onRetry(Feedback feedback);
     }
 
+    public interface OnRespondClickListener {
+        void onRespond(Feedback feedback);
+    }
+
     private List<Feedback> list;
     private final OnRetryClickListener retryListener;
+    private OnRespondClickListener respondListener;
 
     public FeedbackAdapter(List<Feedback> l) {
         this(l, null);
@@ -32,6 +37,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.VH> {
     public FeedbackAdapter(List<Feedback> l, OnRetryClickListener retryListener) {
         this.list = l != null ? l : new ArrayList<>();
         this.retryListener = retryListener;
+    }
+
+    public FeedbackAdapter(List<Feedback> l, OnRetryClickListener retryListener, OnRespondClickListener respondListener) {
+        this.list = l != null ? l : new ArrayList<>();
+        this.retryListener = retryListener;
+        this.respondListener = respondListener;
     }
 
     public void updateList(List<Feedback> nl) {
@@ -136,6 +147,26 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.VH> {
             bg.setColor(color);
             h.tvSentiment.setBackground(bg);
         }
+
+        // Manager response section
+        boolean hasResponse = f.getManagerResponse() != null && !f.getManagerResponse().trim().isEmpty();
+        if (h.tvManagerResponse != null) {
+            if (hasResponse) {
+                h.tvManagerResponse.setVisibility(View.VISIBLE);
+                h.tvManagerResponse.setText("Your response: " + f.getManagerResponse());
+            } else {
+                h.tvManagerResponse.setVisibility(View.GONE);
+            }
+        }
+        if (h.btnRespond != null) {
+            if (respondListener != null) {
+                h.btnRespond.setVisibility(View.VISIBLE);
+                h.btnRespond.setText(hasResponse ? "Edit Response" : "Respond");
+                h.btnRespond.setOnClickListener(v -> respondListener.onRespond(f));
+            } else {
+                h.btnRespond.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -144,20 +175,22 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.VH> {
     }
 
     static class VH extends RecyclerView.ViewHolder {
-        TextView tvFrom, tvTitle, tvMessage, tvDate, tvSentiment, tvAiScore, tvAiSummary;
-        Button btnRetry;
+        TextView tvFrom, tvTitle, tvMessage, tvDate, tvSentiment, tvAiScore, tvAiSummary, tvManagerResponse;
+        Button btnRetry, btnRespond;
 
         VH(View v) {
             super(v);
             tvFrom = v.findViewById(R.id.tvFrom);
             tvTitle = v.findViewById(R.id.tvTitle);
-            // Mismatch fixed: XML ID is tvMsg, mapped correctly to tvMessage here
             tvMessage = v.findViewById(R.id.tvMsg);
             tvDate = v.findViewById(R.id.tvDate);
             tvSentiment = v.findViewById(R.id.tvSentiment);
             tvAiScore = v.findViewById(R.id.tvAiScore);
             tvAiSummary = v.findViewById(R.id.tvAiSummary);
             btnRetry = v.findViewById(R.id.btnRetryAnalysis);
+            // These two IDs are NEW - must be added to item_feedback.xml (see instructions below)
+            tvManagerResponse = v.findViewById(R.id.tvManagerResponse);
+            btnRespond = v.findViewById(R.id.btnRespond);
         }
     }
 }

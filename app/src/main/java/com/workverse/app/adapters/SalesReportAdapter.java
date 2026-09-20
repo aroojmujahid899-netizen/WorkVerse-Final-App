@@ -8,20 +8,42 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.workverse.app.R;
 import com.workverse.app.models.SalesReport;
 import java.util.List;
+
 public class SalesReportAdapter extends RecyclerView.Adapter<SalesReportAdapter.VH> {
+
+    public interface OnItemClickListener {
+        void onItemClick(SalesReport report);
+    }
+
     private List<SalesReport> list;
-    public SalesReportAdapter(List<SalesReport> l){this.list=l;}
+    private OnItemClickListener listener;
+
+    public SalesReportAdapter(List<SalesReport> l) { this.list = l; }
+
+    public SalesReportAdapter(List<SalesReport> l, OnItemClickListener listener) {
+        this.list = l;
+        this.listener = listener;
+    }
+
     public void updateList(List<SalesReport> nl){list=nl;notifyDataSetChanged();}
+
     @NonNull @Override public VH onCreateViewHolder(@NonNull ViewGroup p, int t){
         return new VH(LayoutInflater.from(p.getContext()).inflate(R.layout.item_sales_report,p,false));}
+
     @Override public void onBindViewHolder(@NonNull VH h, int pos){
         SalesReport s=list.get(pos);
         h.tvEmployee.setText(s.getEmployeeName());
         h.tvDate.setText(s.getDate());
         h.tvAchieved.setText(String.format("%.0f",(double) s.getAchievedAmount()));
         h.tvTarget.setText("Target: "+String.format("%.0f",(double) s.getTargetAmount()));
+
+        h.itemView.setOnClickListener(v -> {
+            if (listener != null) listener.onItemClick(s);
+        });
     }
+
     @Override public int getItemCount(){return list.size();}
+
     static class VH extends RecyclerView.ViewHolder{
         TextView tvEmployee,tvDate,tvAchieved,tvTarget;
         VH(View v){super(v);tvEmployee=v.findViewById(R.id.tvEmployee);tvDate=v.findViewById(R.id.tvDate);
