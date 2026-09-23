@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "String", "GEMINI_API_KEY", "\"AQ.Ab8RN6JeD8uslA9hmAIjAIjICz8aH_zVYeYQSWpycIok_6IPgQ\""
-        buildConfigField "String", "GROQ_API_KEY", "\"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\""
+        buildConfigField "String", "GROQ_API_KEY", "\"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\""
     }
     buildTypes {
         release {
