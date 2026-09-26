@@ -2,6 +2,13 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
 }
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
+}
+
 android {
     namespace 'com.workverse.app'
     compileSdk 36
@@ -12,7 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "String", "GEMINI_API_KEY", "\"AQ.Ab8RN6JeD8uslA9hmAIjAIjICz8aH_zVYeYQSWpycIok_6IPgQ\""
-        buildConfigField "String", "GROQ_API_KEY", "\"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\""
+        buildConfigField "String", "GROQ_API_KEY", "\"${localProperties.getProperty('GROQ_API_KEY', '')}\""
     }
     buildTypes {
         release {

@@ -39,7 +39,9 @@ public class EmployeePerformanceActivity extends AppCompatActivity {
         if (pb != null) pb.setVisibility(View.VISIBLE);
         String uid = SharedPrefManager.getInstance(this).getUid();
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_PERFORMANCE)
-                .whereEqualTo("userId", uid).get()
+                .whereEqualTo("userId", uid)
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .get()
                 .addOnSuccessListener(snap -> {
                     List<PerformanceReport> list = new ArrayList<>();
                     double totalKpi = 0; int totalTasks = 0;

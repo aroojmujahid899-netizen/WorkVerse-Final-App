@@ -3,9 +3,12 @@ package com.workverse.app.activities.employee;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,7 +47,7 @@ public class EmployeeSalesReportActivity extends AppCompatActivity {
         barChartSales  = findViewById(R.id.barChartSales);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new SalesReportAdapter(new ArrayList<>());
+        adapter = new SalesReportAdapter(new ArrayList<>(), report -> showEntryDetailDialog(report));
         rv.setAdapter(adapter);
 
         loadData();
@@ -94,5 +97,55 @@ public class EmployeeSalesReportActivity extends AppCompatActivity {
         barChartSales.getDescription().setEnabled(false);
         barChartSales.animateY(1000);
         barChartSales.invalidate();
+    }
+
+    /**
+     * Shows a mini bar chart dialog for a SINGLE specific sales entry
+     * (the one the user tapped on), not the combined total.
+     */
+    private void showEntryDetailDialog(SalesReport entry) {
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(32, 24, 32, 24);
+
+        TextView tvTitle = new TextView(this);
+        tvTitle.setText(entry.getDate());
+        tvTitle.setTextSize(16f);
+        tvTitle.setTextColor(Color.BLACK);
+        tvTitle.setPadding(0, 0, 0, 16);
+        container.addView(tvTitle);
+
+        BarChart entryChart = new BarChart(this);
+        LinearLayout.LayoutParams chartParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 500);
+        entryChart.setLayoutParams(chartParams);
+
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(1f, (float) entry.getTargetAmount()));
+        entries.add(new BarEntry(2f, (float) entry.getAchievedAmount()));
+
+        BarDataSet dataSet = new BarDataSet(entries, "Target vs Achieved");
+        dataSet.setColors(new int[]{Color.parseColor("#1976D2"), Color.parseColor("#388E3C")});
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(12f);
+
+        BarData barData = new BarData(dataSet);
+        entryChart.setData(barData);
+        entryChart.getDescription().setEnabled(false);
+        entryChart.animateY(800);
+
+        container.addView(entryChart);
+
+        TextView tvDetails = new TextView(this);
+        tvDetails.setText("Target: " + entry.getTargetAmount() + "\nAchieved: " + entry.getAchievedAmount());
+        tvDetails.setTextSize(14f);
+        tvDetails.setTextColor(Color.BLACK);
+        tvDetails.setPadding(0, 24, 0, 0);
+        container.addView(tvDetails);
+
+        new AlertDialog.Builder(this)
+                .setView(container)
+                .setPositiveButton("Close", null)
+                .show();
     }
 }

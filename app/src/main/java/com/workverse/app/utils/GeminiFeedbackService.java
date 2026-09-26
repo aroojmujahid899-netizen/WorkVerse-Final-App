@@ -72,10 +72,16 @@ public class GeminiFeedbackService {
 
                 JSONObject systemMessage = new JSONObject();
                 systemMessage.put("role", "system");
-                systemMessage.put("content", "You are an expert AI Feedback Analyzer. Analyze the user's feedback and respond ONLY with a valid JSON object. Do not include any markdown formatting like ```json or any extra text outside the JSON. JSON structure:\n" +
+                systemMessage.put("content", "You are an expert AI Feedback Analyzer. Analyze the user's feedback and respond ONLY with a valid JSON object. Do not include any markdown formatting like ```json or any extra text outside the JSON.\n\n" +
+                        "IMPORTANT: The 'score' MUST directly reflect the 'sentiment' and represent how POSITIVE the overall situation/performance described in the feedback is (NOT the quality or clarity of how the feedback is written):\n" +
+                        "- Positive sentiment -> score MUST be between 70 and 100\n" +
+                        "- Neutral sentiment -> score MUST be between 40 and 69\n" +
+                        "- Negative sentiment -> score MUST be between 0 and 39\n" +
+                        "Never output a score that contradicts the sentiment (e.g. Negative sentiment with a score above 39 is invalid).\n\n" +
+                        "JSON structure:\n" +
                         "{\n" +
                         "  \"sentiment\": \"Positive\" or \"Negative\" or \"Neutral\",\n" +
-                        "  \"score\": integer between 0 and 100,\n" +
+                        "  \"score\": integer between 0 and 100 (must be consistent with sentiment as defined above),\n" +
                         "  \"summary\": \"A concise summary of the feedback\",\n" +
                         "  \"concerns\": \"Key concerns mentioned or None\",\n" +
                         "  \"confidence\": \"High\",\n" +
@@ -132,6 +138,20 @@ public class GeminiFeedbackService {
                         String summary = contentJson.optString("summary", "No summary provided.");
                         String concerns = contentJson.optString("concerns", "None");
                         String confidence = contentJson.optString("confidence", "High");
+
+                        // Safety-net: if the model still returns a score that contradicts
+                        // its own sentiment, clamp it into the correct band instead of
+                        // trusting the raw value.
+                        if ("Negative".equalsIgnoreCase(sentiment) && score > 39) {
+                            Log.w(TAG, "Score/sentiment mismatch (Negative, score=" + score + "), clamping.");
+                            score = 39;
+                        } else if ("Positive".equalsIgnoreCase(sentiment) && score < 70) {
+                            Log.w(TAG, "Score/sentiment mismatch (Positive, score=" + score + "), clamping.");
+                            score = 70;
+                        } else if ("Neutral".equalsIgnoreCase(sentiment) && (score < 40 || score > 69)) {
+                            Log.w(TAG, "Score/sentiment mismatch (Neutral, score=" + score + "), clamping.");
+                            score = 50;
+                        }
 
                         Result result = new Result(sentiment, score, summary, concerns, confidence, MODEL);
 
