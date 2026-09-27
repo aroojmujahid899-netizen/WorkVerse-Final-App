@@ -1,114 +1,122 @@
 package com.workverse.app.activities.ceo;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import com.google.android.material.textfield.TextInputEditText;
 import com.workverse.app.R;
+import com.workverse.app.activities.LoginActivity;
 import com.workverse.app.utils.FirebaseHelper;
 import com.workverse.app.utils.SharedPrefManager;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CEOProfileActivity extends AppCompatActivity {
-
-    TextView tvEmail, tvRole;
-    TextInputEditText etName, etPhone;
-    Button btnSave;
-    ProgressBar pb;
+    TextView tvName, tvEmail, tvRole, tvPhone;
+    Button btnEdit, btnLogout;
     SharedPrefManager spm;
 
-    @Override
-    protected void onCreate(Bundle s) {
+    String currentEmail = "", currentPhone = "";
+
+    @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_ceo_profile);
-        Toolbar tb = findViewById(R.id.toolbar);
-        setSupportActionBar(tb);
-        if (getSupportActionBar() != null)
-            getSupportActionBar().setTitle("My Profile");
-        tb.setNavigationOnClickListener(v -> finish());
 
-        spm     = SharedPrefManager.getInstance(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        spm = SharedPrefManager.getInstance(this);
+        tvName = findViewById(R.id.tvName);
         tvEmail = findViewById(R.id.tvEmail);
-        tvRole  = findViewById(R.id.tvRole);
-        etName  = findViewById(R.id.etName);
-        etPhone = findViewById(R.id.etPhone);
-        btnSave = findViewById(R.id.btnSave);
-        pb      = findViewById(R.id.progressBar);
+        tvRole = findViewById(R.id.tvRole);
+        tvPhone = findViewById(R.id.tvPhone);
+        btnEdit = findViewById(R.id.btnEditProfile);
+        btnLogout = findViewById(R.id.btnLogout);
 
-        if (etName != null)
-            etName.setText(spm.getFullName() != null
-                    ? spm.getFullName() : "");
-        if (tvEmail != null)
-            tvEmail.setText(spm.getEmail() != null
-                    ? spm.getEmail() : "—");
-        if (tvRole != null)
-            tvRole.setText("Chief Executive Officer");
+        refreshUIFromCache();
+        loadFullProfileFromFirestore();
 
-        loadProfile();
-        if (btnSave != null)
-            btnSave.setOnClickListener(v -> saveProfile());
+        if (btnEdit != null) btnEdit.setOnClickListener(v -> showEditDialog());
+        btnLogout.setOnClickListener(v -> {
+            FirebaseHelper.getAuth().signOut(); spm.clear();
+            Intent i = new Intent(this, LoginActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        });
     }
 
-    private void loadProfile() {
-        String uid = spm.getUid();
-        if (uid == null) return;
-        FirebaseHelper.getDb()
-                .collection(FirebaseHelper.COL_USERS)
-                .document(uid).get()
+    private void refreshUIFromCache() {
+        tvName.setText(spm.getFullName() != null ? spm.getFullName() : "CEO");
+        currentEmail = spm.getEmail() != null ? spm.getEmail() : "";
+        tvEmail.setText("Email: " + (currentEmail.isEmpty() ? "—" : currentEmail));
+        if (tvRole != null) tvRole.setText("Chief Executive Officer");
+    }
+
+    private void loadFullProfileFromFirestore() {
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_USERS)
+                .document(spm.getUid()).get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
+                        String email = doc.getString("email");
                         String phone = doc.getString("phone");
-                        if (etPhone != null && phone != null)
-                            etPhone.setText(phone);
+
+                        currentEmail = email != null ? email : "";
+                        currentPhone = phone != null ? phone : "";
+
+                        tvEmail.setText("Email: " + (currentEmail.isEmpty() ? "—" : currentEmail));
+                        tvPhone.setText("Phone: " + (currentPhone.isEmpty() ? "—" : currentPhone));
                     }
                 });
     }
 
-    private void saveProfile() {
-        String name = etName != null
-                ? etName.getText().toString().trim() : "";
-        String phone = etPhone != null
-                ? etPhone.getText().toString().trim() : "";
-        if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this,
-                    "Name cannot be empty",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String uid = spm.getUid();
-        if (uid == null) return;
-        pb.setVisibility(View.VISIBLE);
-        if (btnSave != null) btnSave.setEnabled(false);
-        Map<String, Object> updates = new HashMap<>();
-        updates.put("fullName", name);
-        updates.put("phone", phone);
-        FirebaseHelper.getDb()
-                .collection(FirebaseHelper.COL_USERS)
-                .document(uid).update(updates)
-                .addOnSuccessListener(r -> {
-                    pb.setVisibility(View.GONE);
-                    if (btnSave != null)
-                        btnSave.setEnabled(true);
-                    spm.saveUser(uid, spm.getUsername(),
-                            spm.getRole(), name, spm.getEmail());
-                    Toast.makeText(this,
-                            "Profile updated!",
-                            Toast.LENGTH_SHORT).show();
+    private void showEditDialog() {
+        android.widget.LinearLayout ll = new android.widget.LinearLayout(this);
+        ll.setOrientation(android.widget.LinearLayout.VERTICAL);
+        ll.setPadding(48, 24, 48, 24);
+
+        EditText etName = new EditText(this);
+        etName.setHint("Full Name");
+        etName.setText(spm.getFullName());
+
+        EditText etPhone = new EditText(this);
+        etPhone.setHint("Phone");
+        etPhone.setText(currentPhone);
+        etPhone.setInputType(android.text.InputType.TYPE_CLASS_PHONE);
+
+        ll.addView(etName);
+        ll.addView(etPhone);
+
+        new AlertDialog.Builder(this).setTitle("Edit Profile").setView(ll)
+                .setPositiveButton("Save", (d, w) -> {
+                    String name = etName.getText().toString().trim();
+                    String phone = etPhone.getText().toString().trim();
+
+                    if (TextUtils.isEmpty(name)) {
+                        Toast.makeText(this, "Name required", Toast.LENGTH_SHORT).show(); return;
+                    }
+
+                    Map<String, Object> upd = new HashMap<>();
+                    upd.put("fullName", name);
+                    upd.put("phone", phone);
+
+                    FirebaseHelper.getDb().collection(FirebaseHelper.COL_USERS)
+                            .document(spm.getUid()).update(upd)
+                            .addOnSuccessListener(r -> {
+                                spm.saveUser(spm.getUid(), spm.getUsername(), "CEO", name, spm.getEmail());
+                                currentPhone = phone;
+                                refreshUIFromCache();
+                                tvPhone.setText("Phone: " + (phone.isEmpty() ? "—" : phone));
+                                Toast.makeText(this, "Profile updated!", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(e -> Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                 })
-                .addOnFailureListener(e -> {
-                    pb.setVisibility(View.GONE);
-                    if (btnSave != null)
-                        btnSave.setEnabled(true);
-                    Toast.makeText(this,
-                            "Failed: " + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                });
+                .setNegativeButton("Cancel", null).show();
     }
 }

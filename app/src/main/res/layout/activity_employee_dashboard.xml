@@ -12,19 +12,11 @@
         android:orientation="vertical"
         android:background="@color/background">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/gradient_header"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:paddingBottom="28dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@drawable/gradient_header" android:orientation="vertical"
+            android:padding="20dp" android:paddingBottom="28dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/btnMenu"
@@ -37,48 +29,25 @@
                     android:clickable="true"
                     android:focusable="true"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Welcome Back,"
-                        android:textColor="#BBDEFB"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:id="@+id/tvUserName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Employee"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:fontFamily="sans-serif-bold"/>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Welcome Back," android:textColor="#BBDEFB" android:textSize="13sp"/>
+                    <TextView android:id="@+id/tvUserName" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Employee"
+                        android:textColor="#FFFFFF" android:textSize="20sp" android:fontFamily="sans-serif-bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Employee Dashboard" android:textColor="#BBDEFB" android:textSize="12sp"/>
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/ivNotif"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="40dp" android:layout_height="40dp"
                     android:src="@drawable/ic_notification"
                     android:background="@drawable/bg_circle"
-                    app:tint="#FFFFFF"
-                    android:padding="8dp"
-                    android:clickable="true"
-                    android:focusable="true"/>
+                    app:tint="#FFFFFF" android:padding="8dp"
+                    android:clickable="true" android:focusable="true"/>
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Employee Dashboard"
-                android:textColor="#E3F2FD"
-                android:textSize="13sp"
-                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
         <ScrollView

@@ -43,13 +43,15 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.VH> {
         if (viewOnly) {
             h.ivEdit.setVisibility(View.GONE);
             h.ivDelete.setVisibility(View.GONE);
+            h.itemView.setOnClickListener(null);
+            h.itemView.setClickable(false);
         } else {
             h.ivEdit.setVisibility(View.VISIBLE);
             h.ivDelete.setVisibility(View.VISIBLE);
             h.ivEdit.setOnClickListener(v->listener.onEditClick(e));
             h.ivDelete.setOnClickListener(v->listener.onDeleteClick(e));
+            h.itemView.setOnClickListener(v->listener.onItemClick(e));
         }
-        h.itemView.setOnClickListener(v->listener.onItemClick(e));
     }
     @Override public int getItemCount(){return list.size();}
     static class VH extends RecyclerView.ViewHolder{

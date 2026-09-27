@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" android:background="@color/background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:titleTextColor="@color/white"
+        app:title="My Profile"
+        app:navigationIcon="@drawable/ic_back"/>
+
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
         android:background="@drawable/gradient_header" android:orientation="vertical"
         android:padding="24dp" android:gravity="center">
@@ -32,8 +42,12 @@
                         android:layout_height="wrap_content" android:text="Phone: —"
                         android:textSize="14sp" android:textColor="@color/text_secondary" android:layout_marginBottom="10dp"/>
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginBottom="10dp"/>
-                    <TextView android:id="@+id/tvDepartment" android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:text="Department: —"
+                    <TextView android:id="@+id/tvDesignation" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:text="Designation: —"
+                        android:textSize="14sp" android:textColor="@color/text_secondary" android:layout_marginBottom="10dp"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginBottom="10dp"/>
+                    <TextView android:id="@+id/tvCampaign" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:text="Campaign: —"
                         android:textSize="14sp" android:textColor="@color/text_secondary"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

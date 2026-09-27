@@ -3,9 +3,12 @@ package com.workverse.app.activities.ceo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +32,7 @@ public class CEOSalesReportActivity extends AppCompatActivity {
     TextView tvTotalSales, tvTotalAmount, tvTargetAmount, tvEmpty;
     BarChart barChartSales;
     SalesReportAdapter adapter;
+    List<SalesReport> fullList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle s) {
@@ -48,7 +52,7 @@ public class CEOSalesReportActivity extends AppCompatActivity {
         barChartSales  = findViewById(R.id.barChartSales);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new SalesReportAdapter(new ArrayList<>());
+        adapter = new SalesReportAdapter(new ArrayList<>(), report -> showEmployeeDetailDialog(report));
         rv.setAdapter(adapter);
         loadData();
     }
@@ -70,6 +74,7 @@ public class CEOSalesReportActivity extends AppCompatActivity {
                         totalTarget   += r.getTargetAmount();
                         totalAchieved += r.getAchievedAmount();
                     }
+                    fullList = list;
                     pb.setVisibility(View.GONE);
                     tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
                     if (tvTotalSales   != null) tvTotalSales.setText(String.valueOf(list.size()));
@@ -102,5 +107,72 @@ public class CEOSalesReportActivity extends AppCompatActivity {
         barChartSales.getDescription().setEnabled(false);
         barChartSales.animateY(1000);
         barChartSales.invalidate();
+    }
+
+    private void showEmployeeDetailDialog(SalesReport clicked) {
+        String empName = clicked.getEmployeeName();
+
+        List<SalesReport> empRecords = new ArrayList<>();
+        double empTotalTarget = 0, empTotalAchieved = 0;
+        for (SalesReport r : fullList) {
+            if (empName != null && empName.equals(r.getEmployeeName())) {
+                empRecords.add(r);
+                empTotalTarget += r.getTargetAmount();
+                empTotalAchieved += r.getAchievedAmount();
+            }
+        }
+
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(32, 24, 32, 24);
+
+        TextView tvTitle = new TextView(this);
+        tvTitle.setText(empName + " - Performance");
+        tvTitle.setTextSize(16f);
+        tvTitle.setTextColor(Color.BLACK);
+        tvTitle.setPadding(0, 0, 0, 16);
+        container.addView(tvTitle);
+
+        BarChart empChart = new BarChart(this);
+        LinearLayout.LayoutParams chartParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 500);
+        empChart.setLayoutParams(chartParams);
+
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(1f, (float) empTotalTarget));
+        entries.add(new BarEntry(2f, (float) empTotalAchieved));
+
+        BarDataSet dataSet = new BarDataSet(entries, empName + ": Target vs Achieved");
+        dataSet.setColors(new int[]{Color.parseColor("#1976D2"), Color.parseColor("#388E3C")});
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(12f);
+
+        BarData barData = new BarData(dataSet);
+        empChart.setData(barData);
+        empChart.getDescription().setEnabled(false);
+        empChart.animateY(800);
+
+        container.addView(empChart);
+
+        TextView tvHistoryLabel = new TextView(this);
+        tvHistoryLabel.setText("Records:");
+        tvHistoryLabel.setTextSize(14f);
+        tvHistoryLabel.setTextColor(Color.BLACK);
+        tvHistoryLabel.setPadding(0, 24, 0, 8);
+        container.addView(tvHistoryLabel);
+
+        for (SalesReport r : empRecords) {
+            TextView tvLine = new TextView(this);
+            tvLine.setText(r.getDate() + "  →  Achieved: " + r.getAchievedAmount()
+                    + " / Target: " + r.getTargetAmount());
+            tvLine.setTextSize(13f);
+            tvLine.setPadding(0, 4, 0, 4);
+            container.addView(tvLine);
+        }
+
+        new AlertDialog.Builder(this)
+                .setView(container)
+                .setPositiveButton("Close", null)
+                .show();
     }
 }
