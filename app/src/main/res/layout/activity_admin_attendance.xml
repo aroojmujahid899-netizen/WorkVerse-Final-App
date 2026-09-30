@@ -8,17 +8,30 @@
         android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
         style="@style/WorkVerse.Toolbar" app:title="Attendance Overview" app:navigationIcon="@drawable/ic_back"/>
 
-    <!-- Filter Dropdown -->
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    <!-- Filter Row -->
+    <LinearLayout android:id="@+id/filterRow"
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_margin="12dp">
-        <AutoCompleteTextView
-            android:id="@+id/actFilter"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:hint="Filter by Role"
-            android:inputType="none"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:orientation="horizontal" android:padding="12dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:layout_marginEnd="6dp">
+            <AutoCompleteTextView
+                android:id="@+id/actDesignationFilter"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="Designation" android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <AutoCompleteTextView
+                android:id="@+id/actCampaignFilter"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:hint="Campaign" android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView"
         android:layout_width="match_parent" android:layout_height="0dp"

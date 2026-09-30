@@ -3,10 +3,9 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,7 @@ import com.workverse.app.utils.SharedPrefManager;
 import java.util.HashMap;
 import java.util.Map;
 public class AdminProfileActivity extends AppCompatActivity {
-    TextView tvName, tvEmail, tvRole; Button btnEdit, btnLogout;
+    TextView tvName, tvEmail, tvRole; Button btnEdit, btnLogout; ImageView btnBack;
     SharedPrefManager spm;
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
@@ -28,7 +27,9 @@ public class AdminProfileActivity extends AppCompatActivity {
         tvRole = findViewById(R.id.tvRole);
         btnEdit = findViewById(R.id.btnEditProfile);
         btnLogout = findViewById(R.id.btnLogout);
+        btnBack = findViewById(R.id.btnBack);
         refreshUI();
+        if (btnBack != null) btnBack.setOnClickListener(v -> finish());
         if (btnEdit != null) btnEdit.setOnClickListener(v -> showEditDialog());
         btnLogout.setOnClickListener(v -> {
             FirebaseHelper.getAuth().signOut(); spm.clear();

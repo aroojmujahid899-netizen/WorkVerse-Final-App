@@ -31,6 +31,10 @@ public class EmployeeNotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_employee_notifications);
+
+        // NEW: mark all notifications as seen (clears the red badge on dashboard)
+        SharedPrefManager.getInstance(this).setLastNotifSeen(System.currentTimeMillis());
+
         Toolbar tb = findViewById(R.id.toolbar); setSupportActionBar(tb);
         tb.setNavigationOnClickListener(v -> finish());
         rv = findViewById(R.id.recyclerView); pb = findViewById(R.id.progressBar);

@@ -8,7 +8,8 @@
         style="@style/WorkVerse.Toolbar" app:title="Team Attendance" app:navigationIcon="@drawable/ic_back"/>
 
     <!-- Filter Row -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    <LinearLayout android:id="@+id/filterRow"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
         android:orientation="horizontal" android:padding="12dp">
 
         <com.google.android.material.textfield.TextInputLayout

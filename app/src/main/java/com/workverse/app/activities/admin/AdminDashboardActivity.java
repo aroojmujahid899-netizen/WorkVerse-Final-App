@@ -2,10 +2,10 @@ package com.workverse.app.activities.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
@@ -15,16 +15,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.workverse.app.R;
 import com.workverse.app.activities.LoginActivity;
 import com.workverse.app.utils.FirebaseHelper;
+import com.workverse.app.utils.NotificationBadgeHelper;
 import com.workverse.app.utils.SharedPrefManager;
 
 public class AdminDashboardActivity extends AppCompatActivity {
 
-    TextView tvAdminName, tvTotalEmployees, tvPresentToday, tvPendingLeaves, tvTotalManagers;
-    LinearLayout qaRoles, qaViewEmp, qaAddMgr, qaAttendance, qaLeave, qaPerformance, qaFeedback, qaSales;
+    TextView tvAdminName, tvProfileInitial, tvTotalEmployees, tvPresentToday, tvPendingLeaves, tvTotalManagers;
+    LinearLayout qaRoles, qaViewEmp, qaAddMgr, qaAttendance, qaLeave, qaPerformance, qaFeedback, qaSales, qaNotifications;
     CardView cardEmployees, cardPresentToday, cardPendingLeaves, cardManagers;
-    ImageView ivNotif, btnMenu;
+    ImageView btnMenu;
+    View headerProfile;
 
-    // Drawer elements
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
@@ -39,17 +40,26 @@ public class AdminDashboardActivity extends AppCompatActivity {
         spm = SharedPrefManager.getInstance(this);
         db = FirebaseHelper.getDb();
 
-        // Drawer Layout & Navigation View Binding
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
 
-        // Header Views
         tvAdminName = findViewById(R.id.tvAdminName);
-        ivNotif = findViewById(R.id.ivNotif);
+        tvProfileInitial = findViewById(R.id.tvProfileInitial);
+        headerProfile = findViewById(R.id.headerProfile);
         btnMenu = findViewById(R.id.btnMenu);
-        tvAdminName.setText(spm.getFullName() != null ? spm.getFullName() : "Admin");
 
-        // Drawer Open/Close Listener on Menu Icon Click
+        String fullName = spm.getFullName();
+        tvAdminName.setText(fullName != null ? fullName : "Admin");
+
+        if (tvProfileInitial != null) {
+            String initial = (fullName != null && !fullName.trim().isEmpty())
+                    ? String.valueOf(fullName.trim().charAt(0)).toUpperCase()
+                    : "A";
+            tvProfileInitial.setText(initial);
+        }
+
+        if (headerProfile != null) headerProfile.setOnClickListener(v -> go(AdminProfileActivity.class));
+
         if (btnMenu != null) {
             btnMenu.setOnClickListener(v -> {
                 if (drawerLayout != null) {
@@ -62,13 +72,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Side Navigation Menu Clicks
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(item -> {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_home) {
-                    // Current Screen (Admin Dashboard)
                 } else if (id == R.id.nav_alerts) {
                     go(AdminNotificationsActivity.class);
                 } else if (id == R.id.nav_profile) {
@@ -84,25 +92,21 @@ public class AdminDashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Stat Text Views
         tvTotalEmployees = findViewById(R.id.tvTotalEmployees);
         tvPresentToday = findViewById(R.id.tvPresentToday);
         tvPendingLeaves = findViewById(R.id.tvPendingLeaves);
         tvTotalManagers = findViewById(R.id.tvTotalManagers);
 
-        // Clickable Summary Cards Binding
         cardEmployees = findViewById(R.id.cardEmployees);
         cardPresentToday = findViewById(R.id.cardPresentToday);
         cardPendingLeaves = findViewById(R.id.cardPendingLeaves);
         cardManagers = findViewById(R.id.cardManagers);
 
-        // Card Click Actions — Top cards always open the LIST screens
         if (cardEmployees != null) cardEmployees.setOnClickListener(v -> go(ViewEmployeesActivity.class));
         if (cardPresentToday != null) cardPresentToday.setOnClickListener(v -> go(AdminAttendanceActivity.class));
         if (cardPendingLeaves != null) cardPendingLeaves.setOnClickListener(v -> go(AdminLeaveManagementActivity.class));
         if (cardManagers != null) cardManagers.setOnClickListener(v -> go(ViewManagersActivity.class));
 
-        // Quick Actions Binding
         qaRoles = findViewById(R.id.qaRoles);
         qaViewEmp = findViewById(R.id.qaViewEmp);
         qaAddMgr = findViewById(R.id.qaAddMgr);
@@ -111,8 +115,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
         qaPerformance = findViewById(R.id.qaPerformance);
         qaFeedback = findViewById(R.id.qaFeedback);
         qaSales = findViewById(R.id.qaSales);
+        qaNotifications = findViewById(R.id.qaNotifications);
 
-        // Quick Action Clicks — now Employee matches Manager pattern (direct Add form)
         qaRoles.setOnClickListener(v -> go(ManageRolesActivity.class));
         qaViewEmp.setOnClickListener(v -> go(AddEmployeeActivity.class));
         qaAddMgr.setOnClickListener(v -> go(AddManagerActivity.class));
@@ -121,9 +125,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         qaPerformance.setOnClickListener(v -> go(AdminPerformanceActivity.class));
         qaFeedback.setOnClickListener(v -> go(AdminFeedbackActivity.class));
         qaSales.setOnClickListener(v -> go(AdminSalesReportActivity.class));
-
-        // Top Header Notification Icon Click
-        if (ivNotif != null) ivNotif.setOnClickListener(v -> go(AdminNotificationsActivity.class));
+        qaNotifications.setOnClickListener(v -> go(AdminNotificationsActivity.class));
 
         loadStats();
     }
@@ -141,6 +143,20 @@ public class AdminDashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadStats();
+        updateNotifBadge();
+    }
+
+    private void updateNotifBadge() {
+        TextView tvNotifBadge = findViewById(R.id.tvNotifBadge);
+        if (tvNotifBadge == null) return;
+        NotificationBadgeHelper.fetchUnreadCount(this, count -> {
+            if (count > 0) {
+                tvNotifBadge.setVisibility(View.VISIBLE);
+                tvNotifBadge.setText(count > 9 ? "9+" : String.valueOf(count));
+            } else {
+                tvNotifBadge.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void loadStats() {

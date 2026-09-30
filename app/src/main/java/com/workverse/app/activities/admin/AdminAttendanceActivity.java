@@ -20,16 +20,21 @@ import com.workverse.app.models.Attendance;
 import com.workverse.app.utils.FirebaseHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminAttendanceActivity extends AppCompatActivity {
 
     RecyclerView rv;
     ProgressBar pb;
     TextView tvEmpty;
-    AutoCompleteTextView actFilter;
+    AutoCompleteTextView actDesignationFilter, actCampaignFilter;
     AttendanceAdapter adapter;
     List<Attendance> fullList = new ArrayList<>();
+    Map<String, String> userDesignationMap = new HashMap<>();
+    Map<String, String> userCampaignMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle s) {
@@ -43,22 +48,57 @@ public class AdminAttendanceActivity extends AppCompatActivity {
         rv = findViewById(R.id.recyclerView);
         pb = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
-        actFilter = findViewById(R.id.actFilter);
+        actDesignationFilter = findViewById(R.id.actDesignationFilter);
+        actCampaignFilter = findViewById(R.id.actCampaignFilter);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AttendanceAdapter(new ArrayList<>());
         rv.setAdapter(adapter);
 
-        String[] filterOptions = {"All", "Employees", "Managers"};
-        actFilter.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, filterOptions));
-        actFilter.setText("All", false);
-        actFilter.setOnItemClickListener((parent, view, position, id) -> applyFilter(filterOptions[position]));
+        setupFilterDropdowns();
+        loadUserInfoThenData();
+    }
 
-        loadData();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserInfoThenData();
+    }
+
+    private void setupFilterDropdowns() {
+        List<String> desigList = Arrays.asList("All", "Fronters", "Verifiers", "Closers");
+        List<String> campList = Arrays.asList("All", "MEDICARE", "FE", "Home Warranty");
+
+        actDesignationFilter.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, desigList));
+        actCampaignFilter.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, campList));
+
+        if (actDesignationFilter.getText().toString().isEmpty()) actDesignationFilter.setText("All", false);
+        if (actCampaignFilter.getText().toString().isEmpty()) actCampaignFilter.setText("All", false);
+
+        actDesignationFilter.setOnItemClickListener((parent, view, position, id) -> applyFilters());
+        actCampaignFilter.setOnItemClickListener((parent, view, position, id) -> applyFilters());
+    }
+
+    private void loadUserInfoThenData() {
+        pb.setVisibility(View.VISIBLE);
+
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_USERS).get()
+                .addOnSuccessListener(userSnap -> {
+                    userDesignationMap.clear();
+                    userCampaignMap.clear();
+                    for (QueryDocumentSnapshot d : userSnap) {
+                        String uid = d.getId();
+                        String desig = d.getString("designation");
+                        String camp = d.getString("campaign");
+                        if (desig != null) userDesignationMap.put(uid, desig);
+                        if (camp != null) userCampaignMap.put(uid, camp);
+                    }
+                    loadData();
+                })
+                .addOnFailureListener(e -> loadData());
     }
 
     private void loadData() {
-        pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE)
                 .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
                 .get()
@@ -67,10 +107,20 @@ public class AdminAttendanceActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot d : snap) {
                         Attendance a = d.toObject(Attendance.class);
                         a.setId(d.getId());
+
+                        if (a.getDesignation() == null || a.getDesignation().isEmpty()) {
+                            String fallback = userDesignationMap.get(a.getUserId());
+                            if (fallback != null) a.setDesignation(fallback);
+                        }
+                        if (a.getCampaign() == null || a.getCampaign().isEmpty()) {
+                            String fallback = userCampaignMap.get(a.getUserId());
+                            if (fallback != null) a.setCampaign(fallback);
+                        }
+
                         fullList.add(a);
                     }
                     pb.setVisibility(View.GONE);
-                    applyFilter(actFilter.getText().toString());
+                    applyFilters();
                 })
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
@@ -78,18 +128,17 @@ public class AdminAttendanceActivity extends AppCompatActivity {
                 });
     }
 
-    private void applyFilter(String filter) {
+    private void applyFilters() {
+        String desig = actDesignationFilter.getText().toString();
+        String camp = actCampaignFilter.getText().toString();
+
         List<Attendance> filtered = new ArrayList<>();
         for (Attendance a : fullList) {
-            String role = a.getRole() != null ? a.getRole() : "Employee";
-            if ("All".equals(filter)) {
-                filtered.add(a);
-            } else if ("Employees".equals(filter) && "Employee".equalsIgnoreCase(role)) {
-                filtered.add(a);
-            } else if ("Managers".equals(filter) && "Manager".equalsIgnoreCase(role)) {
-                filtered.add(a);
-            }
+            boolean desigMatch = "All".equals(desig) || desig.equals(a.getDesignation());
+            boolean campMatch = "All".equals(camp) || camp.equals(a.getCampaign());
+            if (desigMatch && campMatch) filtered.add(a);
         }
+
         adapter.updateList(filtered);
         if (tvEmpty != null) tvEmpty.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
     }

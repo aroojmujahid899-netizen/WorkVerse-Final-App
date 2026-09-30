@@ -8,6 +8,7 @@ public class SharedPrefManager {
     private static final String KEY_ROLE = "role";
     private static final String KEY_FULL_NAME = "fullName";
     private static final String KEY_EMAIL = "email";
+    private static final String KEY_LAST_NOTIF_SEEN = "lastNotifSeen";
     private static SharedPrefManager instance;
     private SharedPreferences prefs;
     private SharedPrefManager(Context ctx){
@@ -19,8 +20,8 @@ public class SharedPrefManager {
     }
     public void saveUser(String uid, String username, String role, String fullName, String email){
         prefs.edit().putString(KEY_UID,uid).putString(KEY_USERNAME,username)
-            .putString(KEY_ROLE,role).putString(KEY_FULL_NAME,fullName)
-            .putString(KEY_EMAIL,email).apply();
+                .putString(KEY_ROLE,role).putString(KEY_FULL_NAME,fullName)
+                .putString(KEY_EMAIL,email).apply();
     }
     public String getUid(){return prefs.getString(KEY_UID,null);}
     public String getUsername(){return prefs.getString(KEY_USERNAME,null);}
@@ -28,5 +29,9 @@ public class SharedPrefManager {
     public String getFullName(){return prefs.getString(KEY_FULL_NAME,null);}
     public String getEmail(){return prefs.getString(KEY_EMAIL,null);}
     public boolean isLoggedIn(){return prefs.getString(KEY_UID,null)!=null;}
+
+    public long getLastNotifSeen(){return prefs.getLong(KEY_LAST_NOTIF_SEEN, 0L);}
+    public void setLastNotifSeen(long timestamp){prefs.edit().putLong(KEY_LAST_NOTIF_SEEN, timestamp).apply();}
+
     public void clear(){prefs.edit().clear().apply();}
 }

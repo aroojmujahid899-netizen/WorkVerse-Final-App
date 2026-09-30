@@ -2,6 +2,7 @@ package com.workverse.app.activities.manager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,13 +16,16 @@ import com.google.android.material.navigation.NavigationView;
 import com.workverse.app.R;
 import com.workverse.app.activities.LoginActivity;
 import com.workverse.app.utils.FirebaseHelper;
+import com.workverse.app.utils.NotificationBadgeHelper;
 import com.workverse.app.utils.SharedPrefManager;
 
 public class ManagerDashboardActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageView btnMenu, ivNotif;
+    ImageView btnMenu;
+    View headerProfile;
+    TextView tvProfileInitial;
     CardView cardPresentDays, cardLeaveCount;
     SharedPrefManager spm;
 
@@ -35,13 +39,25 @@ public class ManagerDashboardActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         btnMenu = findViewById(R.id.btnMenu);
-        ivNotif = findViewById(R.id.ivNotif);
+        headerProfile = findViewById(R.id.headerProfile);
+        tvProfileInitial = findViewById(R.id.tvProfileInitial);
 
         TextView tvName = findViewById(R.id.tvUserName);
         if (tvName != null)
             tvName.setText(spm.getFullName() != null ? spm.getFullName() : "Manager");
 
-        // Hamburger menu click
+        if (tvProfileInitial != null) {
+            String name = spm.getFullName();
+            String initial = (name != null && !name.trim().isEmpty())
+                    ? String.valueOf(name.trim().charAt(0)).toUpperCase()
+                    : "M";
+            tvProfileInitial.setText(initial);
+        }
+
+        if (headerProfile != null)
+            headerProfile.setOnClickListener(v ->
+                    startActivity(new Intent(this, ManagerProfileActivity.class)));
+
         if (btnMenu != null) {
             btnMenu.setOnClickListener(v -> {
                 if (drawerLayout != null) {
@@ -54,13 +70,11 @@ public class ManagerDashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Side drawer menu clicks
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(item -> {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_home) {
-                    // Current Screen
                 } else if (id == R.id.nav_alerts) {
                     startActivity(new Intent(this, ManagerNotificationsActivity.class));
                 } else if (id == R.id.nav_profile) {
@@ -76,18 +90,19 @@ public class ManagerDashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Clickable stat cards
         cardPresentDays = findViewById(R.id.cardPresentDays);
         cardLeaveCount = findViewById(R.id.cardLeaveCount);
 
         if (cardPresentDays != null)
-            cardPresentDays.setOnClickListener(v ->
-                    startActivity(new Intent(this, ManagerAttendanceActivity.class)));
+            cardPresentDays.setOnClickListener(v -> {
+                Intent i = new Intent(this, ManagerAttendanceActivity.class);
+                i.putExtra(ManagerAttendanceActivity.EXTRA_MY_ATTENDANCE, true);
+                startActivity(i);
+            });
         if (cardLeaveCount != null)
             cardLeaveCount.setOnClickListener(v ->
                     startActivity(new Intent(this, ManagerLeaveStatusActivity.class)));
 
-        // Quick action buttons
         LinearLayout qaMyAttendance  = findViewById(R.id.qaMyAttendance);
         LinearLayout qaAttendance    = findViewById(R.id.qaAttendance);
         LinearLayout qaMyLeave       = findViewById(R.id.qaMyLeave);
@@ -129,10 +144,6 @@ public class ManagerDashboardActivity extends AppCompatActivity {
             qaNotifications.setOnClickListener(v ->
                     startActivity(new Intent(this, ManagerNotificationsActivity.class)));
 
-        if (ivNotif != null)
-            ivNotif.setOnClickListener(v ->
-                    startActivity(new Intent(this, ManagerNotificationsActivity.class)));
-
         loadStats();
     }
 
@@ -149,6 +160,20 @@ public class ManagerDashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadStats();
+        updateNotifBadge();
+    }
+
+    private void updateNotifBadge() {
+        TextView tvNotifBadge = findViewById(R.id.tvNotifBadge);
+        if (tvNotifBadge == null) return;
+        NotificationBadgeHelper.fetchUnreadCount(this, count -> {
+            if (count > 0) {
+                tvNotifBadge.setVisibility(View.VISIBLE);
+                tvNotifBadge.setText(count > 9 ? "9+" : String.valueOf(count));
+            } else {
+                tvNotifBadge.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void loadStats() {

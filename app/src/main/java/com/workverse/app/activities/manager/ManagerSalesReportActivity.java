@@ -1,11 +1,14 @@
 package com.workverse.app.activities.manager;
+
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,22 +22,22 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
 import com.workverse.app.adapters.SalesReportAdapter;
+import com.workverse.app.models.Employee;
 import com.workverse.app.models.SalesReport;
-import com.workverse.app.utils.DateTimeUtils;
 import com.workverse.app.utils.FirebaseHelper;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ManagerSalesReportActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb; TextView tvStat1, tvStat2;
     BarChart barChartSales;
     FloatingActionButton fab; SalesReportAdapter adapter;
     List<SalesReport> fullList = new ArrayList<>();
+    List<Employee> employeeList = new ArrayList<>();
 
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
@@ -50,48 +53,122 @@ public class ManagerSalesReportActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SalesReportAdapter(new ArrayList<>(), report -> showEmployeeDetailDialog(report));
         rv.setAdapter(adapter);
-        if (fab != null) fab.setOnClickListener(v -> showAddDialog());
+        if (fab != null) fab.setOnClickListener(v -> showAddSalesDialog());
+        loadEmployees();
         loadData();
     }
 
     @Override protected void onResume() { super.onResume(); loadData(); }
 
-    private void showAddDialog() {
-        android.widget.LinearLayout ll = new android.widget.LinearLayout(this);
-        ll.setOrientation(android.widget.LinearLayout.VERTICAL);
-        ll.setPadding(48, 24, 48, 12);
-        EditText etName    = new EditText(this); etName.setHint("Employee Name");
-        EditText etDate    = new EditText(this); etDate.setHint("Date");
-        etDate.setText(DateTimeUtils.getCurrentDate());
-        EditText etMonth   = new EditText(this); etMonth.setHint("Month (e.g. March 2026)");
-        EditText etTarget  = new EditText(this); etTarget.setHint("Target Amount");
-        etTarget.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        EditText etAchieve = new EditText(this); etAchieve.setHint("Achieved Amount");
-        etAchieve.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        ll.addView(etName); ll.addView(etDate); ll.addView(etMonth); ll.addView(etTarget); ll.addView(etAchieve);
-        new AlertDialog.Builder(this).setTitle("Add Sales Record").setView(ll)
-                .setPositiveButton("Save", (d, w) -> {
-                    String name  = etName.getText().toString().trim();
-                    String date  = etDate.getText().toString().trim();
-                    String month = etMonth.getText().toString().trim();
-                    String tStr  = etTarget.getText().toString().trim();
-                    String aStr  = etAchieve.getText().toString().trim();
-                    if (TextUtils.isEmpty(name) || TextUtils.isEmpty(tStr) || TextUtils.isEmpty(aStr)) {
-                        Toast.makeText(this, "Fill required fields", Toast.LENGTH_SHORT).show(); return;
+    private void loadEmployees() {
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_EMPLOYEES).get()
+                .addOnSuccessListener(snap -> {
+                    employeeList.clear();
+                    for (QueryDocumentSnapshot d : snap) {
+                        Employee e = d.toObject(Employee.class);
+                        e.setId(d.getId());
+                        employeeList.add(e);
                     }
-                    double target = 0, achieved = 0;
-                    try { target = Double.parseDouble(tStr); achieved = Double.parseDouble(aStr); }
-                    catch (NumberFormatException e) { Toast.makeText(this, "Invalid amounts", Toast.LENGTH_SHORT).show(); return; }
-                    Map<String, Object> data = new HashMap<>();
-                    data.put("userId", ""); data.put("employeeName", name);
-                    data.put("date", date); data.put("month", TextUtils.isEmpty(month) ? date : month);
-                    data.put("targetAmount", target); data.put("achievedAmount", achieved);
-                    data.put("timestamp", System.currentTimeMillis());
-                    FirebaseHelper.getDb().collection(FirebaseHelper.COL_SALES).add(data)
-                            .addOnSuccessListener(r -> { Toast.makeText(this, "Sale record added!", Toast.LENGTH_SHORT).show(); loadData(); })
-                            .addOnFailureListener(e -> Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show());
                 })
-                .setNegativeButton("Cancel", null).show();
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Failed to load employees", Toast.LENGTH_SHORT).show());
+    }
+
+    /** Same form as Admin: Select Employee / Designation / Campaign / Target / Achieved */
+    private void showAddSalesDialog() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.activity_add_sale, null);
+
+        AutoCompleteTextView actEmployee = dialogView.findViewById(R.id.actEmployee);
+        AutoCompleteTextView actDesignation = dialogView.findViewById(R.id.actDesignation);
+        AutoCompleteTextView actCampaign = dialogView.findViewById(R.id.actCampaign);
+        TextInputEditText etTarget = dialogView.findViewById(R.id.etTarget);
+        TextInputEditText etAchieved = dialogView.findViewById(R.id.etAchieved);
+
+        // Employee dropdown
+        List<String> employeeNames = new ArrayList<>();
+        for (Employee e : employeeList) {
+            employeeNames.add(e.getName());
+        }
+        if (employeeNames.isEmpty()) {
+            employeeNames.add("No employees found");
+        }
+        actEmployee.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, employeeNames));
+        actEmployee.setOnClickListener(v -> actEmployee.showDropDown());
+        actEmployee.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) actEmployee.showDropDown();
+        });
+
+        // Designation dropdown
+        String[] designations = new String[]{"Fronters", "Verifiers", "Closers"};
+        actDesignation.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, designations));
+
+        // Campaign dropdown
+        String[] campaigns = new String[]{"MEDICARE", "FE", "Home Warranty"};
+        actCampaign.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, campaigns));
+
+        new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setPositiveButton("SAVE", (dialog, which) -> {
+                    String selectedName = actEmployee.getText().toString().trim();
+                    String designation = actDesignation.getText().toString().trim();
+                    String campaign = actCampaign.getText().toString().trim();
+                    String targetStr = etTarget.getText().toString().trim();
+                    String achievedStr = etAchieved.getText().toString().trim();
+
+                    if (selectedName.isEmpty() || designation.isEmpty() || campaign.isEmpty()
+                            || targetStr.isEmpty() || achievedStr.isEmpty()) {
+                        Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Employee matched = null;
+                    for (Employee e : employeeList) {
+                        if (e.getName() != null && e.getName().equals(selectedName)) {
+                            matched = e;
+                            break;
+                        }
+                    }
+
+                    if (matched == null) {
+                        Toast.makeText(this, "Please select a valid employee from the list", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(matched.getUserId())) {
+                        Toast.makeText(this, "This employee has no linked account yet", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    int target, achieved;
+                    try {
+                        target = Integer.parseInt(targetStr);
+                        achieved = Integer.parseInt(achievedStr);
+                    } catch (NumberFormatException ex) {
+                        Toast.makeText(this, "Invalid numbers", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    SalesReport record = new SalesReport();
+                    record.setUserId(matched.getUserId());
+                    record.setEmployeeName(matched.getName());
+                    record.setDesignation(designation);
+                    record.setCampaign(campaign);
+                    record.setTargetAmount(target);
+                    record.setAchievedAmount(achieved);
+                    record.setTimestamp(System.currentTimeMillis());
+
+                    FirebaseHelper.getDb().collection(FirebaseHelper.COL_SALES)
+                            .add(record)
+                            .addOnSuccessListener(r -> {
+                                Toast.makeText(this, "Sales Reports Added!", Toast.LENGTH_SHORT).show();
+                                loadData();
+                            })
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show());
+                })
+                .setNegativeButton("CANCEL", null)
+                .create()
+                .show();
     }
 
     private void loadData() {
@@ -138,7 +215,6 @@ public class ManagerSalesReportActivity extends AppCompatActivity {
     private void showEmployeeDetailDialog(SalesReport clicked) {
         String empName = clicked.getEmployeeName();
 
-        // Collect all records of this employee
         List<SalesReport> empRecords = new ArrayList<>();
         double empTotalTarget = 0, empTotalAchieved = 0;
         for (SalesReport r : fullList) {
@@ -160,7 +236,6 @@ public class ManagerSalesReportActivity extends AppCompatActivity {
         tvTitle.setPadding(0, 0, 0, 16);
         container.addView(tvTitle);
 
-        // Mini bar chart for this employee
         BarChart empChart = new BarChart(this);
         LinearLayout.LayoutParams chartParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 500);

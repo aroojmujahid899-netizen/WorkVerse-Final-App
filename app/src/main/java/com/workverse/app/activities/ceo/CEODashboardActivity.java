@@ -2,6 +2,7 @@ package com.workverse.app.activities.ceo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.workverse.app.R;
 import com.workverse.app.activities.LoginActivity;
 import com.workverse.app.utils.DateTimeUtils;
 import com.workverse.app.utils.FirebaseHelper;
+import com.workverse.app.utils.NotificationBadgeHelper;
 import com.workverse.app.utils.SharedPrefManager;
 
 public class CEODashboardActivity extends AppCompatActivity {
@@ -23,8 +25,10 @@ public class CEODashboardActivity extends AppCompatActivity {
     TextView tvCEOName, tvTotalEmployees, tvPresentToday,
             tvTotalManagers, tvAvgKPI;
     LinearLayout qaPerformance, qaAttendance, qaFeedback,
-            qaSales, qaNotifications, qaOverallPerformance;
+            qaSales, qaNotifications, qaOverallPerformance, headerTextArea;
     CardView cardEmployees, cardPresentToday, cardManagers, cardAvgKPI;
+    CardView ivProfilePic;
+    TextView tvProfileInitial;
     ImageView ivNotif, btnMenu;
 
     DrawerLayout drawerLayout;
@@ -49,12 +53,23 @@ public class CEODashboardActivity extends AppCompatActivity {
         tvAvgKPI         = findViewById(R.id.tvAvgKPI);
         ivNotif          = findViewById(R.id.ivNotif);
         btnMenu          = findViewById(R.id.btnMenu);
+        ivProfilePic     = findViewById(R.id.ivProfilePic);
+        tvProfileInitial = findViewById(R.id.tvProfileInitial);
+        headerTextArea   = findViewById(R.id.headerTextArea);
 
+        String fullName = spm.getFullName();
         if (tvCEOName != null)
-            tvCEOName.setText(spm.getFullName() != null
-                    ? spm.getFullName() : "CEO");
+            tvCEOName.setText(fullName != null ? fullName : "CEO");
 
-        // Hamburger menu click
+        if (tvProfileInitial != null && fullName != null && !fullName.trim().isEmpty())
+            tvProfileInitial.setText(fullName.trim().substring(0, 1).toUpperCase());
+
+        if (ivProfilePic != null)
+            ivProfilePic.setOnClickListener(v -> go(CEOProfileActivity.class));
+
+        if (headerTextArea != null)
+            headerTextArea.setOnClickListener(v -> go(CEOProfileActivity.class));
+
         if (btnMenu != null) {
             btnMenu.setOnClickListener(v -> {
                 if (drawerLayout != null) {
@@ -67,13 +82,11 @@ public class CEODashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Side drawer menu clicks
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(item -> {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_home) {
-                    // Current Screen
                 } else if (id == R.id.nav_alerts) {
                     go(CEONotificationsActivity.class);
                 } else if (id == R.id.nav_profile) {
@@ -89,7 +102,6 @@ public class CEODashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Clickable stat cards
         cardEmployees    = findViewById(R.id.cardEmployees);
         cardPresentToday = findViewById(R.id.cardPresentToday);
         cardManagers     = findViewById(R.id.cardManagers);
@@ -124,9 +136,6 @@ public class CEODashboardActivity extends AppCompatActivity {
         if (qaOverallPerformance != null)
             qaOverallPerformance.setOnClickListener(v -> go(CEOAllReportsActivity.class));
 
-        if (ivNotif != null)
-            ivNotif.setOnClickListener(v -> go(CEONotificationsActivity.class));
-
         loadStats();
     }
 
@@ -140,7 +149,24 @@ public class CEODashboardActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() { super.onResume(); loadStats(); }
+    protected void onResume() {
+        super.onResume();
+        loadStats();
+        updateNotifBadge();
+    }
+
+    private void updateNotifBadge() {
+        TextView tvNotifBadge = findViewById(R.id.tvNotifBadge);
+        if (tvNotifBadge == null) return;
+        NotificationBadgeHelper.fetchUnreadCount(this, count -> {
+            if (count > 0) {
+                tvNotifBadge.setVisibility(View.VISIBLE);
+                tvNotifBadge.setText(count > 9 ? "9+" : String.valueOf(count));
+            } else {
+                tvNotifBadge.setVisibility(View.GONE);
+            }
+        });
+    }
 
     private void go(Class<?> c) {
         startActivity(new Intent(this, c));

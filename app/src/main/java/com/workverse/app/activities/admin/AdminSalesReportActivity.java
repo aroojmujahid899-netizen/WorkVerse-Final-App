@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
+import com.workverse.app.adapters.SalesReportAdapter;
 import com.workverse.app.models.Employee;
 import com.workverse.app.models.SalesReport;
 import com.workverse.app.utils.FirebaseHelper;
@@ -37,8 +40,9 @@ public class AdminSalesReportActivity extends AppCompatActivity {
     private BarChart barChartSales;
     private RecyclerView rvSales;
     private FloatingActionButton fabAdd;
+    private SalesReportAdapter adapter;
 
-    private List<SalesReport> salesList = new ArrayList<>();
+    private List<SalesReport> fullList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
 
     @Override
@@ -58,12 +62,20 @@ public class AdminSalesReportActivity extends AppCompatActivity {
         fabAdd = findViewById(R.id.fabAdd);
 
         rvSales.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new SalesReportAdapter(new ArrayList<>(), report -> showEmployeeDetailDialog(report));
+        rvSales.setAdapter(adapter);
 
         if (fabAdd != null) {
             fabAdd.setOnClickListener(v -> showAddSalesDialog());
         }
 
         loadEmployees();
+        loadSalesData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadSalesData();
     }
 
@@ -84,28 +96,33 @@ public class AdminSalesReportActivity extends AppCompatActivity {
         FirebaseHelper.getDb().collection("sales_reports")
                 .get()
                 .addOnSuccessListener(snap -> {
-                    salesList.clear();
-                    int totalTarget = 0;
-                    int totalAchieved = 0;
+                    List<SalesReport> list = new ArrayList<>();
+                    double totalTarget = 0, totalAchieved = 0;
 
                     for (var d : snap) {
                         SalesReport r = d.toObject(SalesReport.class);
-                        salesList.add(r);
+                        r.setId(d.getId());
+                        list.add(r);
                         totalTarget += r.getTargetAmount();
                         totalAchieved += r.getAchievedAmount();
                     }
 
-                    tvStat1.setText(String.valueOf(totalTarget));
-                    tvStat2.setText(String.valueOf(totalAchieved));
+                    fullList = list;
+                    tvStat1.setText(String.valueOf((long) totalTarget));
+                    tvStat2.setText(String.valueOf((long) totalAchieved));
 
                     setupBarChart(totalTarget, totalAchieved);
-                });
+                    adapter.updateList(list);
+                })
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to load sales data", Toast.LENGTH_SHORT).show());
     }
 
-    private void setupBarChart(int target, int achieved) {
+    private void setupBarChart(double target, double achieved) {
+        if (barChartSales == null) return;
+
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(1f, target));
-        entries.add(new BarEntry(2f, achieved));
+        entries.add(new BarEntry(1f, (float) target));
+        entries.add(new BarEntry(2f, (float) achieved));
 
         BarDataSet dataSet = new BarDataSet(entries, "Target vs Achieved");
         dataSet.setColors(new int[]{Color.parseColor("#1976D2"), Color.parseColor("#388E3C")});
@@ -119,6 +136,73 @@ public class AdminSalesReportActivity extends AppCompatActivity {
         barChartSales.invalidate();
     }
 
+    private void showEmployeeDetailDialog(SalesReport clicked) {
+        String empName = clicked.getEmployeeName();
+
+        List<SalesReport> empRecords = new ArrayList<>();
+        double empTotalTarget = 0, empTotalAchieved = 0;
+        for (SalesReport r : fullList) {
+            if (empName != null && empName.equals(r.getEmployeeName())) {
+                empRecords.add(r);
+                empTotalTarget += r.getTargetAmount();
+                empTotalAchieved += r.getAchievedAmount();
+            }
+        }
+
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(32, 24, 32, 24);
+
+        TextView tvTitle = new TextView(this);
+        tvTitle.setText(empName + " - Performance");
+        tvTitle.setTextSize(16f);
+        tvTitle.setTextColor(Color.BLACK);
+        tvTitle.setPadding(0, 0, 0, 16);
+        container.addView(tvTitle);
+
+        BarChart empChart = new BarChart(this);
+        LinearLayout.LayoutParams chartParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 500);
+        empChart.setLayoutParams(chartParams);
+
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(1f, (float) empTotalTarget));
+        entries.add(new BarEntry(2f, (float) empTotalAchieved));
+
+        BarDataSet dataSet = new BarDataSet(entries, empName + ": Target vs Achieved");
+        dataSet.setColors(new int[]{Color.parseColor("#1976D2"), Color.parseColor("#388E3C")});
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(12f);
+
+        BarData barData = new BarData(dataSet);
+        empChart.setData(barData);
+        empChart.getDescription().setEnabled(false);
+        empChart.animateY(800);
+
+        container.addView(empChart);
+
+        TextView tvHistoryLabel = new TextView(this);
+        tvHistoryLabel.setText("Records:");
+        tvHistoryLabel.setTextSize(14f);
+        tvHistoryLabel.setTextColor(Color.BLACK);
+        tvHistoryLabel.setPadding(0, 24, 0, 8);
+        container.addView(tvHistoryLabel);
+
+        for (SalesReport r : empRecords) {
+            TextView tvLine = new TextView(this);
+            tvLine.setText(r.getDate() + "  →  Achieved: " + r.getAchievedAmount()
+                    + " / Target: " + r.getTargetAmount());
+            tvLine.setTextSize(13f);
+            tvLine.setPadding(0, 4, 0, 4);
+            container.addView(tvLine);
+        }
+
+        new AlertDialog.Builder(this)
+                .setView(container)
+                .setPositiveButton("Close", null)
+                .show();
+    }
+
     private void showAddSalesDialog() {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.activity_add_sale, null);
 
@@ -128,7 +212,6 @@ public class AdminSalesReportActivity extends AppCompatActivity {
         TextInputEditText etTarget = dialogView.findViewById(R.id.etTarget);
         TextInputEditText etAchieved = dialogView.findViewById(R.id.etAchieved);
 
-        // Setup Employee Dropdown
         List<String> employeeNames = new ArrayList<>();
         for (Employee e : employeeList) {
             employeeNames.add(e.getName());
@@ -142,11 +225,9 @@ public class AdminSalesReportActivity extends AppCompatActivity {
             if (hasFocus) actEmployee.showDropDown();
         });
 
-        // Setup Designation Dropdown
         String[] designations = new String[]{"Fronters", "Verifiers", "Closers"};
         actDesignation.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, designations));
 
-        // Setup Campaign Dropdown
         String[] campaigns = new String[]{"MEDICARE", "FE", "Home Warranty"};
         actCampaign.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, campaigns));
 
@@ -159,12 +240,12 @@ public class AdminSalesReportActivity extends AppCompatActivity {
                     String targetStr = etTarget.getText().toString().trim();
                     String achievedStr = etAchieved.getText().toString().trim();
 
-                    if (selectedName.isEmpty() || designation.isEmpty() || campaign.isEmpty() || targetStr.isEmpty() || achievedStr.isEmpty()) {
+                    if (selectedName.isEmpty() || designation.isEmpty() || campaign.isEmpty()
+                            || targetStr.isEmpty() || achievedStr.isEmpty()) {
                         Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    // Find matching employee to get userId
                     Employee matched = null;
                     for (Employee e : employeeList) {
                         if (e.getName() != null && e.getName().equals(selectedName)) {
@@ -183,13 +264,22 @@ public class AdminSalesReportActivity extends AppCompatActivity {
                         return;
                     }
 
+                    int target, achieved;
+                    try {
+                        target = Integer.parseInt(targetStr);
+                        achieved = Integer.parseInt(achievedStr);
+                    } catch (NumberFormatException ex) {
+                        Toast.makeText(this, "Invalid numbers", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     SalesReport record = new SalesReport();
                     record.setUserId(matched.getUserId());
                     record.setEmployeeName(matched.getName());
                     record.setDesignation(designation);
                     record.setCampaign(campaign);
-                    record.setTargetAmount(Integer.parseInt(targetStr));
-                    record.setAchievedAmount(Integer.parseInt(achievedStr));
+                    record.setTargetAmount(target);
+                    record.setAchievedAmount(achieved);
                     record.setTimestamp(System.currentTimeMillis());
 
                     FirebaseHelper.getDb().collection("sales_reports")
@@ -197,7 +287,9 @@ public class AdminSalesReportActivity extends AppCompatActivity {
                             .addOnSuccessListener(r -> {
                                 Toast.makeText(this, "Sales Reports Added!", Toast.LENGTH_SHORT).show();
                                 loadSalesData();
-                            });
+                            })
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show());
                 })
                 .setNegativeButton("CANCEL", null)
                 .create()

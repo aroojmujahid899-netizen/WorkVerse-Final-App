@@ -23,6 +23,7 @@ import com.workverse.app.utils.FirebaseHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,6 +127,12 @@ public class ManagerPerformanceActivity extends AppCompatActivity {
                         r.setId(d.getId());
                         fullList.add(r);
                     }
+                    // Latest entries (by timestamp) sabse upar
+                    Collections.sort(fullList, (a, b) -> {
+                        long ta = a.getTimestamp() != null ? a.getTimestamp() : 0;
+                        long tb = b.getTimestamp() != null ? b.getTimestamp() : 0;
+                        return Long.compare(tb, ta);
+                    });
                     if (pb != null) pb.setVisibility(View.GONE);
                     applyFilters();
                 })

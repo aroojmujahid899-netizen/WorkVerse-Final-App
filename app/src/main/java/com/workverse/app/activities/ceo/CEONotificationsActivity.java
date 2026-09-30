@@ -36,6 +36,10 @@ public class CEONotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_manager_notifications);
+
+        // NEW: mark all notifications as seen (clears the red badge on dashboard)
+        SharedPrefManager.getInstance(this).setLastNotifSeen(System.currentTimeMillis());
+
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         if (getSupportActionBar() != null)
@@ -123,7 +127,6 @@ public class CEONotificationsActivity extends AppCompatActivity {
                         String targetRole = n.getTargetRole();
                         String sender = n.getSenderName();
 
-                        // FIX: Agar notification CEO ke liye ho OR CEO ne khud send ki ho (History)
                         if ("CEO".equalsIgnoreCase(targetRole) ||
                                 "All".equalsIgnoreCase(targetRole) ||
                                 finalSenderName.equalsIgnoreCase(sender) ||

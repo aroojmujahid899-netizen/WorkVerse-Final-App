@@ -16,6 +16,7 @@ import com.workverse.app.R;
 import com.workverse.app.adapters.AttendanceAdapter;
 import com.workverse.app.models.Attendance;
 import com.workverse.app.utils.FirebaseHelper;
+import com.workverse.app.utils.SharedPrefManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,28 +24,47 @@ import java.util.List;
 import java.util.Map;
 
 public class ManagerAttendanceActivity extends AppCompatActivity {
+
+    public static final String EXTRA_MY_ATTENDANCE = "isMyAttendance";
+
     RecyclerView rv; ProgressBar pb; TextView tvEmpty;
     AutoCompleteTextView actDesignationFilter, actCampaignFilter;
+    View filterRow;
     AttendanceAdapter adapter;
     List<Attendance> fullList = new ArrayList<>();
     Map<String, String> userDesignationMap = new HashMap<>();
     Map<String, String> userCampaignMap = new HashMap<>();
 
+    boolean isMyAttendance = false;
+
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_manager_attendance);
+
+        isMyAttendance = getIntent().getBooleanExtra(EXTRA_MY_ATTENDANCE, false);
+
         Toolbar tb = findViewById(R.id.toolbar); setSupportActionBar(tb);
         tb.setNavigationOnClickListener(v -> finish());
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle(isMyAttendance ? "My Attendance" : "Team Attendance");
+
         rv = findViewById(R.id.recyclerView); pb = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
         actDesignationFilter = findViewById(R.id.actDesignationFilter);
         actCampaignFilter = findViewById(R.id.actCampaignFilter);
+        filterRow = findViewById(R.id.filterRow);
+
+        if (isMyAttendance && filterRow != null) {
+            filterRow.setVisibility(View.GONE);
+        }
 
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AttendanceAdapter(new ArrayList<>());
         rv.setAdapter(adapter);
 
-        setupFilterDropdowns();
+        if (!isMyAttendance) {
+            setupFilterDropdowns();
+        }
         loadUserInfoThenData();
     }
 
@@ -67,7 +87,6 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
     private void loadUserInfoThenData() {
         pb.setVisibility(View.VISIBLE);
 
-        // Build userId -> designation/campaign map from Users collection
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_USERS).get()
                 .addOnSuccessListener(userSnap -> {
                     userDesignationMap.clear();
@@ -85,18 +104,33 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE)
-                .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
-                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
-                .get()
+        String myUid = SharedPrefManager.getInstance(this).getUid();
+
+        com.google.firebase.firestore.Query query;
+
+        if (isMyAttendance) {
+            query = FirebaseHelper.getDb()
+                    .collection(FirebaseHelper.COL_ATTENDANCE)
+                    .whereEqualTo("userId", myUid)
+                    .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                    .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING);
+        } else {
+            query = FirebaseHelper.getDb()
+                    .collection(FirebaseHelper.COL_ATTENDANCE)
+                    .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                    .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING);
+        }
+
+        query.get()
                 .addOnSuccessListener(snap -> {
                     fullList.clear();
                     for (QueryDocumentSnapshot d : snap) {
                         Attendance a = d.toObject(Attendance.class);
-                        if ("Manager".equals(a.getRole())) continue;
+
+                        if (!isMyAttendance && "Manager".equals(a.getRole())) continue;
+
                         a.setId(d.getId());
 
-                        // Fill missing designation/campaign from Users lookup (for old records)
                         if (a.getDesignation() == null || a.getDesignation().isEmpty()) {
                             String fallback = userDesignationMap.get(a.getUserId());
                             if (fallback != null) a.setDesignation(fallback);
@@ -109,7 +143,12 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
                         fullList.add(a);
                     }
                     pb.setVisibility(View.GONE);
-                    applyFilters();
+                    if (isMyAttendance) {
+                        if (tvEmpty != null) tvEmpty.setVisibility(fullList.isEmpty() ? View.VISIBLE : View.GONE);
+                        adapter.updateList(fullList);
+                    } else {
+                        applyFilters();
+                    }
                 })
                 .addOnFailureListener(e -> { pb.setVisibility(View.GONE);
                     Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show(); });

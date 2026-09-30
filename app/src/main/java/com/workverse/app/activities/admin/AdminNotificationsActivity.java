@@ -21,12 +21,19 @@ import com.workverse.app.adapters.NotificationAdapter;
 import com.workverse.app.models.Notification;
 import com.workverse.app.utils.FirebaseHelper;
 import com.workverse.app.utils.SharedPrefManager;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminNotificationsActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb; TextView tvEmpty;
     NotificationAdapter adapter; FloatingActionButton fab;
+
+    // employee list for "specific employee" dropdown
+    List<String> employeeDisplayNames = new ArrayList<>();
+    Map<String, String> employeeNameToUid = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle s) {
@@ -40,39 +47,133 @@ public class AdminNotificationsActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new NotificationAdapter(new ArrayList<>());
         rv.setAdapter(adapter);
-        if (fab != null) fab.setOnClickListener(v -> showSendDialog());
+        if (fab != null) fab.setOnClickListener(v -> loadEmployeesThenShowDialog());
         loadData();
+    }
+
+    private void loadEmployeesThenShowDialog() {
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_USERS)
+                .whereEqualTo("role", "Employee")
+                .get()
+                .addOnSuccessListener(snap -> {
+                    employeeDisplayNames.clear();
+                    employeeNameToUid.clear();
+                    employeeDisplayNames.add("None (use filter above)");
+                    for (QueryDocumentSnapshot d : snap) {
+                        String name = d.getString("fullName");
+                        if (name == null || name.isEmpty()) name = d.getString("name");
+                        if (name == null || name.isEmpty()) name = "Employee";
+                        employeeNameToUid.put(name, d.getId());
+                        employeeDisplayNames.add(name);
+                    }
+                    showSendDialog();
+                })
+                .addOnFailureListener(e -> {
+                    employeeDisplayNames.clear();
+                    employeeDisplayNames.add("None (use filter above)");
+                    showSendDialog();
+                });
     }
 
     private void showSendDialog() {
         android.widget.LinearLayout ll = new android.widget.LinearLayout(this);
         ll.setOrientation(android.widget.LinearLayout.VERTICAL);
         ll.setPadding(48, 24, 48, 24);
-        EditText etTitle = new EditText(this); etTitle.setHint("Title");
-        EditText etMsg   = new EditText(this); etMsg.setHint("Message"); etMsg.setMinLines(2);
-        Spinner spRole   = new Spinner(this);
-        ArrayAdapter<String> ra = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+
+        EditText etTitle = new EditText(this);
+        etTitle.setHint("Title");
+
+        EditText etMsg = new EditText(this);
+        etMsg.setHint("Message");
+        etMsg.setMinLines(2);
+
+        TextView tvLabel0 = new TextView(this);
+        tvLabel0.setText("Send to (Role):");
+        tvLabel0.setPadding(0, 24, 0, 4);
+
+        Spinner spRole = new Spinner(this);
+        ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
                 new String[]{"All", "Employee", "Manager", "CEO"});
-        ra.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spRole.setAdapter(ra);
-        ll.addView(etTitle); ll.addView(etMsg); ll.addView(spRole);
+        roleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spRole.setAdapter(roleAdapter);
+
+        TextView tvLabel1 = new TextView(this);
+        tvLabel1.setText("If Employee: filter by Designation:");
+        tvLabel1.setPadding(0, 24, 0, 4);
+
+        Spinner spDesignation = new Spinner(this);
+        ArrayAdapter<String> desigAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
+                new String[]{"All", "Fronters", "Verifiers", "Closers"});
+        desigAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDesignation.setAdapter(desigAdapter);
+
+        TextView tvLabel2 = new TextView(this);
+        tvLabel2.setText("OR send to a specific employee only:");
+        tvLabel2.setPadding(0, 24, 0, 4);
+
+        Spinner spEmployee = new Spinner(this);
+        ArrayAdapter<String> empAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, employeeDisplayNames);
+        empAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spEmployee.setAdapter(empAdapter);
+
+        ll.addView(etTitle);
+        ll.addView(etMsg);
+        ll.addView(tvLabel0);
+        ll.addView(spRole);
+        ll.addView(tvLabel1);
+        ll.addView(spDesignation);
+        ll.addView(tvLabel2);
+        ll.addView(spEmployee);
 
         new AlertDialog.Builder(this).setTitle("Send Notification").setView(ll)
                 .setPositiveButton("Send", (d, w) -> {
                     String title = etTitle.getText().toString().trim();
                     String msg   = etMsg.getText().toString().trim();
-                    String role  = spRole.getSelectedItem().toString();
+
                     if (TextUtils.isEmpty(title) || TextUtils.isEmpty(msg)) {
                         Toast.makeText(this, "Title and message required", Toast.LENGTH_SHORT).show();
                         return;
                     }
+
                     String sender = SharedPrefManager.getInstance(this).getFullName();
                     if (TextUtils.isEmpty(sender)) sender = "Admin";
 
-                    Notification n = new Notification(title, msg, role, sender);
+                    String selectedEmployeeName = (String) spEmployee.getSelectedItem();
+                    String selectedRole = (String) spRole.getSelectedItem();
+
+                    String targetRole;
+                    String targetDesignation = null;
+                    String targetUserId = null;
+                    String sentToLabel;
+
+                    if (selectedEmployeeName != null && employeeNameToUid.containsKey(selectedEmployeeName)) {
+                        // Specific employee selected - overrides role/designation filters
+                        targetUserId = employeeNameToUid.get(selectedEmployeeName);
+                        targetRole = "Employee";
+                        sentToLabel = selectedEmployeeName;
+                    } else if ("Employee".equals(selectedRole)) {
+                        String designation = (String) spDesignation.getSelectedItem();
+                        targetRole = "Employee";
+                        if (!"All".equals(designation)) {
+                            targetDesignation = designation;
+                            sentToLabel = designation;
+                        } else {
+                            sentToLabel = "All Employees";
+                        }
+                    } else {
+                        targetRole = selectedRole; // All / Manager / CEO
+                        sentToLabel = selectedRole;
+                    }
+
+                    Notification n = new Notification(title, msg, targetRole, sender, targetDesignation, targetUserId);
+
+                    String finalSentToLabel = sentToLabel;
                     FirebaseHelper.getDb().collection(FirebaseHelper.COL_NOTIFICATIONS).add(n)
                             .addOnSuccessListener(r -> {
-                                Toast.makeText(this, "Notification sent to " + role + "!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Sent to " + finalSentToLabel, Toast.LENGTH_SHORT).show();
                                 loadData();
                             })
                             .addOnFailureListener(e ->
@@ -100,7 +201,7 @@ public class AdminNotificationsActivity extends AppCompatActivity {
                         String targetRole = n.getTargetRole();
                         String sender = n.getSenderName();
 
-                        // FIX: Sirf Admin target, All, ya Admin ki apni bheji hui notification dikhegi
+                        // Sirf Admin target, All, ya Admin ki apni bheji hui notification dikhegi
                         if ("Admin".equalsIgnoreCase(targetRole) ||
                                 "All".equalsIgnoreCase(targetRole) ||
                                 finalSenderName.equalsIgnoreCase(sender) ||

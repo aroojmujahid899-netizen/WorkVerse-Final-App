@@ -76,139 +76,83 @@ public class AddEmployeeActivity extends AppCompatActivity {
         });
     }
 
+    // ---------- Live validation ----------
+    private interface Checker { String check(String v); }
+
+    private void watch(TextInputEditText et, TextInputLayout til, Checker c) {
+        et.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int a, int b, int d) {}
+            public void onTextChanged(CharSequence s, int a, int b, int d) {}
+            public void afterTextChanged(Editable s) {
+                til.setError(c.check(s.toString().trim()));
+            }
+        });
+    }
+
     private void setupRealTimeValidation() {
+        watch(etFullName, tilFullName, this::checkName);
+        watch(etUsername, tilUsername, this::checkUsername);
+        watch(etEmail, tilEmail, this::checkEmail);
+        watch(etPhone, tilPhone, this::checkPhone);
+        watch(etPassword, tilPassword, this::checkPassword);
 
-        etFullName.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
-            public void onTextChanged(CharSequence s, int a, int b, int c) {}
-            public void afterTextChanged(Editable s) {
-                String name = s.toString().trim();
-                if (TextUtils.isEmpty(name)) {
-                    tilFullName.setError("Full name is required");
-                } else if (!name.matches("^[a-zA-Z ]+$")) {
-                    tilFullName.setError("Name should contain only letters");
-                } else {
-                    tilFullName.setError(null);
-                }
-            }
-        });
+        actDesignation.setOnItemClickListener((p, v, pos, id) -> tilDesignation.setError(null));
+        actCampaign.setOnItemClickListener((p, v, pos, id) -> tilCampaign.setError(null));
+    }
 
-        etUsername.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
-            public void onTextChanged(CharSequence s, int a, int b, int c) {}
-            public void afterTextChanged(Editable s) {
-                String username = s.toString().trim();
-                if (TextUtils.isEmpty(username)) {
-                    tilUsername.setError("Username is required");
-                } else if (!username.matches("^[a-zA-Z0-9_]+$")) {
-                    tilUsername.setError("Only letters, numbers and underscore allowed");
-                } else {
-                    tilUsername.setError(null);
-                }
-            }
-        });
+    // ---------- Shared checks (identical in Add Manager) ----------
+    private String checkName(String v) {
+        if (TextUtils.isEmpty(v)) return "Full name is required";
+        if (!v.matches("^[a-zA-Z ]+$")) return "Name should contain only letters";
+        return null;
+    }
 
-        etEmail.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
-            public void onTextChanged(CharSequence s, int a, int b, int c) {}
-            public void afterTextChanged(Editable s) {
-                String email = s.toString().trim();
-                if (TextUtils.isEmpty(email)) {
-                    tilEmail.setError("Email is required");
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    tilEmail.setError("Enter a valid email address");
-                } else {
-                    tilEmail.setError(null);
-                }
-            }
-        });
+    private String checkUsername(String v) {
+        if (TextUtils.isEmpty(v)) return "Username is required";
+        if (!v.matches("^[a-zA-Z0-9_]+$")) return "Only letters, numbers and underscore allowed";
+        if (v.length() < 3) return "Username must be at least 3 characters";
+        return null;
+    }
 
-        etPhone.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
-            public void onTextChanged(CharSequence s, int a, int b, int c) {}
-            public void afterTextChanged(Editable s) {
-                String phone = s.toString().trim();
-                if (TextUtils.isEmpty(phone)) {
-                    tilPhone.setError("Phone number is required");
-                } else if (!phone.matches("^[0-9]{10,11}$")) {
-                    tilPhone.setError("Enter a valid phone number (digits only)");
-                } else {
-                    tilPhone.setError(null);
-                }
-            }
-        });
+    private String checkEmail(String v) {
+        if (TextUtils.isEmpty(v)) return "Email is required";
+        if (!Patterns.EMAIL_ADDRESS.matcher(v).matches()) return "Enter a valid email address";
+        return null;
+    }
 
-        etPassword.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
-            public void onTextChanged(CharSequence s, int a, int b, int c) {}
-            public void afterTextChanged(Editable s) {
-                String pass = s.toString().trim();
-                if (TextUtils.isEmpty(pass)) {
-                    tilPassword.setError("Password is required");
-                } else if (pass.length() < 6) {
-                    tilPassword.setError("Password must be at least 6 characters");
-                } else {
-                    tilPassword.setError(null);
-                }
-            }
-        });
+    private String checkPhone(String v) {
+        if (TextUtils.isEmpty(v)) return "Phone number is required";
+        if (!v.matches("^[0-9]+$")) return "Enter a valid phone number (digits only)";
+        if (!v.matches("^03\\d{9}$")) return "Phone number must be 11 digits and start with 03";
+        return null;
+    }
 
-        actDesignation.setOnItemClickListener((parent, view, position, id) -> tilDesignation.setError(null));
-        actCampaign.setOnItemClickListener((parent, view, position, id) -> tilCampaign.setError(null));
+    private String checkPassword(String v) {
+        if (TextUtils.isEmpty(v)) return "Password is required";
+        if (v.length() < 6) return "Password must be at least 6 characters";
+        return null;
+    }
+
+    private boolean show(TextInputLayout til, String err) {
+        til.setError(err);
+        return err == null;
     }
 
     private boolean validateInputs() {
-        boolean isValid = true;
-
-        String name = etFullName.getText().toString().trim();
-        String username = etUsername.getText().toString().trim();
-        String email = etEmail.getText().toString().trim();
-        String phone = etPhone.getText().toString().trim();
-        String desig = actDesignation.getText().toString().trim();
-        String campaign = actCampaign.getText().toString().trim();
-        String pass = etPassword.getText().toString().trim();
-
-        if (TextUtils.isEmpty(name)) {
-            tilFullName.setError("Full name is required"); isValid = false;
-        } else if (!name.matches("^[a-zA-Z ]+$")) {
-            tilFullName.setError("Name should contain only letters"); isValid = false;
-        }
-
-        if (TextUtils.isEmpty(username)) {
-            tilUsername.setError("Username is required"); isValid = false;
-        } else if (!username.matches("^[a-zA-Z0-9_]+$")) {
-            tilUsername.setError("Only letters, numbers and underscore allowed"); isValid = false;
-        }
-
-        if (TextUtils.isEmpty(email)) {
-            tilEmail.setError("Email is required"); isValid = false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            tilEmail.setError("Enter a valid email address"); isValid = false;
-        }
-
-        if (TextUtils.isEmpty(phone)) {
-            tilPhone.setError("Phone number is required"); isValid = false;
-        } else if (!phone.matches("^[0-9]{10,11}$")) {
-            tilPhone.setError("Enter a valid phone number (digits only)"); isValid = false;
-        }
-
-        if (TextUtils.isEmpty(desig)) {
-            tilDesignation.setError("Select a designation"); isValid = false;
-        }
-
-        if (TextUtils.isEmpty(campaign)) {
-            tilCampaign.setError("Select a campaign"); isValid = false;
-        }
-
-        if (TextUtils.isEmpty(pass)) {
-            tilPassword.setError("Password is required"); isValid = false;
-        } else if (pass.length() < 6) {
-            tilPassword.setError("Password must be at least 6 characters"); isValid = false;
-        }
-
-        return isValid;
+        boolean ok = true;
+        ok &= show(tilFullName, checkName(etFullName.getText().toString().trim()));
+        ok &= show(tilUsername, checkUsername(etUsername.getText().toString().trim()));
+        ok &= show(tilEmail, checkEmail(etEmail.getText().toString().trim()));
+        ok &= show(tilPhone, checkPhone(etPhone.getText().toString().trim()));
+        ok &= show(tilDesignation, TextUtils.isEmpty(actDesignation.getText().toString().trim())
+                ? "Please select Designation" : null);
+        ok &= show(tilCampaign, TextUtils.isEmpty(actCampaign.getText().toString().trim())
+                ? "Please select Campaign" : null);
+        ok &= show(tilPassword, checkPassword(etPassword.getText().toString().trim()));
+        return ok;
     }
 
+    // ---------- Save ----------
     private void addEmployee() {
         String name = etFullName.getText().toString().trim();
         String username = etUsername.getText().toString().trim();

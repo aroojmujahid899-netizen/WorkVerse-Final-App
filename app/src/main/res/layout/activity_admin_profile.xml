@@ -3,20 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" android:background="@color/background">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:background="@drawable/gradient_header" android:orientation="vertical"
-        android:padding="24dp" android:gravity="center">
-        <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/ivProfile"
-            android:layout_width="80dp" android:layout_height="80dp"
-            android:src="@drawable/ic_person" app:civ_border_color="#FFFFFF"
-            app:civ_border_width="3dp" android:layout_marginBottom="12dp"/>
-        <TextView android:id="@+id/tvName" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Admin Name"
-            android:textColor="#FFFFFF" android:textSize="18sp" android:fontFamily="sans-serif-bold"/>
-        <TextView android:id="@+id/tvRole" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Admin"
-            android:textColor="#BBDEFB" android:textSize="13sp" android:layout_marginTop="4dp"/>
-    </LinearLayout>
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@drawable/gradient_header">
+
+        <ImageView android:id="@+id/btnBack"
+            android:layout_width="28dp" android:layout_height="28dp"
+            android:layout_gravity="top|start"
+            android:layout_margin="16dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_back"
+            app:tint="#FFFFFF"
+            android:clickable="true" android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="24dp" android:gravity="center">
+            <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/ivProfile"
+                android:layout_width="80dp" android:layout_height="80dp"
+                android:src="@drawable/ic_person" app:civ_border_color="#FFFFFF"
+                app:civ_border_width="3dp" android:layout_marginBottom="12dp"/>
+            <TextView android:id="@+id/tvName" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Admin Name"
+                android:textColor="#FFFFFF" android:textSize="18sp" android:fontFamily="sans-serif-bold"/>
+            <TextView android:id="@+id/tvRole" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Admin"
+                android:textColor="#BBDEFB" android:textSize="13sp" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+    </FrameLayout>
+
     <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="vertical" android:padding="16dp">
@@ -30,10 +45,6 @@
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginBottom="10dp"/>
                     <TextView android:id="@+id/tvPhone" android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:text="Phone: —"
-                        android:textSize="14sp" android:textColor="@color/text_secondary" android:layout_marginBottom="10dp"/>
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" android:layout_marginBottom="10dp"/>
-                    <TextView android:id="@+id/tvDepartment" android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:text="Department: —"
                         android:textSize="14sp" android:textColor="@color/text_secondary"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

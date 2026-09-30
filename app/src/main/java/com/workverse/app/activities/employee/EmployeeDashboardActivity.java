@@ -2,6 +2,7 @@ package com.workverse.app.activities.employee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,13 +16,17 @@ import com.google.android.material.navigation.NavigationView;
 import com.workverse.app.R;
 import com.workverse.app.activities.LoginActivity;
 import com.workverse.app.utils.FirebaseHelper;
+import com.workverse.app.utils.NotificationBadgeHelper;
 import com.workverse.app.utils.SharedPrefManager;
 
 public class EmployeeDashboardActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageView btnMenu, ivNotif;
+    ImageView btnMenu;
+    LinearLayout headerProfile;
+    CardView ivProfilePic;
+    TextView tvProfileInitial;
     CardView cardPresentDays, cardLeaveCount;
     SharedPrefManager spm;
 
@@ -35,12 +40,31 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         btnMenu = findViewById(R.id.btnMenu);
-        ivNotif = findViewById(R.id.ivNotif);
+        headerProfile = findViewById(R.id.headerProfile);
+        ivProfilePic = findViewById(R.id.ivProfilePic);
+        tvProfileInitial = findViewById(R.id.tvProfileInitial);
+
+        String fullName = spm.getFullName();
 
         TextView tvName = findViewById(R.id.tvUserName);
-        if (tvName != null) tvName.setText(spm.getFullName() != null ? spm.getFullName() : "Employee");
+        if (tvName != null)
+            tvName.setText(fullName != null ? fullName : "Employee");
 
-        // Hamburger menu click
+        if (tvProfileInitial != null) {
+            String initial = (fullName != null && !fullName.trim().isEmpty())
+                    ? String.valueOf(fullName.trim().charAt(0)).toUpperCase()
+                    : "E";
+            tvProfileInitial.setText(initial);
+        }
+
+        if (headerProfile != null)
+            headerProfile.setOnClickListener(v ->
+                    startActivity(new Intent(this, EmployeeProfileActivity.class)));
+
+        if (ivProfilePic != null)
+            ivProfilePic.setOnClickListener(v ->
+                    startActivity(new Intent(this, EmployeeProfileActivity.class)));
+
         if (btnMenu != null) {
             btnMenu.setOnClickListener(v -> {
                 if (drawerLayout != null) {
@@ -53,13 +77,11 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Side drawer menu clicks
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(item -> {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_home) {
-                    // Current Screen
                 } else if (id == R.id.nav_alerts) {
                     startActivity(new Intent(this, EmployeeNotificationsActivity.class));
                 } else if (id == R.id.nav_profile) {
@@ -75,33 +97,51 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             });
         }
 
-        // Clickable stat cards
         cardPresentDays = findViewById(R.id.cardPresentDays);
         cardLeaveCount = findViewById(R.id.cardLeaveCount);
 
         if (cardPresentDays != null)
-            cardPresentDays.setOnClickListener(v -> startActivity(new Intent(this, ViewAttendanceActivity.class)));
+            cardPresentDays.setOnClickListener(v ->
+                    startActivity(new Intent(this, ViewAttendanceActivity.class)));
         if (cardLeaveCount != null)
-            cardLeaveCount.setOnClickListener(v -> startActivity(new Intent(this, ViewLeaveStatusActivity.class)));
+            cardLeaveCount.setOnClickListener(v ->
+                    startActivity(new Intent(this, ViewLeaveStatusActivity.class)));
 
-        // Quick Actions
-        LinearLayout qaAttendance = findViewById(R.id.qaAttendance);
-        LinearLayout qaLeave = findViewById(R.id.qaLeave);
-        LinearLayout qaPerformance = findViewById(R.id.qaPerformance);
-        LinearLayout qaFeedback = findViewById(R.id.qaFeedback);
-        LinearLayout qaSales = findViewById(R.id.qaSales);
+        LinearLayout qaAttendance    = findViewById(R.id.qaAttendance);
+        LinearLayout qaLeave         = findViewById(R.id.qaLeave);
+        LinearLayout qaPerformance   = findViewById(R.id.qaPerformance);
+        LinearLayout qaFeedback      = findViewById(R.id.qaFeedback);
+        LinearLayout qaSales         = findViewById(R.id.qaSales);
         LinearLayout qaNotifications = findViewById(R.id.qaNotifications);
-        LinearLayout qaFaq = findViewById(R.id.qaFaq);
+        LinearLayout qaFaq           = findViewById(R.id.qaFaq);
 
-        if (qaAttendance != null) qaAttendance.setOnClickListener(v -> startActivity(new Intent(this, MarkAttendanceActivity.class)));
-        if (qaLeave != null) qaLeave.setOnClickListener(v -> startActivity(new Intent(this, ViewLeaveStatusActivity.class)));
-        if (qaPerformance != null) qaPerformance.setOnClickListener(v -> startActivity(new Intent(this, EmployeePerformanceActivity.class)));
-        if (qaFeedback != null) qaFeedback.setOnClickListener(v -> startActivity(new Intent(this, SubmitFeedbackActivity.class)));
-        if (qaSales != null) qaSales.setOnClickListener(v -> startActivity(new Intent(this, EmployeeSalesReportActivity.class)));
-        if (qaNotifications != null) qaNotifications.setOnClickListener(v -> startActivity(new Intent(this, EmployeeNotificationsActivity.class)));
-        if (qaFaq != null) qaFaq.setOnClickListener(v -> startActivity(new Intent(this, ViewFAQActivity.class)));
+        if (qaAttendance != null)
+            qaAttendance.setOnClickListener(v ->
+                    startActivity(new Intent(this, MarkAttendanceActivity.class)));
 
-        if (ivNotif != null) ivNotif.setOnClickListener(v -> startActivity(new Intent(this, EmployeeNotificationsActivity.class)));
+        if (qaLeave != null)
+            qaLeave.setOnClickListener(v ->
+                    startActivity(new Intent(this, ApplyLeaveActivity.class)));
+
+        if (qaPerformance != null)
+            qaPerformance.setOnClickListener(v ->
+                    startActivity(new Intent(this, EmployeePerformanceActivity.class)));
+
+        if (qaFeedback != null)
+            qaFeedback.setOnClickListener(v ->
+                    startActivity(new Intent(this, SubmitFeedbackActivity.class)));
+
+        if (qaSales != null)
+            qaSales.setOnClickListener(v ->
+                    startActivity(new Intent(this, AddSaleActivity.class)));
+
+        if (qaNotifications != null)
+            qaNotifications.setOnClickListener(v ->
+                    startActivity(new Intent(this, EmployeeNotificationsActivity.class)));
+
+        if (qaFaq != null)
+            qaFaq.setOnClickListener(v ->
+                    startActivity(new Intent(this, ViewFAQActivity.class)));
 
         loadStats();
     }
@@ -119,22 +159,47 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadStats();
+        updateNotifBadge();
+    }
+
+    private void updateNotifBadge() {
+        TextView tvNotifBadge = findViewById(R.id.tvNotifBadge);
+        if (tvNotifBadge == null) return;
+        NotificationBadgeHelper.fetchUnreadCount(this, count -> {
+            if (count > 0) {
+                tvNotifBadge.setVisibility(View.VISIBLE);
+                tvNotifBadge.setText(count > 9 ? "9+" : String.valueOf(count));
+            } else {
+                tvNotifBadge.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void loadStats() {
         String uid = spm.getUid();
+        if (uid == null) return;
+
         TextView tvPresent = findViewById(R.id.tvPresentDays);
-        TextView tvLeave = findViewById(R.id.tvLeaveCount);
+        TextView tvLeave   = findViewById(R.id.tvLeaveCount);
 
-        if (uid != null) {
-            FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE)
-                    .whereEqualTo("userId", uid).whereEqualTo("status", "Present").get()
-                    .addOnSuccessListener(s -> { if (tvPresent != null) tvPresent.setText(String.valueOf(s.size())); });
+        FirebaseHelper.getDb()
+                .collection(FirebaseHelper.COL_ATTENDANCE)
+                .whereEqualTo("userId", uid)
+                .whereEqualTo("status", "Present")
+                .get()
+                .addOnSuccessListener(s -> {
+                    if (tvPresent != null)
+                        tvPresent.setText(String.valueOf(s.size()));
+                });
 
-            FirebaseHelper.getDb().collection(FirebaseHelper.COL_LEAVES)
-                    .whereEqualTo("userId", uid).get()
-                    .addOnSuccessListener(s -> { if (tvLeave != null) tvLeave.setText(String.valueOf(s.size())); });
-        }
+        FirebaseHelper.getDb()
+                .collection(FirebaseHelper.COL_LEAVES)
+                .whereEqualTo("userId", uid)
+                .get()
+                .addOnSuccessListener(s -> {
+                    if (tvLeave != null)
+                        tvLeave.setText(String.valueOf(s.size()));
+                });
     }
 
     private void logout() {

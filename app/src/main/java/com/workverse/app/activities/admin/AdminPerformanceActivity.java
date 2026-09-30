@@ -24,18 +24,22 @@ import com.workverse.app.models.PerformanceReport;
 import com.workverse.app.utils.FirebaseHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 
 public class AdminPerformanceActivity extends AppCompatActivity {
 
     RecyclerView rv;
     ProgressBar pb;
     TextView tvEmpty, tvAvgKpi, tvTotalRecords, tvNeedsReview;
-    AutoCompleteTextView actCampaignFilter;
+    AutoCompleteTextView actDesignationFilter, actCampaignFilter;
     PerformanceAdapter adapter;
     FloatingActionButton fabAddPerformance;
     List<PerformanceReport> fullList = new ArrayList<>();
+    Map<String, String> userDesignationMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle s) {
@@ -53,6 +57,7 @@ public class AdminPerformanceActivity extends AppCompatActivity {
         tvAvgKpi = findViewById(R.id.tvAvgKpi);
         tvTotalRecords = findViewById(R.id.tvTotalRecords);
         tvNeedsReview = findViewById(R.id.tvNeedsReview);
+        actDesignationFilter = findViewById(R.id.actDesignationFilter);
         actCampaignFilter = findViewById(R.id.actCampaignFilter);
 
         fabAddPerformance = findViewById(R.id.fabAdd);
@@ -65,17 +70,46 @@ public class AdminPerformanceActivity extends AppCompatActivity {
         adapter = new PerformanceAdapter(new ArrayList<>());
         rv.setAdapter(adapter);
 
-        loadData();
+        setupFilterDropdowns();
+        loadUserInfoThenData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadData();
+        loadUserInfoThenData();
+    }
+
+    private void setupFilterDropdowns() {
+        List<String> desigList = Arrays.asList("All", "Fronters", "Verifiers", "Closers");
+        List<String> campList = Arrays.asList("All", "MEDICARE", "FE", "Home Warranty");
+
+        actDesignationFilter.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, desigList));
+        actCampaignFilter.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, campList));
+
+        if (actDesignationFilter.getText().toString().isEmpty()) actDesignationFilter.setText("All", false);
+        if (actCampaignFilter.getText().toString().isEmpty()) actCampaignFilter.setText("All", false);
+
+        actDesignationFilter.setOnItemClickListener((parent, view, position, id) -> applyFilters());
+        actCampaignFilter.setOnItemClickListener((parent, view, position, id) -> applyFilters());
+    }
+
+    private void loadUserInfoThenData() {
+        pb.setVisibility(View.VISIBLE);
+
+        FirebaseHelper.getDb().collection(FirebaseHelper.COL_USERS).get()
+                .addOnSuccessListener(userSnap -> {
+                    userDesignationMap.clear();
+                    for (QueryDocumentSnapshot d : userSnap) {
+                        String desig = d.getString("designation");
+                        if (desig != null) userDesignationMap.put(d.getId(), desig);
+                    }
+                    loadData();
+                })
+                .addOnFailureListener(e -> loadData());
     }
 
     private void loadData() {
-        pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb()
                 .collection(FirebaseHelper.COL_PERFORMANCE)
                 .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
@@ -88,8 +122,7 @@ public class AdminPerformanceActivity extends AppCompatActivity {
                         fullList.add(r);
                     }
                     pb.setVisibility(View.GONE);
-                    setupCampaignFilter();
-                    applyFilter(actCampaignFilter.getText().toString());
+                    applyFilters();
                 })
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
@@ -97,33 +130,20 @@ public class AdminPerformanceActivity extends AppCompatActivity {
                 });
     }
 
-    private void setupCampaignFilter() {
-        LinkedHashSet<String> campaigns = new LinkedHashSet<>();
-        campaigns.add("All");
-        for (PerformanceReport r : fullList) {
-            if (r.getCampaign() != null && !r.getCampaign().isEmpty()) {
-                campaigns.add(r.getCampaign());
-            }
-        }
-        List<String> campaignList = new ArrayList<>(campaigns);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, campaignList);
-        actCampaignFilter.setAdapter(adapter);
+    private void applyFilters() {
+        String desig = actDesignationFilter.getText().toString();
+        String camp = actCampaignFilter.getText().toString();
 
-        if (actCampaignFilter.getText().toString().isEmpty()) {
-            actCampaignFilter.setText("All", false);
-        }
-
-        actCampaignFilter.setOnItemClickListener((parent, view, position, id) ->
-                applyFilter(campaignList.get(position)));
-    }
-
-    private void applyFilter(String campaign) {
         List<PerformanceReport> filtered = new ArrayList<>();
         double totalKpi = 0;
         int needsReviewCount = 0;
 
         for (PerformanceReport r : fullList) {
-            if ("All".equals(campaign) || campaign.equals(r.getCampaign())) {
+            String userDesig = userDesignationMap.get(r.getUserId());
+            boolean desigMatch = "All".equals(desig) || desig.equals(userDesig);
+            boolean campMatch = "All".equals(camp) || camp.equals(r.getCampaign());
+
+            if (desigMatch && campMatch) {
                 filtered.add(r);
                 totalKpi += r.getDisplayKpi();
                 if (r.getDisplayKpi() < 50) needsReviewCount++;
@@ -177,7 +197,7 @@ public class AdminPerformanceActivity extends AppCompatActivity {
         rv.postDelayed(() -> {
             pb.setVisibility(View.GONE);
             Toast.makeText(this, "AI Sync triggered for " + count[0] + " users.", Toast.LENGTH_SHORT).show();
-            loadData();
+            loadUserInfoThenData();
         }, 4000);
     }
 }
