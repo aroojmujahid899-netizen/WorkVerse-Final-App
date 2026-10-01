@@ -1,7 +1,9 @@
 package com.workverse.app.activities.admin;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -12,18 +14,28 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
 import com.workverse.app.models.Role;
 import com.workverse.app.utils.FirebaseHelper;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 public class ManageRolesActivity extends AppCompatActivity {
+
+    // Roles that can never be edited or deleted, matched case-insensitively.
+    private static final java.util.Set<String> PROTECTED_ROLES =
+            new java.util.HashSet<>(java.util.Arrays.asList("admin", "ceo"));
+
     RecyclerView rv; ProgressBar pb; TextView tvEmpty; FloatingActionButton fabAdd;
-    RoleAdapter adapter; List<Role> list = new ArrayList<>();
+    TextInputEditText etSearch;
+    RoleAdapter adapter;
+    List<Role> fullList = new ArrayList<>();
 
     @Override protected void onCreate(Bundle s) {
         super.onCreate(s);
@@ -34,32 +46,83 @@ public class ManageRolesActivity extends AppCompatActivity {
         pb = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
         fabAdd = findViewById(R.id.fabAdd);
+        etSearch = findViewById(R.id.etSearch);
+
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RoleAdapter(new ArrayList<>(), new RoleAdapter.Listener() {
             @Override public void onEdit(Role r) { showEditDialog(r); }
             @Override public void onDelete(Role r) { confirmDelete(r); }
+            @Override public void onProtectedTap(Role r) {
+                Toast.makeText(ManageRolesActivity.this,
+                        r.getName() + " role can't be edited or deleted", Toast.LENGTH_SHORT).show();
+            }
         });
         rv.setAdapter(adapter);
+
         if (fabAdd != null) fabAdd.setOnClickListener(v -> showAddDialog());
+
+        if (etSearch != null) {
+            etSearch.addTextChangedListener(new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
+                @Override public void onTextChanged(CharSequence s, int a, int b, int c) {}
+                @Override public void afterTextChanged(Editable s) { filterRoles(s.toString()); }
+            });
+        }
+
         loadRoles();
     }
 
     @Override protected void onResume() { super.onResume(); loadRoles(); }
 
+    private boolean isProtected(Role r) {
+        return r.getName() != null && PROTECTED_ROLES.contains(r.getName().trim().toLowerCase(Locale.ROOT));
+    }
+
+    // Admin first, then CEO, then everything else in its existing order.
+    private int rankOf(Role r) {
+        if (r.getName() == null) return 2;
+        String n = r.getName().trim().toLowerCase(Locale.ROOT);
+        if (n.equals("admin")) return 0;
+        if (n.equals("ceo")) return 1;
+        return 2;
+    }
+
+    private void sortWithProtectedFirst(List<Role> roles) {
+        roles.sort((a, b) -> rankOf(a) - rankOf(b));
+    }
+
+    private void filterRoles(String query) {
+        String q = query == null ? "" : query.trim().toLowerCase(Locale.ROOT);
+        List<Role> filtered = new ArrayList<>();
+        if (q.isEmpty()) {
+            filtered.addAll(fullList);
+        } else {
+            for (Role r : fullList) {
+                if (r.getName() != null && r.getName().toLowerCase(Locale.ROOT).contains(q)) {
+                    filtered.add(r);
+                }
+            }
+        }
+        sortWithProtectedFirst(filtered);
+        adapter.updateList(filtered);
+        if (tvEmpty != null) tvEmpty.setVisibility(filtered.isEmpty() ? View.VISIBLE : View.GONE);
+    }
+
     private void loadRoles() {
         pb.setVisibility(View.VISIBLE);
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_ROLES).get()
                 .addOnSuccessListener(snap -> {
-                    list.clear();
+                    fullList.clear();
                     for (QueryDocumentSnapshot d : snap) {
-                        Role r = d.toObject(Role.class); r.setId(d.getId()); list.add(r);
+                        Role r = d.toObject(Role.class); r.setId(d.getId()); fullList.add(r);
                     }
                     pb.setVisibility(View.GONE);
-                    if (list.isEmpty()) {
+                    if (fullList.isEmpty()) {
                         seedDefaultRoles();
                     } else {
-                        if (tvEmpty != null) tvEmpty.setVisibility(View.GONE);
-                        adapter.updateList(new ArrayList<>(list));
+                        String currentQuery = etSearch != null && etSearch.getText() != null
+                                ? etSearch.getText().toString() : "";
+                        filterRoles(currentQuery);
                     }
                 })
                 .addOnFailureListener(e -> {
@@ -77,12 +140,11 @@ public class ManageRolesActivity extends AppCompatActivity {
         Toast.makeText(this, "Default roles initialized", Toast.LENGTH_SHORT).show();
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_ROLES).get()
                 .addOnSuccessListener(snap -> {
-                    list.clear();
+                    fullList.clear();
                     for (QueryDocumentSnapshot d : snap) {
-                        Role r = d.toObject(Role.class); r.setId(d.getId()); list.add(r);
+                        Role r = d.toObject(Role.class); r.setId(d.getId()); fullList.add(r);
                     }
-                    adapter.updateList(new ArrayList<>(list));
-                    if (tvEmpty != null) tvEmpty.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+                    filterRoles(etSearch != null && etSearch.getText() != null ? etSearch.getText().toString() : "");
                 });
     }
 
@@ -109,6 +171,10 @@ public class ManageRolesActivity extends AppCompatActivity {
     }
 
     private void showEditDialog(Role role) {
+        if (isProtected(role)) {
+            Toast.makeText(this, role.getName() + " role can't be edited or deleted", Toast.LENGTH_SHORT).show();
+            return;
+        }
         EditText etName = new EditText(this); etName.setHint("Role name"); etName.setText(role.getName());
         EditText etDesc = new EditText(this); etDesc.setHint("Description"); etDesc.setText(role.getDescription());
         android.widget.LinearLayout ll = new android.widget.LinearLayout(this);
@@ -131,6 +197,10 @@ public class ManageRolesActivity extends AppCompatActivity {
     }
 
     private void confirmDelete(Role role) {
+        if (isProtected(role)) {
+            Toast.makeText(this, role.getName() + " role can't be edited or deleted", Toast.LENGTH_SHORT).show();
+            return;
+        }
         new AlertDialog.Builder(this)
                 .setTitle("Delete Role")
                 .setMessage("Delete \"" + role.getName() + "\"? This cannot be undone.")
@@ -143,21 +213,42 @@ public class ManageRolesActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", null).show();
     }
 
-    // Adapter for roles — now with working Edit / Delete
+    // Adapter for roles — Edit/Delete disabled for Admin and CEO.
     static class RoleAdapter extends RecyclerView.Adapter<RoleAdapter.VH> {
-        interface Listener { void onEdit(Role r); void onDelete(Role r); }
+        interface Listener {
+            void onEdit(Role r);
+            void onDelete(Role r);
+            void onProtectedTap(Role r);
+        }
         private List<Role> list;
         private final Listener listener;
         RoleAdapter(List<Role> l, Listener listener) { this.list = l; this.listener = listener; }
         void updateList(List<Role> nl) { list = nl; notifyDataSetChanged(); }
+
+        private boolean isProtected(Role r) {
+            return r.getName() != null &&
+                    (r.getName().trim().equalsIgnoreCase("Admin") || r.getName().trim().equalsIgnoreCase("CEO"));
+        }
+
         @Override public VH onCreateViewHolder(ViewGroup p, int t) {
             return new VH(LayoutInflater.from(p.getContext()).inflate(R.layout.item_role, p, false));
         }
         @Override public void onBindViewHolder(VH h, int pos) {
             Role r = list.get(pos);
             h.tvRoleName.setText(r.getName());
-            h.ivEdit.setOnClickListener(v -> listener.onEdit(r));
-            h.ivDelete.setOnClickListener(v -> listener.onDelete(r));
+
+            boolean protectedRole = isProtected(r);
+            float alpha = protectedRole ? 0.35f : 1f;
+            h.ivEdit.setAlpha(alpha);
+            h.ivDelete.setAlpha(alpha);
+
+            if (protectedRole) {
+                h.ivEdit.setOnClickListener(v -> listener.onProtectedTap(r));
+                h.ivDelete.setOnClickListener(v -> listener.onProtectedTap(r));
+            } else {
+                h.ivEdit.setOnClickListener(v -> listener.onEdit(r));
+                h.ivDelete.setOnClickListener(v -> listener.onDelete(r));
+            }
         }
         @Override public int getItemCount() { return list.size(); }
         static class VH extends RecyclerView.ViewHolder {

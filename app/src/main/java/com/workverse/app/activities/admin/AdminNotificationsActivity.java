@@ -31,7 +31,6 @@ public class AdminNotificationsActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb; TextView tvEmpty;
     NotificationAdapter adapter; FloatingActionButton fab;
 
-    // employee list for "specific employee" dropdown
     List<String> employeeDisplayNames = new ArrayList<>();
     Map<String, String> employeeNameToUid = new HashMap<>();
 
@@ -39,6 +38,10 @@ public class AdminNotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_admin_notifications);
+
+        // Mark notifications as "seen" the moment this screen opens
+        SharedPrefManager.getInstance(this).setLastNotifSeen(System.currentTimeMillis());
+
         Toolbar tb = findViewById(R.id.toolbar); setSupportActionBar(tb);
         if (getSupportActionBar() != null) getSupportActionBar().setTitle("Notifications");
         tb.setNavigationOnClickListener(v -> finish());
@@ -150,7 +153,6 @@ public class AdminNotificationsActivity extends AppCompatActivity {
                     String sentToLabel;
 
                     if (selectedEmployeeName != null && employeeNameToUid.containsKey(selectedEmployeeName)) {
-                        // Specific employee selected - overrides role/designation filters
                         targetUserId = employeeNameToUid.get(selectedEmployeeName);
                         targetRole = "Employee";
                         sentToLabel = selectedEmployeeName;
@@ -164,7 +166,7 @@ public class AdminNotificationsActivity extends AppCompatActivity {
                             sentToLabel = "All Employees";
                         }
                     } else {
-                        targetRole = selectedRole; // All / Manager / CEO
+                        targetRole = selectedRole;
                         sentToLabel = selectedRole;
                     }
 
@@ -201,7 +203,6 @@ public class AdminNotificationsActivity extends AppCompatActivity {
                         String targetRole = n.getTargetRole();
                         String sender = n.getSenderName();
 
-                        // Sirf Admin target, All, ya Admin ki apni bheji hui notification dikhegi
                         if ("Admin".equalsIgnoreCase(targetRole) ||
                                 "All".equalsIgnoreCase(targetRole) ||
                                 finalSenderName.equalsIgnoreCase(sender) ||

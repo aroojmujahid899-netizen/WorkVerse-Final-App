@@ -18,7 +18,7 @@ public class NotificationBadgeHelper {
         String myName = spm.getFullName();
         if (myName == null) myName = "";
 
-        final String finalRole = role != null ? role : "";
+        final String finalRole = role != null ? role.trim() : "";
         final String finalMyName = myName;
 
         FirebaseHelper.getDb().collection(FirebaseHelper.COL_NOTIFICATIONS).get()
@@ -34,36 +34,31 @@ public class NotificationBadgeHelper {
 
                         boolean matches;
 
-                        switch (finalRole) {
-                            case "Admin":
-                                matches = "Admin".equalsIgnoreCase(targetRole)
-                                        || "All".equalsIgnoreCase(targetRole)
-                                        || finalMyName.equalsIgnoreCase(sender)
-                                        || "Admin".equalsIgnoreCase(sender);
-                                break;
+                        if (finalRole.equalsIgnoreCase("Admin")) {
+                            matches = "Admin".equalsIgnoreCase(targetRole)
+                                    || "All".equalsIgnoreCase(targetRole)
+                                    || finalMyName.equalsIgnoreCase(sender)
+                                    || "Admin".equalsIgnoreCase(sender);
 
-                            case "CEO":
-                                matches = "CEO".equalsIgnoreCase(targetRole)
-                                        || "All".equalsIgnoreCase(targetRole);
-                                break;
+                        } else if (finalRole.equalsIgnoreCase("CEO")) {
+                            matches = "CEO".equalsIgnoreCase(targetRole)
+                                    || "All".equalsIgnoreCase(targetRole);
 
-                            case "Manager":
-                                matches = "Manager".equalsIgnoreCase(targetRole)
-                                        || "All".equalsIgnoreCase(targetRole);
-                                break;
+                        } else if (finalRole.equalsIgnoreCase("Manager")) {
+                            matches = "Manager".equalsIgnoreCase(targetRole)
+                                    || "All".equalsIgnoreCase(targetRole);
 
-                            case "Employee":
-                                if (targetUserId != null && !targetUserId.isEmpty()) {
-                                    matches = targetUserId.equals(myUid);
-                                } else if ("Employee".equalsIgnoreCase(targetRole)) {
-                                    matches = true;
-                                } else {
-                                    matches = "All".equalsIgnoreCase(targetRole);
-                                }
-                                break;
+                        } else if (finalRole.equalsIgnoreCase("Employee")) {
+                            if (targetUserId != null && !targetUserId.isEmpty()) {
+                                matches = targetUserId.equals(myUid);
+                            } else if ("Employee".equalsIgnoreCase(targetRole)) {
+                                matches = true;
+                            } else {
+                                matches = "All".equalsIgnoreCase(targetRole);
+                            }
 
-                            default:
-                                matches = false;
+                        } else {
+                            matches = false;
                         }
 
                         if (matches) count++;

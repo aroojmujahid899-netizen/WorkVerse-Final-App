@@ -25,6 +25,7 @@ public class ManagerDashboardActivity extends AppCompatActivity {
     NavigationView navigationView;
     ImageView btnMenu;
     View headerProfile;
+    CardView ivProfilePic;
     TextView tvProfileInitial;
     CardView cardPresentDays, cardLeaveCount;
     SharedPrefManager spm;
@@ -40,6 +41,7 @@ public class ManagerDashboardActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         btnMenu = findViewById(R.id.btnMenu);
         headerProfile = findViewById(R.id.headerProfile);
+        ivProfilePic = findViewById(R.id.ivProfilePic);
         tvProfileInitial = findViewById(R.id.tvProfileInitial);
 
         TextView tvName = findViewById(R.id.tvUserName);
@@ -56,6 +58,10 @@ public class ManagerDashboardActivity extends AppCompatActivity {
 
         if (headerProfile != null)
             headerProfile.setOnClickListener(v ->
+                    startActivity(new Intent(this, ManagerProfileActivity.class)));
+
+        if (ivProfilePic != null)
+            ivProfilePic.setOnClickListener(v ->
                     startActivity(new Intent(this, ManagerProfileActivity.class)));
 
         if (btnMenu != null) {

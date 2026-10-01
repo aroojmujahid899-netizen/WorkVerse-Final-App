@@ -25,6 +25,8 @@ public class ManagerMarkAttendanceActivity extends AppCompatActivity {
     Button btnCheckIn, btnCheckOut;
     ProgressBar pb;
     Handler handler = new Handler();
+    boolean checkedIn = false;
+    boolean alreadyCheckedOutToday = false;
     String attendanceId = null;
     Runnable clockRunnable;
 
@@ -71,19 +73,22 @@ public class ManagerMarkAttendanceActivity extends AppCompatActivity {
                         attendanceId = snap.getDocuments().get(0).getId();
                         String co = snap.getDocuments().get(0).getString("checkOutTime");
                         if (co != null && !co.isEmpty()) {
+                            alreadyCheckedOutToday = true;
                             tvStatus.setText("Checked Out: " + co);
-                            btnCheckIn.setEnabled(false);
-                            btnCheckOut.setEnabled(false);
                         } else {
+                            checkedIn = true;
                             tvStatus.setText("Checked In \u2713");
-                            btnCheckIn.setEnabled(false);
-                            btnCheckOut.setEnabled(true);
                         }
                     }
                 });
     }
 
     private void markCheckIn() {
+        if (checkedIn || attendanceId != null) {
+            Toast.makeText(this, "You can only check in once per day", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         pb.setVisibility(View.VISIBLE);
         btnCheckIn.setEnabled(false);
         SharedPrefManager spm = SharedPrefManager.getInstance(this);
@@ -110,9 +115,10 @@ public class ManagerMarkAttendanceActivity extends AppCompatActivity {
                     FirebaseHelper.getDb().collection(FirebaseHelper.COL_ATTENDANCE).add(att)
                             .addOnSuccessListener(r -> {
                                 attendanceId = r.getId();
+                                checkedIn = true;
                                 pb.setVisibility(View.GONE);
+                                btnCheckIn.setEnabled(true);
                                 tvStatus.setText("Checked In \u2713");
-                                btnCheckOut.setEnabled(true);
                                 Toast.makeText(this, "Check-in recorded!", Toast.LENGTH_SHORT).show();
                             })
                             .addOnFailureListener(e -> {
@@ -129,6 +135,10 @@ public class ManagerMarkAttendanceActivity extends AppCompatActivity {
     }
 
     private void markCheckOut() {
+        if (alreadyCheckedOutToday) {
+            Toast.makeText(this, "You've already checked out today", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (attendanceId == null) {
             Toast.makeText(this, "No check-in found", Toast.LENGTH_SHORT).show();
             return;
@@ -139,8 +149,9 @@ public class ManagerMarkAttendanceActivity extends AppCompatActivity {
                 .update("checkOutTime", DateTimeUtils.getCurrentTime())
                 .addOnSuccessListener(r -> {
                     pb.setVisibility(View.GONE);
+                    btnCheckOut.setEnabled(true);
+                    alreadyCheckedOutToday = true;
                     tvStatus.setText("Checked Out \u2713");
-                    btnCheckIn.setEnabled(false);
                     Toast.makeText(this, "Check-out recorded!", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {

@@ -77,7 +77,6 @@
             style="@style/WorkVerse.Button.Outline"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:enabled="false"
             android:text="Check Out" />
 
         <ProgressBar

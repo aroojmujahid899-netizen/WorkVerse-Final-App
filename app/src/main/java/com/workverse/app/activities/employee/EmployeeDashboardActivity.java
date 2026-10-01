@@ -131,9 +131,10 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             qaFeedback.setOnClickListener(v ->
                     startActivity(new Intent(this, SubmitFeedbackActivity.class)));
 
+        // CHANGED: ab My Sales (sirf dekhne wali) screen khulti hai
         if (qaSales != null)
             qaSales.setOnClickListener(v ->
-                    startActivity(new Intent(this, AddSaleActivity.class)));
+                    startActivity(new Intent(this, EmployeeSalesReportActivity.class)));
 
         if (qaNotifications != null)
             qaNotifications.setOnClickListener(v ->

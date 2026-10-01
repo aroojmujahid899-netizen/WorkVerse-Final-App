@@ -94,6 +94,7 @@ public class AdminSalesReportActivity extends AppCompatActivity {
 
     private void loadSalesData() {
         FirebaseHelper.getDb().collection("sales_reports")
+                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener(snap -> {
                     List<SalesReport> list = new ArrayList<>();

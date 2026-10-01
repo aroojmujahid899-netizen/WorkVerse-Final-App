@@ -36,7 +36,6 @@ public class ManagerNotificationsActivity extends AppCompatActivity {
     NotificationAdapter adapter;
     FloatingActionButton fab;
 
-    // employee list for "specific employee" dropdown
     List<String> employeeDisplayNames = new ArrayList<>();
     Map<String, String> employeeNameToUid = new HashMap<>();
 
@@ -44,6 +43,10 @@ public class ManagerNotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle s) {
         super.onCreate(s);
         setContentView(R.layout.activity_manager_notifications);
+
+        // Mark notifications as "seen" the moment this screen opens
+        SharedPrefManager.getInstance(this).setLastNotifSeen(System.currentTimeMillis());
+
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         if (getSupportActionBar() != null) getSupportActionBar().setTitle("Notifications");
@@ -148,7 +151,6 @@ public class ManagerNotificationsActivity extends AppCompatActivity {
                     String sentToLabel;
 
                     if (selectedEmployeeName != null && employeeNameToUid.containsKey(selectedEmployeeName)) {
-                        // Specific employee selected - overrides designation filter
                         targetUserId = employeeNameToUid.get(selectedEmployeeName);
                         targetRole = "Employee";
                         sentToLabel = selectedEmployeeName;
