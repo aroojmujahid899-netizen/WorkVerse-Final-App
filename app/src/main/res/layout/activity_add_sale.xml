@@ -57,7 +57,7 @@
             android:inputType="none"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Bi-Monthly Target (Fixed 30 Default) -->
+    <!-- Target (khali, user khud likhega) -->
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -67,8 +67,7 @@
             android:id="@+id/etTarget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Target (Bi-Monthly)"
-            android:text="30"
+            android:hint="Target"
             android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
