@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.workverse.app.R;
@@ -32,7 +31,7 @@ public class ManageRolesActivity extends AppCompatActivity {
     private static final java.util.Set<String> PROTECTED_ROLES =
             new java.util.HashSet<>(java.util.Arrays.asList("admin", "ceo"));
 
-    RecyclerView rv; ProgressBar pb; TextView tvEmpty; FloatingActionButton fabAdd;
+    RecyclerView rv; ProgressBar pb; TextView tvEmpty;
     TextInputEditText etSearch;
     RoleAdapter adapter;
     List<Role> fullList = new ArrayList<>();
@@ -45,7 +44,6 @@ public class ManageRolesActivity extends AppCompatActivity {
         rv = findViewById(R.id.recyclerView);
         pb = findViewById(R.id.progressBar);
         tvEmpty = findViewById(R.id.tvEmpty);
-        fabAdd = findViewById(R.id.fabAdd);
         etSearch = findViewById(R.id.etSearch);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -58,8 +56,6 @@ public class ManageRolesActivity extends AppCompatActivity {
             }
         });
         rv.setAdapter(adapter);
-
-        if (fabAdd != null) fabAdd.setOnClickListener(v -> showAddDialog());
 
         if (etSearch != null) {
             etSearch.addTextChangedListener(new TextWatcher() {
@@ -146,28 +142,6 @@ public class ManageRolesActivity extends AppCompatActivity {
                     }
                     filterRoles(etSearch != null && etSearch.getText() != null ? etSearch.getText().toString() : "");
                 });
-    }
-
-    private void showAddDialog() {
-        EditText etName = new EditText(this); etName.setHint("Role name (e.g. Supervisor)");
-        EditText etDesc = new EditText(this); etDesc.setHint("Description");
-        android.widget.LinearLayout ll = new android.widget.LinearLayout(this);
-        ll.setOrientation(android.widget.LinearLayout.VERTICAL);
-        ll.setPadding(48, 24, 48, 24);
-        ll.addView(etName); ll.addView(etDesc);
-        new AlertDialog.Builder(this).setTitle("Add Role").setView(ll)
-                .setPositiveButton("Add", (d, w) -> {
-                    String name = etName.getText().toString().trim();
-                    String desc = etDesc.getText().toString().trim();
-                    if (TextUtils.isEmpty(name)) {
-                        Toast.makeText(this, "Role name required", Toast.LENGTH_SHORT).show(); return;
-                    }
-                    Role role = new Role(name, desc);
-                    FirebaseHelper.getDb().collection(FirebaseHelper.COL_ROLES).add(role)
-                            .addOnSuccessListener(r -> { Toast.makeText(this, "Role added", Toast.LENGTH_SHORT).show(); loadRoles(); })
-                            .addOnFailureListener(e -> Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-                })
-                .setNegativeButton("Cancel", null).show();
     }
 
     private void showEditDialog(Role role) {

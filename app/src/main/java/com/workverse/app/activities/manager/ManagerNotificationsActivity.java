@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.workverse.app.utils.NotificationBadgeHelper;
 
 public class ManagerNotificationsActivity extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class ManagerNotificationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manager_notifications);
 
         // Mark notifications as "seen" the moment this screen opens
-        SharedPrefManager.getInstance(this).setLastNotifSeen(System.currentTimeMillis());
+        NotificationBadgeHelper.markSeen(this);
 
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);

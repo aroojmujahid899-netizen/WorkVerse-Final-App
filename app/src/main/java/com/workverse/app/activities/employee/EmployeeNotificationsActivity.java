@@ -18,6 +18,7 @@ import com.workverse.app.utils.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.workverse.app.utils.NotificationBadgeHelper;
 
 public class EmployeeNotificationsActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class EmployeeNotificationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_notifications);
 
         // NEW: mark all notifications as seen (clears the red badge on dashboard)
-        SharedPrefManager.getInstance(this).setLastNotifSeen(System.currentTimeMillis());
+        NotificationBadgeHelper.markSeen(this);
 
         Toolbar tb = findViewById(R.id.toolbar); setSupportActionBar(tb);
         tb.setNavigationOnClickListener(v -> finish());

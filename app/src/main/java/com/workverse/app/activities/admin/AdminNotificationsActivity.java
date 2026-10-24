@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import com.workverse.app.utils.NotificationBadgeHelper;
 public class AdminNotificationsActivity extends AppCompatActivity {
     RecyclerView rv; ProgressBar pb; TextView tvEmpty;
     NotificationAdapter adapter; FloatingActionButton fab;
@@ -40,7 +40,7 @@ public class AdminNotificationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_notifications);
 
         // Mark notifications as "seen" the moment this screen opens
-        SharedPrefManager.getInstance(this).setLastNotifSeen(System.currentTimeMillis());
+        NotificationBadgeHelper.markSeen(this);
 
         Toolbar tb = findViewById(R.id.toolbar); setSupportActionBar(tb);
         if (getSupportActionBar() != null) getSupportActionBar().setTitle("Notifications");
