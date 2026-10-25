@@ -19,6 +19,7 @@ import com.workverse.app.utils.FirebaseHelper;
 import com.workverse.app.utils.SharedPrefManager;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,8 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
     List<Attendance> fullList = new ArrayList<>();
     Map<String, String> userDesignationMap = new HashMap<>();
     Map<String, String> userCampaignMap = new HashMap<>();
+    // Check-in timestamp per record id (0 for old records that have no timestamp)
+    Map<String, Long> timestampMap = new HashMap<>();
 
     boolean isMyAttendance = false;
 
@@ -103,6 +106,22 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> loadData());
     }
 
+    // Newest date first, then newest check-in first. Done in Java (not in the
+    // Firestore query) so records without a "timestamp" field are not dropped.
+    private void sortNewestFirst(List<Attendance> list) {
+        Collections.sort(list, (x, y) -> {
+            String dx = x.getDate() != null ? x.getDate() : "";
+            String dy = y.getDate() != null ? y.getDate() : "";
+            int byDate = dy.compareTo(dx);
+            if (byDate != 0) return byDate;
+            Long tx = timestampMap.get(x.getId());
+            Long ty = timestampMap.get(y.getId());
+            long lx = tx != null ? tx : 0L;
+            long ly = ty != null ? ty : 0L;
+            return Long.compare(ly, lx);
+        });
+    }
+
     private void loadData() {
         String myUid = SharedPrefManager.getInstance(this).getUid();
 
@@ -111,25 +130,24 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
         if (isMyAttendance) {
             query = FirebaseHelper.getDb()
                     .collection(FirebaseHelper.COL_ATTENDANCE)
-                    .whereEqualTo("userId", myUid)
-                    .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
-                    .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING);
+                    .whereEqualTo("userId", myUid);
         } else {
             query = FirebaseHelper.getDb()
-                    .collection(FirebaseHelper.COL_ATTENDANCE)
-                    .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
-                    .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING);
+                    .collection(FirebaseHelper.COL_ATTENDANCE);
         }
 
         query.get()
                 .addOnSuccessListener(snap -> {
                     fullList.clear();
+                    timestampMap.clear();
                     for (QueryDocumentSnapshot d : snap) {
                         Attendance a = d.toObject(Attendance.class);
 
                         if (!isMyAttendance && "Manager".equals(a.getRole())) continue;
 
                         a.setId(d.getId());
+                        Long ts = d.getLong("timestamp");
+                        timestampMap.put(d.getId(), ts != null ? ts : 0L);
 
                         if (a.getDesignation() == null || a.getDesignation().isEmpty()) {
                             String fallback = userDesignationMap.get(a.getUserId());
@@ -142,6 +160,7 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
 
                         fullList.add(a);
                     }
+                    sortNewestFirst(fullList);
                     pb.setVisibility(View.GONE);
                     if (isMyAttendance) {
                         if (tvEmpty != null) tvEmpty.setVisibility(fullList.isEmpty() ? View.VISIBLE : View.GONE);
@@ -151,6 +170,7 @@ public class ManagerAttendanceActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> { pb.setVisibility(View.GONE);
+                    android.util.Log.e("ManagerAttendance", "Failed to load", e);
                     Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT).show(); });
     }
 

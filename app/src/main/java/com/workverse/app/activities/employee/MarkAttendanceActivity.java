@@ -199,7 +199,9 @@ public class MarkAttendanceActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     pb.setVisibility(View.GONE);
                     btnCheckOut.setEnabled(true);
-                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+                    // Show the real error so failures are easy to diagnose
+                    android.util.Log.e("MarkAttendance", "Check-out failed", e);
+                    Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
     }
 }

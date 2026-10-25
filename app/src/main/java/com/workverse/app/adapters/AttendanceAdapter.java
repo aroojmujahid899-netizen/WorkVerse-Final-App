@@ -37,6 +37,15 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.VH
         h.tvName.setText(name);
         h.tvDate.setText(a.getDate());
         h.tvCheckIn.setText("In: " + (a.getCheckInTime() != null ? a.getCheckInTime() : "—"));
+
+        // Show check-out time only if the user has checked out
+        if (!TextUtils.isEmpty(a.getCheckOutTime())) {
+            h.tvCheckOut.setText("Out: " + a.getCheckOutTime());
+            h.tvCheckOut.setVisibility(View.VISIBLE);
+        } else {
+            h.tvCheckOut.setVisibility(View.GONE);
+        }
+
         h.tvStatus.setText(a.getStatus());
 
         if ("Present".equals(a.getStatus())) {
@@ -49,7 +58,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.VH
         String initials = name.trim().isEmpty() ? "?" : name.trim().substring(0, 1).toUpperCase();
         h.tvInitials.setText(initials);
 
-        // Role Badge
+        // Role badge
         String role = a.getRole() != null ? a.getRole() : "Employee";
         h.tvRole.setText(role);
         if ("Manager".equalsIgnoreCase(role)) {
@@ -60,7 +69,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.VH
             h.tvRole.setTextColor(Color.parseColor("#1565C0"));
         }
 
-        // Designation / Campaign line
+        // Designation / campaign line
         String designation = a.getDesignation();
         String campaign = a.getCampaign();
         StringBuilder sub = new StringBuilder();
@@ -81,13 +90,14 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.VH
     public int getItemCount() { return list.size(); }
 
     static class VH extends RecyclerView.ViewHolder {
-        TextView tvName, tvDate, tvCheckIn, tvStatus, tvRole, tvDesignation, tvInitials;
+        TextView tvName, tvDate, tvCheckIn, tvCheckOut, tvStatus, tvRole, tvDesignation, tvInitials;
 
         VH(View v) {
             super(v);
             tvName = v.findViewById(R.id.tvName);
             tvDate = v.findViewById(R.id.tvDate);
             tvCheckIn = v.findViewById(R.id.tvCheckIn);
+            tvCheckOut = v.findViewById(R.id.tvCheckOut);
             tvStatus = v.findViewById(R.id.tvStatus);
             tvRole = v.findViewById(R.id.tvRole);
             tvDesignation = v.findViewById(R.id.tvDesignation);
